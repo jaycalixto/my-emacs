@@ -1,0 +1,6 @@
+clear control
+clear mod1
+keycode 108 = Control_L
+keycode 105 = Alt_L Meta_L
+add control = Control_L Control_R
+add mod1 = Alt_L Meta_L
