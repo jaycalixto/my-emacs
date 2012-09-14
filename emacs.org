@@ -9,22 +9,38 @@
 #+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+EXPORT_SELECT_TAGS: export
-#+EXPORT_EXCLUDE_TAGS: noexport 
-#+LINK_UP:   
+#+EXPORT_EXCLUDE_TAGS: noexport notangle 
+#+LINK_UP:
 #+LINK_HOME: 
+
+* Motivation
+
+  Tired to have to ssh copy my emacs environment everywhere. This now
+  acts as a single sync point to me and window to other people how I
+  use my emacs.
+
+* Requirements
+
+  Currently this is running in ubuntu 12.04, GNU Emacs 24.1.1
+  (x86_64-pc-linux-gnu, GTK+ Version 2.24.10) of 2012-07-17 on
+  lawrencium, modified by Debian and Org-mode version 7.8.02. I have
+  had some org-mode related problems with newer org-mode version such
+  as 7.9.1 and 7.8.11.
 
 * Add directories to load-path					  :loadpaths:
   :PROPERTIES:
   :ID:       baa6a26c-d73e-4ff7-9336-48540ef1396e
   :END:
   
+  [[file:init.el::%3B%3B%3B%20init.el%20---%20Where%20all%20the%20magic%20begins][All begans here.]] This approach was inspired from documentation of
+  org-mode babel library. I use demonized version of the emacs so that
+  it only does source tangling and loading of this configuration once.
+
   #+BEGIN_SRC emacs-lisp
     (defvar personal-directory)
     (setq personal-directory "~/.emacs.d/personal/")
     
     (defun personal-place (suffix)
-      "Hides away the actual place where I want to store my personal files.
-    This function should be maybe in outside of this repo?"
       (concat personal-directory suffix))
     
     (setq user-full-name "Sami Airaksinen"
