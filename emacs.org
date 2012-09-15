@@ -1165,6 +1165,9 @@
    #+BEGIN_SRC emacs-lisp
      (defun erc-cmd-BACKLOG ()
        (erc-send-ctcp-message "-proxy-" "IRSSIPROXY BACKLOG SEND"))
+     
+     ;; module for my erc customs  
+     (provide 'erc-customs)
    #+END_SRC
 * Programming 								:dev:
   :PROPERTIES:
@@ -1403,9 +1406,10 @@
 ** Slime
    #+begin_src emacs-lisp
      (setq inferior-lisp-program "/usr/bin/sbcl") ; your Lisp system
-     (add-to-list 'load-path "~/data/repos/slime/")  ; your SLIME directory
      (require 'slime-autoloads)
      (slime-setup '(slime-fancy))
+     
+     (provide 'programming)
    #+end_src
 * Browsers 						       :internet:dev:
   :PROPERTIES:
@@ -1497,6 +1501,8 @@
      
      (defun perldoc-search ()
        (search-in-internet 3))
+     
+     (provide 'browsers)
    #+END_SRC
    
 * ElNode 						 :services:async:tcp:
@@ -1555,9 +1561,7 @@
         (lambda (request-handler)
           (elnode-stop (get request-handler :port)))
         (get-elnode-local-handlers))
-       (message "elnode: Stopping done."))
-     
-     (provide 'el-node-services)
+       (message "elnode: Stopping done."))     
    #+end_src
 
 *** Simple Example service
@@ -1584,6 +1588,8 @@
                    (with-current-buffer (get-buffer "school.html")
                      (buffer-substring-no-properties (point-min) (point-max)))))))
       (elnode-add-service-to-init 'orgexpose 8020 "localhost")
+      
+      (provide 'el-node-services)
     #+END_SRC
 * Consoles/Shells						    :console:
   :PROPERTIES:
@@ -1686,6 +1692,8 @@
                         (generate-new-buffer-name "*shell*")
                       (car shell-buffer-list))))
           (shell name)))
+      
+      (provide 'consoles)      
      #+END_SRC
 * Emacs customization
   :PROPERTIES:
@@ -1696,19 +1704,29 @@
 
   #+BEGIN_SRC emacs-lisp
     (require 'appearance)
-    (setq custom-file "~/.emacs-custom.el")
-    (load custom-file 'noerror)
+    (load "~/.emacs-custom.el" 'noerror)
   #+END_SRC
 
 * Loading of different aspects
+
+  Here I then load these personalization modules to my emacs at
+  startup. I intentionally left some modules unloaded, because they
+  are so rarely used.
+
   #+BEGIN_SRC emacs-lisp
     (require 'appearance)
     (require 'navigation)
     (require 'editing)
     (require 'buffers)
+    (require 'erc-customs)
+    (require 'browsers)
+    
     (require 'org-personal)
     ;; org-crypt omoved here for issues with modularization of the lib. 
     (require 'org-crypt)
+    
+    (require 'consoles)
+    (require 'programming)
   #+END_SRC
 
 * License
