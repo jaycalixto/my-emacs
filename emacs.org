@@ -27,6 +27,46 @@
   had some org-mode related problems with newer org-mode version such
   as 7.9.1 and 7.8.11.
 
+* Bootstrapping
+  
+  Here are utility scripts that help initialize emacs to vanilla
+  environment. Currently I'm only interested in ubuntu environments
+  (currently about 12.04).
+
+  #+begin_src shell-script :tangle bootstrap-packages.sh :shebang #!/bin/bash
+    echo "bootstarpping emacs 24.1 repositories and installing packages ..."
+    sudo add-apt-repository ppa:cassou/emacs 
+    sudo apt-get update
+    sudo apt-get purge emacs-snapshot-common emacs-snapshot-bin-common emacs-snapshot emacs-snapshot-el emacs-snapshot-gtk emacs23 emacs23-bin-common emacs23-common emacs23-el emacs23-nox emacs23-lucid auctex emacs24 emacs24-bin-common emacs24-common
+    sudo apt-get install emacs24 emacs24-el
+  #+end_src
+
+  Here is a little script that helps you to set the repo to be your
+  .emacs.d.
+
+  #+begin_src shell-script :tangle bootstrap-configurations.sh :shebang #!/bin/bash
+    echo "replacing emacs configuration points in your system, backuping originals..."
+    ln -svb $PWD ~/.emacs.d
+    ln -svb ~/.emacs.d/personal/.emacs-custom.el ~/.emacs-custom.el
+  #+end_src
+
+** emacs entry points
+
+   Environmental file to be sourced so that emacs can be accessed as painlessly as
+   possible from terminal.
+
+   #+begin_src shell-script :tangle emacs.env
+     echo "setting emacs environments..."
+     
+     VISUAL="`which emacsclient` -c --alternate-editor="
+     EDITOR=`which emacs`
+     export VISUAL;
+     export EDITOR;
+     
+     alias m="`which emacsclient` --alternate-editor="
+     alias mc="`which emacsclient` -c --alternate-editor="
+   #+end_src
+
 * Add directories to load-path					  :loadpaths:
   :PROPERTIES:
   :ID:       baa6a26c-d73e-4ff7-9336-48540ef1396e
@@ -1179,10 +1219,12 @@
   #+BEGIN_SRC emacs-lisp
     ;;; programming.el --- different programming language mode configurations 
     (require 'highlight-parentheses)
-    (require 'ess-site)
     (require 'yasnippet-bundle)
     (require 'chm-view)
     (require 'pabbrev)
+
+    ;;optionally loading if found
+    (require 'ess-site nil 'no-error)
     
     (setq font-lock-maximum-decoration t)   
     (global-font-lock-mode t)
