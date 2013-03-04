@@ -1,0 +1,9 @@
+[submodule "themes/tangotango"]
+	path = themes/tangotango
+	url = git://github.com/juba/color-theme-tangotango.git
+[submodule "themes/ujelly"]
+	path = themes/ujelly
+	url = git://github.com/marktran/color-theme-ujelly.git
+[submodule "themes/soothe"]
+	path = themes/soothe
+	url = git://github.com/jasonm23/emacs-soothe-theme.git
