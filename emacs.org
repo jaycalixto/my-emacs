@@ -1749,10 +1749,12 @@
  
   Here we define and load the file where customization is kept.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'appearance)
-    (load "~/.emacs-custom.el" 'noerror)
-  #+END_SRC
+    ;; in separate variable so that emacs can find sexp where to add things.
+    (setq custom-file "~/.emacs-custom.el") 
+    (load custom-file 'noerror)
+  #+end_src
 
 * Loading of different aspects
 
@@ -1760,7 +1762,7 @@
   startup. I intentionally left some modules unloaded, because they
   are so rarely used.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'appearance)
     (require 'navigation)
     (require 'editing)
@@ -1774,7 +1776,7 @@
     
     (require 'consoles)
     (require 'programming)
-  #+END_SRC
+  #+end_src
 
 * License
 
