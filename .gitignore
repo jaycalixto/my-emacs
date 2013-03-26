@@ -4,3 +4,4 @@
 /.org-id-locations
 /emacs.el
 /session.*
+/eshell/
