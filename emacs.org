@@ -222,7 +222,7 @@
    (modify-all-frames-parameters
    '((font . "Dejavusans"))))   
    #+END_EXAMPLE
-* Navigation
+* Navigation							      :tramp:
   :PROPERTIES:
   :tangle: personal/navigation.el
   :ID:       2014f91b-f9e1-478d-abe4-f5278aaf678f
@@ -325,9 +325,13 @@
      (define-trivial-mode "evince" "\\.pdf$")
    #+END_SRC
 ** Tramp
+   
    #+BEGIN_SRC emacs-lisp 
      (setq tramp-auto-save-directory (personal-place "tramp-auto-save/")
            tramp-persistency-file-name (personal-place "tramp"))
+     
+     (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+     
      (provide 'navigation)
    #+END_SRC
 * Editing 							   :textedit:
