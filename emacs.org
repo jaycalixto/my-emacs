@@ -90,6 +90,17 @@
     (add-to-list 'load-path "~/.emacs.d/personal")
   #+END_SRC
 
+** Packaging manager configurations
+
+   I would like have stuff from MELPA
+
+   #+begin_src emacs-lisp
+     (require 'package)
+     (add-to-list 'package-archives
+                  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+     (package-initialize)
+   #+end_src
+
 * Emacs encoding 						   :encoding:
   :PROPERTIES:
   :ID:       35debd80-6f3d-497b-9764-9d498a8efbd3
