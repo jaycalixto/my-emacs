@@ -1664,11 +1664,7 @@
   #+BEGIN_SRC emacs-lisp
     ;;; consoles.el --- Several different console configuration
     (setq
-     explicit-bash-args (quote ("--noediting" "-i" "-l"))
-     ansi-color-names-vector
-          ["black" "red3" "green3" "green2"
-           "deep sky blue" "magenta3" "cyan3" "gold"])
-    (ansi-color-for-comint-mode-on)
+     explicit-bash-args (quote ("--noediting" "-i" "-l")))
     (require 'shell-completion)
   #+END_SRC
 
