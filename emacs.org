@@ -375,6 +375,15 @@
           (list (line-beginning-position)
                 (line-beginning-position 2)))))
    #+END_SRC
+** yasnippet
+   Works, but not with r-autoyas functionality. Could it be somekind
+   of version incombability.
+
+   #+begin_src elisp
+     (require 'yasnippet)
+     ;;(yas-minor-mode-on) this triggers some symbol loop error...
+   #+end_src
+   
 ** Custom tools
    Tools to edit, analyse and manipulate buffer content.
 *** Count words
