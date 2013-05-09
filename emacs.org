@@ -1256,8 +1256,8 @@
 
     ;;optionally loading if found
     (require 'ess-site nil 'no-error)
-    
-    (setq font-lock-maximum-decoration t)   
+
+    (setq font-lock-maximum-decoration t)
     (global-font-lock-mode t)
   #+END_SRC
 
@@ -1485,6 +1485,36 @@
      
      (provide 'programming)
    #+end_src
+** javascript
+
+   Nodejs is installed/downloaded outside emacs frame,
+
+   #+BEGIN_SRC sh
+     sudo apt-get install nodejs npm
+   #+END_SRC
+
+   flymake-jslint, flymake-cursor and js2-mode are installed from elpa
+   and configured.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+     (add-to-list 'interpreter-mode-alist '("spidermonkey" . js2-mode))
+       
+     (require 'js-comint)
+     (setq inferior-js-program-command "/usr/bin/js")
+     (add-hook 'js2-mode-hook '(lambda ()
+                                 (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+                                 (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+                                 (local-set-key "\C-cb" 'js-send-buffer)
+                                 (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+                                 (local-set-key "\C-cl" 'js-load-file-and-go)
+                                 ))
+     
+     ;;todo enable
+     ;;(require 'flymake-jslint)
+     ;;(add-hook 'js-mode-hook 'flymake-jslint-load)
+   #+END_SRC
+
 * Browsers 						       :internet:dev:
   :PROPERTIES:
   :tangle: personal/browsers.el
