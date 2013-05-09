@@ -67,7 +67,7 @@
      alias mc="`which emacsclient` -c --alternate-editor="
    #+end_src
 
-* Add directories to load-path					  :loadpaths:
+* Initialization configurations 				  :loadpaths:
   :PROPERTIES:
   :ID:       baa6a26c-d73e-4ff7-9336-48540ef1396e
   :END:
@@ -100,6 +100,26 @@
                                ("melpa" . "http://melpa.milkbox.net/packages/")
                                ("marmalade" . "http://marmalade-repo.org/packages/")))
      (package-initialize)
+   #+end_src
+
+** El-get configurations
+
+   Bootstrapping el-get to my emacs initialization file. Actual
+   recipes and el-get lisp files are located in separate git repo as
+   sub repo (they are not a same context in my opinion).
+
+   #+begin_src emacs-lisp
+     (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+     
+     (unless (require 'el-get nil 'noerror)
+       (with-current-buffer
+           (url-retrieve-synchronously
+            "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+         (goto-char (point-max))
+         (eval-print-last-sexp)))
+     
+     (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+     (el-get 'sync)
    #+end_src
 
 * Emacs encoding 						   :encoding:
