@@ -119,7 +119,9 @@
          (eval-print-last-sexp)))
      
      (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-     (el-get 'sync)
+     
+     ;; my packages where i collect all modes and recipies what I want to load
+     (setq my-packages '())
    #+end_src
 
 * Emacs encoding 						   :encoding:
@@ -1862,6 +1864,15 @@
     (require 'consoles)
     (require 'programming)
   #+end_src
+
+** syncing el-get packages
+
+   Here we synchronize sync all previously defined packages that were
+   declared in this configuration file. 
+
+   #+begin_src emacs-lisp
+     (el-get 'sync my-packages)
+   #+end_src
 
 * License
 
