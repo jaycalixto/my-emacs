@@ -21,8 +21,7 @@
        (load-path (append (list org-dir org-contrib-dir)
                           (or load-path nil))))
   ;; load up Org-mode and Org-babel
-  (require 'org-install))
-  ;;(require 'org-babel-init))
+  (require 'org))
 
 ;; load up all literate org-mode files in this directory
 (mapc #'org-babel-load-file (directory-files dotfiles-dir t "\\.org$"))
