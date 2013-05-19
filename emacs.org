@@ -119,9 +119,6 @@
          (eval-print-last-sexp)))
      
      (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-     
-     ;; my packages where i collect all modes and recipies what I want to load
-     (setq my-packages '())
    #+end_src
 
 * Emacs encoding 						   :encoding:
@@ -275,9 +272,9 @@
    Smex is ido for M-x.
 
    #+BEGIN_SRC emacs-lisp
-     (require 'smex)                                                  
+     (require 'smex)
      (setq smex-save-file (personal-place "smex.save")) ;; keep my ~/ clean 
-     (smex-initialize)                                                               
+     (smex-initialize)
      (global-set-key (kbd "C-M-A") 'smex)
    #+END_SRC
 ** Bookmarks
