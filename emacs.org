@@ -1519,16 +1519,24 @@
    #+BEGIN_SRC emacs-lisp
      (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
      (add-to-list 'interpreter-mode-alist '("spidermonkey" . js2-mode))
-       
-     (require 'js-comint)
-     (setq inferior-js-program-command "/usr/bin/js")
-     (add-hook 'js2-mode-hook '(lambda ()
-                                 (local-set-key "\C-x\C-e" 'js-send-last-sexp)
-                                 (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
-                                 (local-set-key "\C-cb" 'js-send-buffer)
-                                 (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
-                                 (local-set-key "\C-cl" 'js-load-file-and-go)
-                                 ))
+
+     ;; (require 'js-comint) 
+     (setq 
+      el-get-sources
+      '(
+        (:name js-comint :type elpa 
+              :after 
+              (progn
+                (setq inferior-js-program-command "/usr/bin/js")
+                (add-hook 'js2-mode-hook '(lambda ()
+                                            (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+                                            (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+                                            (local-set-key "\C-cb" 'js-send-buffer)
+                                            (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+                                            (local-set-key "\C-cl" 'js-load-file-and-go)
+                                            ))
+                ))
+        (:name js2-mode :type elpa))) 
      
      ;;todo enable
      ;;(require 'flymake-jslint)
@@ -1730,7 +1738,7 @@
     (require 'shell-completion)
   #+END_SRC
 
-** SQL 								   :database:   
+** SQL 							   :database:
    Defines customization of the SQL mode. This is very poverfull mode
    for integrating SQL database actions to emacs.
 
@@ -1750,7 +1758,7 @@
     #+BEGIN_SRC emacs-lisp
       (add-hook 'sql-interactive-mode 'toggle-truncate-lines)
     #+END_SRC
-** Multiterm							      :shell:   
+** Multiterm							      :shell:
    My new terminal manager. There is couple of copy/paste issues and
    backspacing that renders this quite useless in my usage.
 
@@ -1765,7 +1773,7 @@
    #+END_SRC
 ** eshell 							   :RESEARCH:
    You should get familiarized with eshell
-** GIT 									:VCS:
+** GIT 								:VCS:
    
    Here is defined git-emacs interface customization. Currently I'm
    using magit.
@@ -1871,7 +1879,11 @@
    declared in this configuration file. 
 
    #+begin_src emacs-lisp
-     (el-get 'sync my-packages)
+     (setq my-el-get-packages
+           (append
+            '(js2-mode js-comint)
+            (mapcar 'el-get-source-name el-get-sources)))  
+     (el-get 'sync my-el-get-packages)
    #+end_src
 
 * License
