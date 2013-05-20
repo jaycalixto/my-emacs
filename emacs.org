@@ -1266,16 +1266,26 @@
 
   #+BEGIN_SRC emacs-lisp
     ;;; programming.el --- different programming language mode configurations 
-    (require 'highlight-parentheses)
+    
+    (add-to-list 
+     'el-get-sources
+     '(:name highlight-parentheses :type elpa
+             :after 
+             (progn
+               (add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
+               (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode))
+             ))
+        
     (require 'yasnippet-bundle)
     (require 'chm-view)
     (require 'pabbrev)
-
+    
     ;;optionally loading if found
     (require 'ess-site nil 'no-error)
-
+    
     (setq font-lock-maximum-decoration t)
     (global-font-lock-mode t)
+    
   #+END_SRC
 
 ** Folding mode							   :notangle:
@@ -1514,26 +1524,31 @@
    and configured.
 
    #+BEGIN_SRC emacs-lisp
-     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-     (add-to-list 'interpreter-mode-alist '("spidermonkey" . js2-mode))
-
+     ;;(add-to-list 'interpreter-mode-alist '("spidermonkey" . js2-mode))
+     
      ;; (require 'js-comint) 
-     (setq 
-      el-get-sources
-      '(
-        (:name js-comint :type elpa 
+     (add-to-list 
+      'el-get-sources 
+      '(:name js-comint :type elpa 
               :after 
               (progn
                 (setq inferior-js-program-command "/usr/bin/js")
-                (add-hook 'js2-mode-hook '(lambda ()
-                                            (local-set-key "\C-x\C-e" 'js-send-last-sexp)
-                                            (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
-                                            (local-set-key "\C-cb" 'js-send-buffer)
-                                            (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
-                                            (local-set-key "\C-cl" 'js-load-file-and-go)
-                                            ))
-                ))
-        (:name js2-mode :type elpa))) 
+                (add-hook 'js2-mode-hook 
+                          '(lambda ()
+                             (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+                             (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+                             (local-set-key "\C-cb" 'js-send-buffer)
+                             (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+                             (local-set-key "\C-cl" 'js-load-file-and-go)
+                             ))
+                )))
+     (add-to-list 
+      'el-get-sources 
+      '(:name js2-mode :type elpa
+              :after 
+              (progn
+                (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+                )))
      
      ;;todo enable
      ;;(require 'flymake-jslint)
@@ -1855,7 +1870,6 @@
   are so rarely used.
 
   #+begin_src emacs-lisp
-    (require 'appearance)
     (require 'navigation)
     (require 'editing)
     (require 'buffers)
@@ -1878,8 +1892,7 @@
    #+begin_src emacs-lisp
      (setq my-el-get-packages
            (append
-            '(js2-mode js-comint)
-            (mapcar 'el-get-source-name el-get-sources)))  
+            (mapcar 'el-get-source-name el-get-sources)))
      (el-get 'sync my-el-get-packages)
    #+end_src
 

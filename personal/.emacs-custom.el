@@ -8,6 +8,7 @@
  '(chm-view-delay 1.0)
  '(custom-safe-themes (quote ("ebf6314f5c7c71034ffe2d67db489c6d868be3cf8cdba02e5a936808c5df75c8" "81805c86e126018f339211bb3f03e1c9eae30adfbe72832bd02f89ca0cbe5885" "843a82ff3b91bec5430f9acdd11de03fc0f7874b15c1b6fbb965116b4c7bf830" default)))
  '(global-whitespace-mode t)
+ '(safe-local-variable-values (quote ((require-final-newline . t))))
  '(whitespace-global-modes t)
  '(whitespace-line-column 500))
 
