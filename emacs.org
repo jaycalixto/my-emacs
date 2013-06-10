@@ -151,6 +151,7 @@
     (load-file "~/.emacs.d/lib/ergoemacs-keybindings-5.1/ergoemacs-mode.el")
     (ergoemacs-mode 1)
   #+END_SRC
+
 * Visual appearance 					       :colors:frame:
   :PROPERTIES:
   :tangle: personal/appearance.el
@@ -162,9 +163,7 @@
     (setq 
      inhibit-startup-screen t
      initial-buffer-choice t
-     frame-background-mode nil
      use-file-dialog nil
-     elscreen-display-tab nil
      frame-title-format '(buffer-file-name "Emacs: %b (%f)" "Emacs: %b"))
       
     (set-face-attribute 'default nil :height 100 :family "Liberation Mono")
@@ -184,6 +183,7 @@
    :PROPERTIES:
    :ID:       0b0487c2-c94c-48f5-bcdf-16448183059d
    :END:
+   
    This is the configuration creates 80x50 frame in the current
    desktop. It sets colors of cursor, background and foreground. Also
    font is redefined here. Fixes some of the daemon issues.
@@ -202,7 +202,7 @@
    :PROPERTIES:
    :ID:       76e18ca4-aa11-4515-8f85-2c27a7b6441a
    :END:
-    Function to fix fram to prefixed size.
+    Function to reset frame to prefixed size.
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x W") 'fix-horizontal-size)
@@ -235,7 +235,8 @@
      ;; modularize this to loadable module
      (provide 'appearance)
    #+END_SRC
-** Set font for all
+
+** Set font for all						    :ARCHIVE:
    Apparently not used yet...
    #+BEGIN_EXAMPLE
    (if (>= emacs-major-version 23) 
@@ -258,11 +259,10 @@
     (when (fboundp 'windmove-default-keybindings)
       (windmove-default-keybindings))
     
-      (setq
-       mouse-wheel-follow-mouse t)
+    (setq mouse-wheel-follow-mouse t)
     
     (setq-default save-place t)
-    (require 'saveplace)    
+    (require 'saveplace)
   #+END_SRC
 
 ** smex
