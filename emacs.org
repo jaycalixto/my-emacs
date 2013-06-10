@@ -292,20 +292,27 @@
 
    #+BEGIN_SRC emacs-lisp
      (setq 
-      bookmark-default-file (concat personal-directory "bookmarks") ;; keep my ~/ clean
-      bookmark-save-flag 1)                        ;; autosave each change
+      bookmark-default-file (concat personal-directory "bookmarks")
+      bookmark-save-flag 1)
    #+END_SRC
-** ELScreen
+** ELScreen							   :notangle:
    :PROPERTIES:
+   :TANGLE:   no
    :ID:       a70b9270-5577-4fbf-bc47-1ff4d13ba16a
    :END:
-   #+BEGIN_SRC emacs-lisp
-     ;; Windowskey+PgUP/PgDown switches between elscreens
-     (global-set-key (kbd "<s-prior>") 'elscreen-previous)
-     (global-set-key (kbd "<s-next>")  'elscreen-next)
-     
-     ;;load ELScreen modification
-     (load "elscreen" "ElScreen" t)
+
+   Elscreen is like screen for emacs. Installed via system tool
+   apt-get, so you need sudo rights. It can be passed as $pass env
+   variable, but might be little bit unreliable.
+
+   #+BEGIN_SRC emacs-lisp :tangle
+     (add-to-list
+      'el-get-sources
+      '(:name elscreen :type apt-get
+              :after (progn
+                       (global-set-key (kbd "<s-prior>") 'elscreen-previous)
+                       (global-set-key (kbd "<s-next>")  'elscreen-next)
+                       )))
    #+END_SRC
 ** Window layout navigator
    :PROPERTIES:
