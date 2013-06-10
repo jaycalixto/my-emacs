@@ -272,10 +272,17 @@
    Smex is ido for M-x.
 
    #+BEGIN_SRC emacs-lisp
-     (require 'smex)
-     (setq smex-save-file (personal-place "smex.save")) ;; keep my ~/ clean 
-     (smex-initialize)
-     (global-set-key (kbd "C-M-A") 'smex)
+     (add-to-list 
+      'el-get-sources
+      '(:name smex :type elpa
+              :after 
+              (progn
+                (require 'smex) ;;todo figure out is this absolutely required here...
+                (smex-initialize)
+                (setq smex-save-file (personal-place "smex.save"))
+                (global-set-key (kbd "M-C-z") 'smex) ;;todo to M-a, replace ergoemacs keybinding
+                (global-set-key (kbd "M-C-Z") 'smex-major-mode-commands)
+                )))
    #+END_SRC
 ** Bookmarks
    :PROPERTIES:
