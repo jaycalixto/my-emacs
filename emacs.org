@@ -361,12 +361,20 @@
      (define-trivial-mode "evince" "\\.pdf$")
    #+END_SRC
 ** Tramp
-   
+   My own configuration to tramp. tramp auto-save should be located to
+   my personal folder. Also 'tramping' sudo rights are declared trough
+   proxy configuration.
+
    #+BEGIN_SRC emacs-lisp 
-     (setq tramp-auto-save-directory (personal-place "tramp-auto-save/")
-           tramp-persistency-file-name (personal-place "tramp"))
-     
-     (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+     (add-to-list 
+      'el-get-sources
+      '(:name tramp :type builtin 
+              :after
+              (progn
+                (setq tramp-auto-save-directory (personal-place "tramp-auto-save/")
+                      tramp-persistency-file-name (personal-place "tramp"))
+                (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+                )))
      
      (provide 'navigation)
    #+END_SRC
