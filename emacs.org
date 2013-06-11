@@ -318,18 +318,20 @@
    :PROPERTIES:
    :ID:       f5acbbfb-9248-4b5b-844e-fafeef95aca1
    :END:
+
    Configuring winner mode. With this you can search through your
    previous window layouts.
   
    #+BEGIN_SRC emacs-lisp
-     ;;winner mode - search trough window frame history
-     (require 'winner)
-     (setq winner-dont-bind-my-keys t) ;; default bindings conflict with org-mode
-     
-     (global-set-key (kbd "<C-s-left>") 'winner-undo)
-     (global-set-key (kbd "<C-s-right>") 'winner-redo)
-     
-     (winner-mode t) ;; turn on the global minor mode
+     (add-to-list
+      'el-get-sources
+      '(:name winner :type builtin :features winner
+              :after (progn
+                       (setq winner-dont-bind-my-keys t) 
+                       (global-set-key (kbd "<C-s-left>") 'winner-undo)
+                       (global-set-key (kbd "<C-s-right>") 'winner-redo)
+                       (winner-mode t)
+                       )))
    #+END_SRC
 ** Trivial modes 						   :external:
    :PROPERTIES:
