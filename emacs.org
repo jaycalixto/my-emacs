@@ -277,17 +277,14 @@
    Smex is ido for M-x.
 
    #+BEGIN_SRC emacs-lisp
-     (add-to-list 
-      'el-get-sources
-      '(:name smex :type elpa
-              :after 
-              (progn
-                (require 'smex) ;;todo figure out is this absolutely required here...
-                (smex-initialize)
-                (setq smex-save-file (personal-place "smex.save"))
-                (global-set-key (kbd "M-C-z") 'smex) ;;todo to M-a, replace ergoemacs keybinding
-                (global-set-key (kbd "M-C-Z") 'smex-major-mode-commands)
-                )))
+     (add-to-el-sources smex elpa 
+                        '(progn
+                           (require 'smex) ;;todo figure out is this absolutely required here...
+                           (smex-initialize)
+                           (setq smex-save-file (personal-place "smex.save"))
+                           (global-set-key (kbd "M-C-z") 'smex) ;;todo to M-a, replace ergoemacs keybinding
+                           (global-set-key (kbd "M-C-Z") 'smex-major-mode-commands)
+                           ))
    #+END_SRC
 ** Bookmarks
    :PROPERTIES:
@@ -310,7 +307,7 @@
    apt-get, so you need sudo rights. It can be passed as $pass env
    variable, but might be little bit unreliable.
 
-   #+BEGIN_SRC emacs-lisp :tangle
+   #+BEGIN_SRC emacs-lisp
      (add-to-list
       'el-get-sources
       '(:name elscreen :type apt-get
@@ -338,6 +335,7 @@
                        (winner-mode t)
                        )))
    #+END_SRC
+
 ** Trivial modes 						   :external:
    :PROPERTIES:
    :ID:       f0451863-024e-419d-a585-9cbef7b4d94c
@@ -371,16 +369,13 @@
    proxy configuration.
 
    #+BEGIN_SRC emacs-lisp 
-     (add-to-list 
-      'el-get-sources
-      '(:name tramp :type builtin 
-              :after
-              (progn
+     (add-to-el-sources tramp builtin 
+              '(progn
                 (setq tramp-auto-save-directory (personal-place "tramp-auto-save/")
                       tramp-persistency-file-name (personal-place "tramp"))
                 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
-                )))
-     
+                ))
+
      (provide 'navigation)
    #+END_SRC
 * Editing 							   :textedit:
