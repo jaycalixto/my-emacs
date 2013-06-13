@@ -638,11 +638,19 @@
    like things, but inside emacs).
 
 *** Clean							   :midnight:
-    Keeps my buffer listing reasonable by removing unused buffers. 
+    Keeps my buffer listing reasonable by removing unused buffers. Run
+    weekly, because once a day is too often.
+
     #+BEGIN_SRC emacs-lisp
-      (require 'midnight)
-      (setq clean-buffer-list-kill-never-regexps '("\\.org$" "^#" "^!"))
-      (run-at-time "23:00" (timer-duration "24 hours") 'clean-buffer-list)      
+      (add-to-list
+       'el-get-sources
+       '(:name midnight :type builtin :features midnight
+               :after
+               '(progn
+                  (setq
+                   clean-buffer-list-kill-never-regexps '("\\.org$" "^#" "^!"))
+                  (run-at-time "23:00" (timer-duration "1 week") 'clean-buffer-list)
+                  )))
      #+END_SRC
 
 *** Save 							     :backup:
