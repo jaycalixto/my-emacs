@@ -661,10 +661,18 @@
     my emacs.
     
     #+BEGIN_SRC emacs-lisp
-      (savehist-mode 1)
       (desktop-save-mode t)
+      ;;desktop
+      
+      (add-to-el-sources 
+       savehist 
+       builtin 
+       '(progn 
+          (savehist-mode)
+          (setq savehist-file (personal-place "savehist-history"))
+          ))
          
-      (setq savehist-file (personal-place "savehist-history") 
+      (setq  
        make-backup-files t
        backup-directory-alist (quote ((".*" . "~/.backups/emacs.buffers/"))))
       
