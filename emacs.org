@@ -1334,18 +1334,30 @@
   #+BEGIN_SRC emacs-lisp
     ;;; programming.el --- different programming language mode configurations 
     
-    (add-to-list 
+    (add-to-el-sources
+     highlight-parentheses elpa
+     (progn
+       (require 'highlight-parentheses)
+       (add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
+       (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode))
+     )
+    
+    (add-to-list
      'el-get-sources
-     '(:name highlight-parentheses :type elpa
-             :after 
+     '(:name yasnippet 
+             :after
              (progn
-               (add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
-               (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode))
-             ))
-        
-    (require 'yasnippet-bundle)
-    (require 'chm-view)
-    (require 'pabbrev)
+               (yas-global-mode 1))))
+    
+    (add-to-list
+     'el-get-sources
+     '(:name chm-view :features chm-view))
+    
+    (add-to-el-sources
+     pabbrev
+     elpa
+     (progn
+       (require 'pabbrev)))
     
     ;;optionally loading if found
     (require 'ess-site nil 'no-error)
