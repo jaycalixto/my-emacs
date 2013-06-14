@@ -290,7 +290,7 @@
         (smex-initialize)
         (setq smex-save-file (personal-place "smex.save"))
         (global-set-key (kbd "M-C-a") 'smex) ;;todo to M-a, replace ergoemacs keybinding
-        (global-set-key (kbd "M-C-A") 'smex-major-mode-commands)
+        (global-set-key (kbd "M-C-S-a") 'smex-major-mode-commands)
         ))
    #+END_SRC
 
@@ -521,7 +521,8 @@
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-<f5>") 'toggle-truncate-lines)
-     (global-set-key (kbd "M-<f5>") 'revert-buffer) 
+     (global-set-key (kbd "M-<f5>") 'revert-buffer)
+     (global-set-key (kbd "C-S-o") 'dired)
   #+END_SRC
 
 ** iBuffer filters and grouping
