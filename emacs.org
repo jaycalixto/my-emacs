@@ -15,9 +15,14 @@
 
 * Motivation
 
-  Tired to have to ssh copy my emacs environment everywhere. This now
-  acts as a single sync point to me and window to other people how I
-  use my emacs.
+  Tired to have to copy and reinitialize my emacs environment
+  everywhere. Therefore I figured that it might be fun exercise to
+  bootstrap my emacs(-configuration) so that it manages itself all
+  related packages and dependencies.
+
+  For this purpose I use org-mode format to store and organize my
+  configuration code and el-get to manage actual fetching, loading and
+  updating of my packages.
 
 * Requirements
 
@@ -27,7 +32,7 @@
   had some org-mode related problems with newer org-mode version such
   as 7.9.1 and 7.8.11.
 
-* Bootstrapping
+* Bootstrapping 						   :external:
   
   Here are utility scripts that help initialize emacs to vanilla
   environment. Currently I'm only interested in ubuntu environments
@@ -1350,7 +1355,7 @@
     
   #+END_SRC
 
-** Folding mode							   :notangle:
+** Folding mode 						   :notangle:
    :PROPERTIES:
    :tangle:   no
    :END:
@@ -1410,7 +1415,7 @@
                     compilation-error-regexp-alist))) 
    #+END_SRC
 
-** XREF								   :notangle:
+** XREF 							   :notangle:
    :PROPERTIES:
    :tangle:   no
    :ID:       a07bca80-e2d1-4c34-beff-0acc8d6b580e
@@ -1432,7 +1437,7 @@
      (message "xrefactory loaded")
    #+END_SRC
 
-** JDEE								   :notangle:
+** JDEE 							   :notangle:
    :PROPERTIES:
    :tangle:   no
    :ID:       36f569aa-66c4-4843-9af8-fde27ec66d79
@@ -1479,7 +1484,7 @@
      ;;make mode-hook
      (add-hook 'jde-mode-hook 'my-jde-mode-hook)
    #+END_SRC
-** Sage								   :notangle:
+** Sage 							   :notangle:
    :PROPERTIES:
    :tangle:   no
    :ID:       3d5570c4-58c0-4c2d-be68-5622c2fe2ccd
@@ -1500,7 +1505,7 @@
      ;; to have some combination of features.  In future, the customize interface
      ;; will make this simpler... hint, hint!
    #+END_SRC
-** Ruby								   :notangle:
+** Ruby 							   :notangle:
    :PROPERTIES:
    :tangle:   no
    :ID:       f6b056d1-fcd3-4ce4-a27b-e20e02d24239
@@ -1797,7 +1802,7 @@
       
       (provide 'el-node-services)
     #+END_SRC
-* Consoles/Shells						    :console:
+* Consoles							    :console:
   :PROPERTIES:
   :tangle: personal/consoles.el
   :END:
@@ -1832,7 +1837,7 @@
     #+BEGIN_SRC emacs-lisp
       (add-hook 'sql-interactive-mode 'toggle-truncate-lines)
     #+END_SRC
-** Multiterm							      :shell:
+** Multiterm 							      :shell:
    My new terminal manager. There is couple of copy/paste issues and
    backspacing that renders this quite useless in my usage.
 
@@ -1845,9 +1850,9 @@
            multi-term-shell-arguments "-l"
            multi-term-buffer-name "bash-shell")
    #+END_SRC
-** eshell 							   :RESEARCH:
+** TODO eshell							   :RESEARCH:
    You should get familiarized with eshell
-** GIT 								:VCS:
+** git 								:VCS:
    
    Here is defined git-emacs interface customization. Currently I'm
    using magit.
@@ -1911,7 +1916,7 @@
       
       (provide 'consoles)      
      #+END_SRC
-* Emacs customization
+* Emacs customization						  :customize:
   :PROPERTIES:
   :ID:       3696de86-9690-498c-b95c-21ef826a2911
   :END:
@@ -1925,7 +1930,7 @@
     (load custom-file 'noerror)
   #+end_src
 
-* Loading of different aspects
+* Loading of different aspects				       :finalization:
 
   Here I then load these personalization modules to my emacs at
   startup. I intentionally left some modules unloaded, because they
@@ -1958,7 +1963,7 @@
      (el-get 'sync my-el-get-packages)
    #+end_src
 
-* License
+* License							    :license:
 
   Used external libraries are licensed as they are described in their
   source files. This file and its generated derivatives are licensed
