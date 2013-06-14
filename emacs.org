@@ -277,15 +277,18 @@
    Smex is ido for M-x.
 
    #+BEGIN_SRC emacs-lisp
-     (add-to-el-sources smex elpa 
-                        '(progn
-                           (require 'smex) ;;todo figure out is this absolutely required here...
-                           (smex-initialize)
-                           (setq smex-save-file (personal-place "smex.save"))
-                           (global-set-key (kbd "M-C-a") 'smex) ;;todo to M-a, replace ergoemacs keybinding
-                           (global-set-key (kbd "M-C-A") 'smex-major-mode-commands)
-                           ))
+     (add-to-el-sources 
+      smex 
+      elpa 
+      (progn
+        (require 'smex)
+        (smex-initialize)
+        (setq smex-save-file (personal-place "smex.save"))
+        (global-set-key (kbd "M-C-a") 'smex) ;;todo to M-a, replace ergoemacs keybinding
+        (global-set-key (kbd "M-C-A") 'smex-major-mode-commands)
+        ))
    #+END_SRC
+
 ** Bookmarks
    :PROPERTIES:
    :ID:       bd61817e-e87b-41b2-bf50-65657354143f
@@ -369,15 +372,18 @@
    proxy configuration.
 
    #+BEGIN_SRC emacs-lisp 
-     (add-to-el-sources tramp builtin 
-              '(progn
-                (setq tramp-auto-save-directory (personal-place "tramp-auto-save/")
-                      tramp-persistency-file-name (personal-place "tramp"))
-                (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
-                ))
-
+     (add-to-el-sources 
+      tramp 
+      builtin 
+      (progn
+        (setq tramp-auto-save-directory (personal-place "tramp-auto-save/")
+              tramp-persistency-file-name (personal-place "tramp"))
+        (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+        ))
+     
      (provide 'navigation)
    #+END_SRC
+
 * Editing 							   :textedit:
   :PROPERTIES:
   :tangle: personal/editing.el
@@ -644,11 +650,11 @@
        'el-get-sources
        '(:name midnight :type builtin :features midnight
                :after
-               '(progn
-                  (setq
-                   clean-buffer-list-kill-never-regexps '("\\.org$" "^#" "^!"))
-                  (run-at-time "23:00" (timer-duration "1 week") 'clean-buffer-list)
-                  )))
+               (progn
+                 (setq
+                  clean-buffer-list-kill-never-regexps '("\\.org$" "^#" "^!"))
+                 (run-at-time "23:00" (timer-duration "1 week") 'clean-buffer-list)
+                 )))
      #+END_SRC
 
 *** Save 							     :backup:
@@ -664,18 +670,17 @@
       (desktop-save-mode t)
       ;;desktop
       
-      (add-to-el-sources 
-       savehist 
-       builtin 
-       '(progn 
+      (add-to-el-sources
+       savehist
+       builtin
+       (progn
           (savehist-mode)
           (setq savehist-file (personal-place "savehist-history"))
           ))
          
-      (setq  
+      (setq
        make-backup-files t
        backup-directory-alist (quote ((".*" . "~/.backups/emacs.buffers/"))))
-      
     #+END_SRC
 
 ** IDO mode								:ido:
