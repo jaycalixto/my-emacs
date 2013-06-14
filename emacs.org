@@ -726,14 +726,18 @@
    with *-symbol).
 
    #+BEGIN_SRC emacs-lisp
-     (require 'uniquify)
+     (add-to-list
+      'el-get-sources
+      '(:name uniquify :type builtin :features uniquify
+              :after 
+              (progn
+                (setq 
+                 uniquify-buffer-name-style 'post-forward
+                 uniquify-separator "::"
+                 uniquify-after-kill-buffer-p t
+                 uniquify-ignore-buffers-re "^\\*")
+                )))
      
-     (setq 
-      uniquify-buffer-name-style 'post-forward
-      uniquify-separator "::"
-      uniquify-after-kill-buffer-p t
-      uniquify-ignore-buffers-re "^\\*")
-
      (provide 'buffers)
    #+END_SRC
 
