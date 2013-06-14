@@ -541,10 +541,11 @@
           (lambda(element)
             (add-to-list 'group-filter (cdr (assoc element ibuffer-filters)) t))
           filters)
-         group-filter))     
+         group-filter))
    #+END_SRC
-	 
-*** Filters
+
+*** TODO Filters
+    - needs filter refactoring, remove school, add thesis and work filters
 
     Here is defined basic filters that can be used to construct filter
     view by =ibuffer-create-group-filter= function.
@@ -623,7 +624,8 @@
                                (mode . emacs-lisp-mode))))))
     #+end_src
 
-*** Filter Views
+*** TODO Filter Views
+    - create work filter group
     
     Here is the configuration of ibuffer views. First the views are
     defined and with hook the default view is set.
