@@ -1364,27 +1364,8 @@
     
     (setq font-lock-maximum-decoration t)
     (global-font-lock-mode t)
-    
   #+END_SRC
 
-** Folding mode 						   :notangle:
-   :PROPERTIES:
-   :tangle:   no
-   :END:
-
-   Enable code block folding as minor-mode
-
-   #+BEGIN_SRC emacs-lisp
-     ;;code folding
-     (load "folding" 'nomessage 'noerror)
-     (folding-add-to-marks-list 'haskell-mode "--{{{"  "--}}}"  nil t)
-     (folding-mode-add-find-file-hook)
-     (add-hook 'haskell-mode-hook 'folding-mode)
-     
-     (folding-add-to-marks-list 'tuareg-mode "(*{{{"  "(*}}}*)"  nil t)
-     (add-hook 'tuareg-mode-hook 'folding-mode)
-   #+END_SRC
-   
 ** Compilation shell output
    :PROPERTIES:
    :ID:       0a531781-b266-4e1a-b990-16de6ef69628
@@ -1398,6 +1379,23 @@
      (setq compilation-scroll-output t
            compilation-window-height 16)
    #+END_SRC
+** Folding mode
+
+   Enable code block folding as minor-mode, should define those
+   folding modes and markups.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name folding :after
+              (progn
+                (load "folding" 'nomessage 'noerror)
+                (folding-add-to-marks-list 'haskell-mode "--{{{"  "--}}}"  nil t)
+                (folding-mode-add-find-file-hook)
+                (add-hook 'haskell-mode-hook 'folding-mode)
+                )))
+   #+END_SRC
+   
 ** C
    :PROPERTIES:
    :ID:       0c233791-6373-4ca6-baa9-17b036cb3b71
@@ -1582,15 +1580,6 @@
                   )
             auto-mode-alist))
    #+end_src
-** Slime
-   #+begin_src emacs-lisp
-     (setq inferior-lisp-program "/usr/bin/sbcl")
-     (add-to-list 'load-path "/usr/share/emacs/site-lisp/slime") ;; adding slime to load path
-     (require 'slime-autoloads)
-     (slime-setup '(slime-fancy))
-     
-     (provide 'programming)
-   #+end_src
 ** javascript
 
    Nodejs is installed/downloaded outside emacs frame,
@@ -1634,6 +1623,15 @@
      ;;(add-hook 'js-mode-hook 'flymake-jslint-load)
    #+END_SRC
 
+** Slime
+   #+begin_src emacs-lisp
+     (setq inferior-lisp-program "/usr/bin/sbcl")
+     (add-to-list 'load-path "/usr/share/emacs/site-lisp/slime") ;; adding slime to load path
+     (require 'slime-autoloads)
+     (slime-setup '(slime-fancy))
+     
+     (provide 'programming)
+   #+end_src
 * Browsers 						       :internet:dev:
   :PROPERTIES:
   :tangle: personal/browsers.el
