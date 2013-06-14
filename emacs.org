@@ -266,8 +266,13 @@
     
     (setq mouse-wheel-follow-mouse t)
     
-    (setq-default save-place t)
-    (require 'saveplace)
+    (add-to-list
+     'el-get-sources
+     '(:name saveplace :type builtin :features saveplace 
+            :after 
+            (progn
+              (setq-default save-place t)
+              )))
   #+END_SRC
 
 ** smex
