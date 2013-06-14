@@ -502,9 +502,12 @@
   :tangle: personal/buffers.el
   :END:
 
-   #+BEGIN_SRC emacs-lisp
-     ;;; buffers.el --- Buffer management customization
-   #+END_SRC
+  Modes and configuration for buffer management.
+
+  #+BEGIN_SRC emacs-lisp
+    ;;; buffers.el --- Buffer management customization
+  #+END_SRC
+
 ** Keybindings
    :PROPERTIES:
    :ID:       f3e6a958-306a-4cff-9f4a-f3d894eb656b
@@ -633,57 +636,49 @@
                   (ibuffer-switch-to-saved-filter-groups "default")))
     #+end_src
 
-** Automatic Jobs
+** Save 							     :backup:
    :PROPERTIES:
-   :ID:       1dc45409-a53f-461f-9f8a-fa25ce60b848
+   :ID:       eb29537a-b163-4dea-8296-1d7f59e8899b
    :END:
+   Using .backups folder as a base folder where to place emacs
+   buffers autosave files. Here we also configure my desktop
+   recording, which reopens my last buffers when I close and reopen
+   my emacs.
    
-   Here will be configured jobs that are done automatically (cronjob
-   like things, but inside emacs).
+   #+BEGIN_SRC emacs-lisp
+     (add-to-el-sources
+      desktop
+      builtin
+      (progn
+	 (desktop-save-mode)))
+     
+     (add-to-el-sources
+      savehist
+      builtin
+      (progn
+	 (savehist-mode)
+	 (setq savehist-file (personal-place "savehist-history"))
+	 ))
+	
+     (setq
+      make-backup-files t
+      backup-directory-alist (quote ((".*" . "~/.backups/emacs.buffers/"))))
+   #+END_SRC
 
-*** Clean							   :midnight:
-    Keeps my buffer listing reasonable by removing unused buffers. Run
-    weekly, because once a day is too often.
+** Automatic Cleaning 						   :midnight:
+   Keeps my buffer listing reasonable by removing unused buffers. Run
+   weekly, because once a day is too often.
 
-    #+BEGIN_SRC emacs-lisp
-      (add-to-list
-       'el-get-sources
-       '(:name midnight :type builtin :features midnight
-               :after
-               (progn
-                 (setq
-                  clean-buffer-list-kill-never-regexps '("\\.org$" "^#" "^!"))
-                 (run-at-time "23:00" (timer-duration "1 week") 'clean-buffer-list)
-                 )))
-     #+END_SRC
-
-*** Save 							     :backup:
-    :PROPERTIES:
-    :ID:       eb29537a-b163-4dea-8296-1d7f59e8899b
-    :END:
-    Using .backups folder as a base folder where to place emacs
-    buffers autosave files. Here we also configure my desktop
-    recording, which reopens my last buffers when I close and reopen
-    my emacs.
-    
-    #+BEGIN_SRC emacs-lisp
-      (add-to-el-sources
-       desktop
-       builtin
-       (progn
-          (desktop-save-mode)))
-      
-      (add-to-el-sources
-       savehist
-       builtin
-       (progn
-          (savehist-mode)
-          (setq savehist-file (personal-place "savehist-history"))
-          ))
-         
-      (setq
-       make-backup-files t
-       backup-directory-alist (quote ((".*" . "~/.backups/emacs.buffers/"))))
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name midnight :type builtin :features midnight
+	      :after
+	      (progn
+		(setq
+		 clean-buffer-list-kill-never-regexps '("\\.org$" "^#" "^!"))
+		(run-at-time "23:00" (timer-duration "1 week") 'clean-buffer-list)
+		)))
     #+END_SRC
 
 ** IDO mode								:ido:
