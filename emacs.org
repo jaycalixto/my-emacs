@@ -667,8 +667,11 @@
     my emacs.
     
     #+BEGIN_SRC emacs-lisp
-      (desktop-save-mode t)
-      ;;desktop
+      (add-to-el-sources
+       desktop
+       builtin
+       (progn
+          (desktop-save-mode)))
       
       (add-to-el-sources
        savehist
