@@ -697,20 +697,22 @@
    listings. Works mostly in minibuffer area.
 
    #+BEGIN_SRC emacs-lisp
-     (require 'ido)                      ; ido is part of emacs 
-     
-     (ido-mode t)                        ; for both buffers and files
-     
-     (setq 
-      ido-ignore-buffers               ; ignore these guys
-      '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido")
-      ido-work-directory-list '("~" "~/Documents")
-      ido-case-fold  t                 ; be case-insensitive
-      ido-use-filename-at-point nil    ; don't use filename at point (annoying)
-      ido-use-url-at-point nil         ;  don't use url at point (annoying)
-      ido-enable-flex-matching t       ; be flexible
-      ido-max-prospects 6              ; don't spam my minibuffer
-      ido-confirm-unique-completion t) ; wait for RET, even with unique completion
+     (add-to-list
+      'el-get-sources
+      '(:name ido :type builtin :features ido
+              :after
+              (progn
+                (ido-mode t)
+                (setq 
+                 ido-ignore-buffers               ; ignore these guys
+                 '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido")
+                 ido-work-directory-list '("~" "~/Documents")
+                 ido-case-fold  t                 ; be case-insensitive
+                 ido-enable-flex-matching t       ; be flexible
+                 ido-max-prospects 6              ; don't spam my minibuffer
+                 ido-confirm-unique-completion t) ; wait for RET, even with unique completion
+                )
+              ))
    #+END_SRC
 
 ** Buffer renaming						     :rename:
