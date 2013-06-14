@@ -1415,9 +1415,6 @@
    :END:
 
    #+BEGIN_SRC emacs-lisp
-     ;; F90-hook
-     (add-hook 'f90-mode 'highlight-parentheses-mode) 
-     
      ;; g95 to compilation mode
      (eval-after-load "compile"
        '(setq compilation-error-regexp-alist
@@ -1546,9 +1543,13 @@
    #+END_SRC
 ** Php
    For debugging php files.
+
    #+begin_src emacs-lisp
-     (require 'php-mode)
+     (add-to-list
+      'el-get-sources
+      '(:name php-mode-improved))
    #+end_src
+
 ** IDL
    :PROPERTIES:
    :ID:       36443582-7858-4ddd-823e-20279954eb78
