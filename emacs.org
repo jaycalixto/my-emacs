@@ -1726,7 +1726,7 @@
      (provide 'browsers)
    #+END_SRC
    
-* ElNode 						 :services:async:tcp:
+* TODO ElNode						 :services:async:tcp:
   :PROPERTIES:
   :tangle: personal/el-node-services.el
   :END:
@@ -1734,13 +1734,19 @@
   Elnode is a library that enables emacs to expose itself as user
   defined web services.
 
+  - dependencies needs to be defined here 
+
   #+BEGIN_SRC emacs-lisp
     ;;; el-node-services.el --- Example usage of el-node library
-    (require 'elnode)
     
-    ;; possible configurations
-    (global-set-key (kbd "<C-f12>") 'elnode-init-services)
-    (global-set-key (kbd "<C-S-f12>") 'elnode-stop-services)    
+    (add-to-list
+     'el-get-sources
+     '(:name elnode :features elnode
+             :after 
+             (progn
+               (global-set-key (kbd "<C-f12>") 'elnode-init-services)
+               (global-set-key (kbd "<C-S-f12>") 'elnode-stop-services)    
+               )))
   #+end_src
 
 ** Utility tools
@@ -1822,9 +1828,11 @@
 
   #+BEGIN_SRC emacs-lisp
     ;;; consoles.el --- Several different console configuration
-    (setq
-     explicit-bash-args (quote ("--noediting" "-i" "-l")))
-    (require 'shell-completion)
+    (setq explicit-bash-args '("--noediting" "-i" "-l"))
+    
+    (add-to-list
+     'el-get-sources
+     '(:name shell-completion :features shell-completion))
   #+END_SRC
 
 ** SQL 							   :database:
@@ -1961,6 +1969,7 @@
     
     (require 'consoles)
     (require 'programming)
+;;    (require 'el-node-services)
   #+end_src
 
 ** syncing el-get packages
