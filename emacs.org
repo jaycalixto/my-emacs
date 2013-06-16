@@ -1852,14 +1852,16 @@
    backspacing that renders this quite useless in my usage.
 
    #+BEGIN_SRC emacs-lisp
-     (require 'multi-term)
-     
-     (global-set-key (kbd "<C-f8>") 'multi-term)
-     
-     (setq multi-term-program "/bin/bash"
-           multi-term-shell-arguments "-l"
-           multi-term-buffer-name "bash-shell")
+     (add-to-list
+      'el-get-sources
+      '(:name multi-term :features multi-term
+              :after (progn
+                       (global-set-key (kbd "<C-f8>") 'multi-term)
+                       (setq multi-term-program "/bin/bash"
+                             multi-term-shell-arguments "-l"
+                             multi-term-buffer-name "bash-shell"))))
    #+END_SRC
+
 ** TODO eshell							   :RESEARCH:
    You should get familiarized with eshell
 ** git 								:VCS:
