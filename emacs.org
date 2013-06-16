@@ -1559,11 +1559,18 @@
 
 ** Groovy
 
+   Java groovy configurations.
+
    #+BEGIN_SRC emacs-lisp
      ;;; use groovy-mode when file ends in .groovy or has #!/bin/groovy at start
-     (autoload 'groovy-mode "groovy-mode" "Groovy editing mode." t)
-     (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
-     (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+     ;;; note: needed sudo apt-get install bzr
+     (add-to-list
+      'el-get-sources
+      '(:name groovy-emacs-mode :after
+              (progn 
+                (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
+                (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+                )))
    #+END_SRC
 
 ** Promela
@@ -1624,13 +1631,22 @@
    #+END_SRC
 
 ** Slime
+
+   Superior Lisp mode.
+
    #+begin_src emacs-lisp
-     (setq inferior-lisp-program "/usr/bin/sbcl")
-     (add-to-list 'load-path "/usr/share/emacs/site-lisp/slime") ;; adding slime to load path
-     (require 'slime-autoloads)
-     (slime-setup '(slime-fancy))
+     (add-to-list
+      'el-get-sources
+      '(:name slime :features slime-autoloads
+              :after
+              (progn
+                (setq inferior-lisp-program "/usr/bin/sbcl")
+                (add-to-list 'load-path "/usr/share/emacs/site-lisp/slime") ;; adding slime to load path
+                (slime-setup '(slime-fancy))
+                )))
      
      (provide 'programming)
+     
    #+end_src
 * Browsers 						       :internet:dev:
   :PROPERTIES:
