@@ -124,11 +124,11 @@
          (eval-print-last-sexp)))
      
      (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-
-     (defmacro add-to-el-sources(name type after-progn)
+     
+     (defmacro add-to-el-sources(name type after-progn &rest additional)
        `(add-to-list
            'el-get-sources
-           '(:name ,name :type ,type :after ,after-progn)))
+           (append '(:name ,name :type ,type :after ,after-progn) ',additional)))
    #+end_src
 
 * Emacs encoding 						   :encoding:
