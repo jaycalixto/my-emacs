@@ -1893,8 +1893,13 @@
 *** magit Configuration
 
     #+BEGIN_SRC emacs-lisp
-      (autoload 'magit-status "magit" nil t)
-      (global-set-key (kbd "<f10>") 'magit-status)
+      (add-to-list
+       'el-get-sources
+       '(:name magit :type elpa
+               :after
+               (progn
+                 (global-set-key (kbd "<f10>") 'magit-status))
+               ))
     #+END_SRC
 
 *** git-gutter
@@ -1903,7 +1908,10 @@
     against GIT head.
     
     #+begin_src emacs-lisp 
-      (when (require 'git-gutter nil 'noerror)
+      (add-to-el-sources
+       git-gutter
+       elpa 
+       (progn
         (global-git-gutter-mode t)
         (global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
         (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
@@ -1911,7 +1919,7 @@
         (global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
         (global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
       
-        (global-set-key (kbd "C-x r") 'git-gutter:revert-hunk))
+        (global-set-key (kbd "C-x r") 'git-gutter:revert-hunk)))
     #+end_src
 
 ** Bash-shell							   :obsolete:
