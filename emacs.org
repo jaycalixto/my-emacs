@@ -1643,35 +1643,32 @@
 
   #+BEGIN_SRC emacs-lisp
     ;;; browsers.el --- utilities to integrate browser actions to emacs buffers 
-    (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-    
-    (global-set-key (kbd "C-x C-f") 'search-in-internet)
-    (global-set-key (kbd "C-x C-m") 'browse-url-at-point) ;;FUCKING REMEMBER THIS!!@!!
-    
-    (setq 
-     w3m-use-cookies t
-     browse-url-browser-function 'select-url-browser)
+    (add-to-el-sources
+     w3m
+     builtin
+     (progn 
+       (global-set-key (kbd "C-x C-f") 'search-in-internet)
+       (global-set-key (kbd "C-x C-m") 'browse-url-at-point) ;;FUCKING REMEMBER THIS!!@!!
+       (setq w3m-use-cookies t)
+       (let ((available-browsers '(
+                                   ("default" browse-url-default-browser)
+                                   ("firefox" browse-url-firefox)
+                                   ("w3m" w3m-browse-url))))
+         (setq browse-url-browser-function 
+               (lambda(url &optional new-window)
+                 (interactive)
+                 (funcall 
+                  (cadr 
+                   (assoc 
+                    (read-string 
+                     "Select Browser: " 
+                     (caar available-browsers)
+                     nil
+                     (mapcar 'car available-browsers)) available-browsers))
+                  url new-window))))
+       ))
    #+END_SRC
-** Browser selector 
-   :PROPERTIES:
-   :ID:       59784aa3-f23e-477c-851d-07349ada4f6c
-   :END:
-   Defining lazy evaluator which is called for every opened link.
 
-   #+BEGIN_SRC emacs-lisp
-     (setq available-browsers '(("default" browse-url-default-browser)
-                              ("firefox" browse-url-firefox)
-                              ("w3m" w3m-browse-url)))
-     
-     (defun select-url-browser (url &optional new-window)
-       (interactive)
-       (funcall (cadr (assoc (read-string 
-                              "Select Browser: " 
-                              (caar available-browsers)
-                              nil
-                              (mapcar 'car available-browsers)) available-browsers))
-                url new-window))
-   #+END_SRC
 ** The custom search URLs
    :PROPERTIES:
    :ID:       034e629c-2adc-47ce-aeeb-85e9f4436e8e
