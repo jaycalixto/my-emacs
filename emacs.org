@@ -1554,12 +1554,17 @@
    :PROPERTIES:
    :ID:       36443582-7858-4ddd-823e-20279954eb78
    :END:
+
+   Old and trustful data processing language.
+
    #+BEGIN_SRC emacs-lisp
      (setq idlwave-block-indent 4
            idlwave-end-offset -4
            idlwave-indent-parens-nested t)
    #+END_SRC
+
 ** Groovy
+
    #+BEGIN_SRC emacs-lisp
      ;;; use groovy-mode when file ends in .groovy or has #!/bin/groovy at start
      (autoload 'groovy-mode "groovy-mode" "Groovy editing mode." t)
