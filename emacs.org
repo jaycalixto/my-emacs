@@ -1512,35 +1512,29 @@
      ;; to have some combination of features.  In future, the customize interface
      ;; will make this simpler... hint, hint!
    #+END_SRC
-** Ruby 							   :notangle:
-   :PROPERTIES:
-   :tangle:   no
-   :ID:       f6b056d1-fcd3-4ce4-a27b-e20e02d24239
-   :END:
+** Ruby
 
    #+BEGIN_SRC emacs-lisp
-     ;;add mode specific thingys when
-     (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode)) 
-     (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-     
-     ;;create eval-buffer function
-     (defun ruby-eval-buffer () 
-       (interactive)
-       "Evaluate the buffer with ruby."
-       (shell-command-on-region (point-min) (point-max) "ruby"))
-     
-     ;;define ruby-mode-hook here
-     (defun my-ruby-mode-hook ()
-       (setq standard-indent 4)
-       (pabbrev-mode t)
-       (ruby-electric-mode t)
-       (define-key ruby-mode-map "\C-c\C-a" 'ruby-eval-buffer))
-     (add-hook 'ruby-mode-hook 'my-ruby-mode-hook)
-     
-     ;;load ruby libs when this file is loaded
-     (require 'ruby-mode)
-     (require 'ruby-electric)
+     (add-to-list
+      'el-get-sources
+      '(:name ruby-mode :features ruby-mode ;'(ruby-mode ruby-electric)
+              :after
+              (progn
+                (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode)) 
+                (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+                (defun ruby-eval-buffer () 
+                  (interactive)
+                  "Evaluate the buffer with ruby."
+                  (shell-command-on-region (point-min) (point-max) "ruby"))
+                (add-hook 'ruby-mode-hook 
+                          (lambda ()
+                            (setq standard-indent 4)
+                            (pabbrev-mode t)
+                            ;;(ruby-electric-mode t)
+                            (define-key ruby-mode-map "\C-c\C-a" 'ruby-eval-buffer)))
+                )))
    #+END_SRC
+
 ** Php
    For debugging php files.
 
