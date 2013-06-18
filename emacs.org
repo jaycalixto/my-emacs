@@ -760,12 +760,30 @@
   be full emacs fanatic and still keeps me amazed. This configuration
   file is powered by org-babel, so you can see its power.
 
-  Unsorted options that have not a good place to be ...
-
   #+BEGIN_SRC emacs-lisp
     ;;; org-personal.el --- personalization to my org
     (setq org-directory "~/org")
   #+END_SRC
+
+** el-get recipe definition				       :elget:recipe:
+   :PROPERTIES:
+   :tangle:   no
+   :END:
+
+   This will hook org mode to el-get package manager and trigger
+   loading of personal customization.
+
+   [[id:f85f78c3-6b7d-43a1-bcd1-859e0d48362e][This will added via noweb syntax to emacs.el.]]
+
+   #+name: org-mode-recipe
+   #+begin_src emacs-lisp
+     (add-to-el-sources
+      org
+      elpa
+      (progn
+        (require 'org-personal)
+        (require 'org-crypt)))
+   #+end_src
 
 ** Agenda							     :agenda:
    :PROPERTIES:
@@ -892,8 +910,6 @@
         (R . t) 
         (sh . t)))
    #+END_SRC
-
-   #+results:
 
 ** Block Wrapping function					   :function:
    :PROPERTIES:
@@ -1145,7 +1161,7 @@
              ("wiki" . "http://en.wikipedia.org/wiki/")))
    #+END_SRC
 
-** Mobile-org                                        :notangle:DESIGN:mobile:
+** Mobile-org 							     :mobile:
    SCHEDULED: <2010-08-27 Fri>
    :LOGBOOK:
    - State "WAITING"    from "WAITING"    [2010-08-26 Thu 22:57] \\
@@ -1174,16 +1190,19 @@
    change the tag it will remove other group tag automatically.
 
    #+BEGIN_SRC emacs-lisp
-     (setq org-tag-alist '((:startgroup) ("@jira" . ?j) ("@errand" . ?e) ("@tkk" . ?t) ("@home" . ?h) ("@work" . ?w) (:endgroup)
-                      (:startgroup) ("RESEARCH" . ?r) ("PLAN" . ?p) ("DESIGN" . ?d) ("IMPLEMENT" . ?i) (:endgroup)
-                      (:startgroup) ("TASK" . ?t) ("STORY" . ?s) (:endgroup)
-                      (:startgroup) ("BUG" . ?b) ("FEATURE" . ?f) ("IMPROVEMENT" . ?I) (:endgroup)
+     (setq 
+      org-tag-alist 
+      '(
+        (:startgroup) ("@errand" . ?e) ("@tkk" . ?t) ("@home" . ?h) ("@work" . ?w) (:endgroup)
+        (:startgroup) ("RESEARCH" . ?r) ("PLAN" . ?p) ("DESIGN" . ?d) ("IMPLEMENT" . ?i) (:endgroup)
+        (:startgroup) ("TASK" . ?t) ("STORY" . ?s) (:endgroup)
+        (:startgroup) ("BUG" . ?b) ("FEATURE" . ?f) ("IMPROVEMENT" . ?I) (:endgroup)
      
-                      ("ASSIGMENT" . ?a)
-                      ("APPOINTMENT" . ?A)
-                      ("PHONE" . ?P)
-                      ("BUY" . ?B)
-                      ("EMAIL" . ?E)))
+        ("ASSIGMENT" . ?a)
+        ("APPOINTMENT" . ?A)
+        ("PHONE" . ?P)
+        ("BUY" . ?B)
+        ("EMAIL" . ?E)))
      
      ;; modularize this personalization
      (provide 'org-personal)
@@ -1968,25 +1987,28 @@
   #+end_src
 
 * Loading of different aspects				       :finalization:
+  :PROPERTIES:
+  :ID:       f85f78c3-6b7d-43a1-bcd1-859e0d48362e
+  :END:
 
   Here I then load these personalization modules to my emacs at
   startup. I intentionally left some modules unloaded, because they
   are so rarely used.
 
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :noweb yes
+    ;; here should be org-mode recipe definition from inside org headline... 
+    <<org-mode-recipe>>
+    
+    ;; here are headline categorized configs as simple modules... 
     (require 'navigation)
     (require 'editing)
     (require 'buffers)
     (require 'erc-customs)
     (require 'browsers)
     
-    (require 'org-personal)
-    ;; org-crypt omoved here for issues with modularization of the lib. 
-    (require 'org-crypt)
-    
     (require 'consoles)
     (require 'programming)
-;;    (require 'el-node-services)
+    ;;    (require 'el-node-services)
   #+end_src
 
 ** syncing el-get packages
