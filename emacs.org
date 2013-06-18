@@ -1662,13 +1662,13 @@
        (global-set-key (kbd "C-x C-f") 'search-in-internet)
        (global-set-key (kbd "C-x C-m") 'browse-url-at-point) ;;FUCKING REMEMBER THIS!!@!!
        (setq w3m-use-cookies t)
-       (let ((available-browsers '(
-                                   ("default" browse-url-default-browser)
-                                   ("firefox" browse-url-firefox)
-                                   ("w3m" w3m-browse-url))))
-         (setq browse-url-browser-function 
-               (lambda(url &optional new-window)
-                 (interactive)
+       (setq browse-url-browser-function 
+             (lambda(url &optional new-window)
+               (interactive)
+               (let ((available-browsers '(
+                                           ("default" browse-url-default-browser)
+                                           ("firefox" browse-url-firefox)
+                                           ("w3m" w3m-browse-url))))
                  (funcall 
                   (cadr 
                    (assoc 
