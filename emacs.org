@@ -1202,7 +1202,25 @@
 
   #+BEGIN_SRC emacs-lisp
     ;;; erc-customs.el --- Personal customization for ERC package
-    (require 'erc)
+    (add-to-el-sources
+     erc
+     builtin
+     (progn
+       (setq 
+        erc-max-buffer-size 30000
+        erc-truncate-buffer-on-save t
+        erc-notice-highlight-type (quote all)
+        erc-notice-prefix ">>>> "
+        erc-prompt "WRITE HERE> "
+        erc-auto-query 'window-noselect)
+    
+       ;;enable autojoin
+       (erc-autojoin-mode t)
+    
+       ;;define some custom hook to truncate erc buffers correctly
+       (defvar erc-insert-post-hook)
+       (add-hook 'erc-insert-post-hook 'erc-truncate-buffer))
+     :features erc)
   #+END_SRC
 
 ** Bouncer and Identification					:irc:bouncer:
@@ -1287,32 +1305,6 @@
                                           erc-irssi-linknet
                                           erc-irssi-freenode))
     #+END_SRC
-** Configurations						 :hooks:feel:
-   :PROPERTIES:
-   :ID:       25822595-28af-48b6-96bb-e18a0e72d9ed
-   :END:
-   
-   Currently ERC client-to-server logging isn't done and all the
-   connections to servers are done trough bouncer.
-
-   #+BEGIN_SRC emacs-lisp
-     ;;set erc variables
-     (setq 
-      erc-max-buffer-size 30000
-      erc-truncate-buffer-on-save t
-      erc-notice-highlight-type (quote all)
-      erc-notice-prefix ">>>> "
-      erc-prompt "WRITE HERE> "
-      erc-auto-query 'window-noselect)
-     
-     ;;enable autojoin
-     (erc-autojoin-mode t)
-     
-     ;;define some custom hook to truncate erc buffers correctly
-     (defvar erc-insert-post-hook)
-     (add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
-   #+END_SRC
-
 ** IRC custom commands					      :proxy:backlog:
    :PROPERTIES:
    :ID:       f77a3833-9ce6-4e21-975f-fa3e95a74dfb
