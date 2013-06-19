@@ -1506,6 +1506,15 @@
      ;;make mode-hook
      (add-hook 'jde-mode-hook 'my-jde-mode-hook)
    #+END_SRC
+** Maven
+
+   Enables simple POM property parsing and connection to JDE mode.
+
+   #+begin_src emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name pom))
+   #+end_src
 ** Sage 							   :notangle:
    :PROPERTIES:
    :tangle:   no
