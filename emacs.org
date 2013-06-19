@@ -76,9 +76,6 @@
    #+end_src
 
 * Initialization configurations 				  :loadpaths:
-  :PROPERTIES:
-  :ID:       baa6a26c-d73e-4ff7-9336-48540ef1396e
-  :END:
   
   [[file:init.el::%3B%3B%3B%20init.el%20---%20Where%20all%20the%20magic%20begins][All begans here.]] This approach was inspired from documentation of
   org-mode babel library. I use demonized version of the emacs so that
@@ -168,7 +165,6 @@
 * Visual appearance 					       :colors:frame:
   :PROPERTIES:
   :tangle: personal/appearance.el
-  :ID:       91c548cb-7d88-47cc-bfff-667f8d02a769
   :END:
  
   #+BEGIN_SRC emacs-lisp
@@ -259,7 +255,6 @@
 * Navigation							      :tramp:
   :PROPERTIES:
   :tangle: personal/navigation.el
-  :ID:       2014f91b-f9e1-478d-abe4-f5278aaf678f
   :END:
 
   Defining navigation preferences. I want easy navigation between
@@ -284,9 +279,6 @@
   #+END_SRC
 
 ** smex
-   :PROPERTIES:
-   :ID:       06fddeab-b0f5-42c6-81ae-2581245a5d85
-   :END:
    Smex is ido for M-x.
 
    #+BEGIN_SRC emacs-lisp
@@ -303,9 +295,6 @@
    #+END_SRC
 
 ** Bookmarks
-   :PROPERTIES:
-   :ID:       bd61817e-e87b-41b2-bf50-65657354143f
-   :END:
    Keeping my personal information in one location. 
 
    #+BEGIN_SRC emacs-lisp
@@ -316,7 +305,6 @@
 ** ELScreen							   :notangle:
    :PROPERTIES:
    :TANGLE:   no
-   :ID:       a70b9270-5577-4fbf-bc47-1ff4d13ba16a
    :END:
 
    Elscreen is like screen for emacs. Installed via system tool
@@ -333,9 +321,6 @@
                        )))
    #+END_SRC
 ** Window layout navigator
-   :PROPERTIES:
-   :ID:       f5acbbfb-9248-4b5b-844e-fafeef95aca1
-   :END:
 
    Configuring winner mode. With this you can search through your
    previous window layouts.
@@ -353,9 +338,6 @@
    #+END_SRC
 
 ** Trivial modes 						   :external:
-   :PROPERTIES:
-   :ID:       f0451863-024e-419d-a585-9cbef7b4d94c
-   :END:
    Function to define new trivial modes. This means that buffer is
    opened by external program.
 
@@ -410,9 +392,6 @@
   #+END_SRC
 
 ** Killring modifications.
-   :PROPERTIES:
-   :ID:       110c319a-30cc-4144-8ff8-cfb47d4c256b
-   :END:
    New features for copy and cut functions. Non selection applys
    current method to whole line. Also fixes clipboard disconnection
    between X and emacs.
@@ -454,9 +433,6 @@
 ** Custom tools
    Tools to edit, analyse and manipulate buffer content.
 *** Count words
-    :PROPERTIES:
-    :ID:       ba9bfd5b-affb-42a4-855e-eb9bd8ad4780
-    :END:
     Count words in the region.
 
     #+BEGIN_SRC emacs-lisp
@@ -471,9 +447,6 @@
     #+END_SRC
 
 *** wc
-    :PROPERTIES:
-    :ID:       7e6e3506-c369-4218-aa0d-f903e9775450
-    :END:
     wc like function in the emacs.
 
     #+BEGIN_SRC emacs-lisp
@@ -490,9 +463,6 @@
     #+END_SRC
 
 *** buffer to PDF
-    :PROPERTIES:
-    :ID:       c645ded2-7fc1-47a2-a0d7-a4679531680a
-    :END:
     Copies buffer content to pdf file.
 
     #+BEGIN_SRC emacs-lisp
@@ -522,9 +492,6 @@
   #+END_SRC
 
 ** Keybindings
-   :PROPERTIES:
-   :ID:       f3e6a958-306a-4cff-9f4a-f3d894eb656b
-   :END:
    Fundamental key configurations, using all the time.
 
    #+BEGIN_SRC emacs-lisp
@@ -534,9 +501,6 @@
   #+END_SRC
 
 ** iBuffer filters and grouping
-   :PROPERTIES:
-   :ID:       f80afec5-ecbd-4d9f-9327-7e908d288a3c
-   :END:
 
    iBuffer makes buffer browsing prettier and more interactive. You
    can filter buffers to groups by predefined filters. 
@@ -653,9 +617,6 @@
     #+end_src
 
 ** Save 							     :backup:
-   :PROPERTIES:
-   :ID:       eb29537a-b163-4dea-8296-1d7f59e8899b
-   :END:
    Using .backups folder as a base folder where to place emacs
    buffers autosave files. Here we also configure my desktop
    recording, which reopens my last buffers when I close and reopen
@@ -698,9 +659,6 @@
     #+END_SRC
 
 ** IDO mode								:ido:
-   :PROPERTIES:
-   :ID:       b938a519-3f49-42d9-af84-790076772b3b
-   :END: 
    Library to enhance usability with buffer and directory
    listings. Works mostly in minibuffer area.
 
@@ -724,10 +682,6 @@
    #+END_SRC
 
 ** Buffer renaming						     :rename:
-   CLOSED: [2010-07-09 Fri 20:47]
-   :PROPERTIES:
-   :ID:       5ccb4517-4463-4414-97ee-62cc8e1b664a
-   :END:
    When opening a buffer which has same name, this configuration will
    keep buffers unique. It will reorganize names if one the buffers
    has been killed. It will also ignore "system" buffers (starting
@@ -752,7 +706,6 @@
 * Org-mode 					      :calendar:organization:
   :PROPERTIES:
   :tangle: personal/org-personal.el
-  :ID:       4974bdf3-cdc1-4575-a6b0-eda1fbbea47c
   :END:
   
   Org-mode, God mode, devils-advocate, nicknames are many. This is
@@ -786,9 +739,6 @@
    #+end_src
 
 ** Agenda							     :agenda:
-   :PROPERTIES:
-   :ID:       93bc11e3-e6d8-4790-92e7-3c6433164f23
-   :END:
 
    Agenda is tool for scheduling your events in selected org-buffers,
    so called agenda-files.
@@ -892,9 +842,6 @@
     #+END_SRC
 
 ** Babel							:programming:
-   :PROPERTIES:
-   :ID:       32d924ad-7c2e-40d0-873c-a1a65e2a72d7
-   :END:
 
    Babel enables source code evaluation of many different languages
    inside the org mode buffer. Evolution is fast and current version
@@ -912,9 +859,6 @@
    #+END_SRC
 
 ** Block Wrapping function					   :function:
-   :PROPERTIES:
-   :ID:       47878164-fc7a-4a7c-b42d-ac323827d859
-   :END:
    
    Inserts marked region between org-mode custom block, interactive.
 
@@ -984,9 +928,6 @@
    :LOGBOOK:
    - State "QUOTE"      from ""           [2011-04-20 Wed 22:35]
    :END:
-   :PROPERTIES:
-   :ID:       3f573495-cd35-4749-97af-f81a89ce40f1
-   :END:
    
    Org-mode enables exports to different common formats. 
 
@@ -1051,9 +992,6 @@
       \\usepackage[usenames]{color}")
     #+END_SRC
 ** Global keybindings 						       :keys:
-   :PROPERTIES:
-   :ID:       9aa1f33e-c3e7-4612-9ed4-483029e3ec94
-   :END:
 
    The following key strokes are highly used and we want them to be
    accessible from whole system.
@@ -1064,9 +1002,6 @@
    #+END_SRC
 
 ** Headline Editing						       :edit:
-   :PROPERTIES:
-   :ID:       f90379d7-b0cd-49d5-9de4-5056e211af22
-   :END:
 
    Here will be configurations relating to Task refiling and archiving.
 
@@ -1077,9 +1012,6 @@
    #+END_SRC   
 
 *** Remember and capture				      :remember:keys:
-   :PROPERTIES:
-   :ID:       162b1425-06f7-404d-9cb5-a927c0592e48
-   :END:
    
    Org-remember enables fast note taking. With a key stroke I can
    start taking complex note with different instant configuration
@@ -1102,9 +1034,6 @@
    #+END_SRC
 
 ** Hooks							       :hook:
-   :PROPERTIES:
-   :ID:       e47b7948-6c4f-4eca-8bba-7e6347c834b9
-   :END:
    
    Defines org general mode hook that is applied when mode is
    started. Here you can configure your environment even further.
@@ -1169,9 +1098,6 @@
    - State "DONE"       from "STARTED"    [2010-08-26 Thu 22:57]
    - State "STARTED"    from "TODO"       [2010-08-26 Thu 22:57]
    :END:
-   :PROPERTIES:
-   :ID:       aeeaaee2-fce4-4e6f-9a53-0a6cbd55b946
-   :END:
 
    Configure Mobile org using Ubuntu One.
    
@@ -1182,9 +1108,6 @@
       org-mobile-inbox-for-pull "~/org/mobile/mobile-flagged.org")     
    #+END_SRC
 ** Tags 							       :tags:
-   :PROPERTIES:
-   :ID:       35016ca8-9504-4bd4-9467-160dcf87d71e
-   :END:
    
    Most frequently tags. I have couple of exclusive tag groups so if I
    change the tag it will remove other group tag automatically.
@@ -1210,7 +1133,6 @@
 * ERC-client 						      :communication:
   :PROPERTIES:
   :tangle: personal/erc-customs.el
-  :ID:       fe012277-e9e0-4c8a-be56-b4cf0dda6800
   :END:
   
   ERC is emacs mode for IRC communications.
@@ -1342,7 +1264,6 @@
 * Programming 								:dev:
   :PROPERTIES:
   :tangle: personal/programming.el
-  :ID:       fcd88b7c-ed45-497d-aeb6-834866adef20
   :END:
   Here be things related to building software. 
 
@@ -1382,9 +1303,6 @@
   #+END_SRC
 
 ** Compilation shell output
-   :PROPERTIES:
-   :ID:       0a531781-b266-4e1a-b990-16de6ef69628
-   :END: 
    Settings of a compile output buffer/window
 
    #+BEGIN_SRC emacs-lisp
@@ -1412,9 +1330,6 @@
    #+END_SRC
    
 ** C
-   :PROPERTIES:
-   :ID:       0c233791-6373-4ca6-baa9-17b036cb3b71
-   :END:
 
    #+BEGIN_SRC emacs-lisp
      ;;C-hook
@@ -1425,9 +1340,6 @@
    #+END_SRC
 
 ** Fortran F90
-   :PROPERTIES:
-   :ID:       f0255480-7007-4ceb-990d-ba58ae7d757e
-   :END:
 
    #+BEGIN_SRC emacs-lisp
      ;; g95 to compilation mode
@@ -1440,7 +1352,6 @@
 ** XREF 							   :notangle:
    :PROPERTIES:
    :tangle:   no
-   :ID:       a07bca80-e2d1-4c34-beff-0acc8d6b580e
    :END:
 
    Xrefactory configuration part
@@ -1462,7 +1373,6 @@
 ** JDEE 							   :notangle:
    :PROPERTIES:
    :tangle:   no
-   :ID:       36f569aa-66c4-4843-9af8-fde27ec66d79
    :END:
 
    #+BEGIN_SRC emacs-lisp
@@ -1518,7 +1428,6 @@
 ** Sage 							   :notangle:
    :PROPERTIES:
    :tangle:   no
-   :ID:       3d5570c4-58c0-4c2d-be68-5622c2fe2ccd
    :END:
 
    #+BEGIN_SRC emacs-lisp
@@ -1569,9 +1478,6 @@
    #+end_src
 
 ** IDL
-   :PROPERTIES:
-   :ID:       36443582-7858-4ddd-823e-20279954eb78
-   :END:
 
    Old and trustful data processing language.
 
@@ -1675,7 +1581,6 @@
 * Browsers 						       :internet:dev:
   :PROPERTIES:
   :tangle: personal/browsers.el
-  :ID:       65003ba9-ad67-481c-8f6f-df598c1222d3
   :END:
 
   Here be variables and things related to emacs-to-internet consept.
@@ -1877,18 +1782,10 @@
    for integrating SQL database actions to emacs.
 
 *** Keybinding							       :keys:
-    :PROPERTIES:
-    :ID:       eaa38421-2054-49df-8267-9aefb19e1d5e
-    :END:
-
     #+BEGIN_SRC emacs-lisp
       (global-set-key (kbd "<f9>") 'sql-mysql)
     #+END_SRC
 *** Hooks
-    :PROPERTIES:
-    :ID:       a3cc375f-9e92-455a-8463-169c9229c61b
-    :END:
-
     #+BEGIN_SRC emacs-lisp
       (add-hook 'sql-interactive-mode 'toggle-truncate-lines)
     #+END_SRC
@@ -1949,18 +1846,12 @@
 ** Bash-shell							   :obsolete:
    This has been made obsolete by Multiterm package.
 *** Keybinding							       :keys:
-    :PROPERTIES:
-    :ID:       88a59015-946b-45d9-accb-233a3729d041
-    :END:
 
     #+BEGIN_SRC emacs-lisp
       (global-set-key [f8] 'alt-shell-dwim)
       (global-set-key (kbd "M-r") 'shell-resync-dirs)
     #+END_SRC
 *** Other
-    :PROPERTIES:
-    :ID:       a01ee854-8483-4e55-a7e6-10ffac41e2cc
-    :END:
     #+BEGIN_SRC emacs-lisp
       (defun alt-shell-dwim (arg)
         "Run an inferior shell like `shell'. If an inferior shell as its I/O
@@ -1982,10 +1873,6 @@
       (provide 'consoles)      
      #+END_SRC
 * Emacs customization						  :customize:
-  :PROPERTIES:
-  :ID:       3696de86-9690-498c-b95c-21ef826a2911
-  :END:
- 
   Here we define and load the file where customization is kept.
 
   #+begin_src emacs-lisp
@@ -1996,9 +1883,6 @@
   #+end_src
 
 * Loading of different aspects				       :finalization:
-  :PROPERTIES:
-  :ID:       f85f78c3-6b7d-43a1-bcd1-859e0d48362e
-  :END:
 
   Here I then load these personalization modules to my emacs at
   startup. I intentionally left some modules unloaded, because they
