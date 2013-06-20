@@ -15,6 +15,7 @@
 (let* ((org-dir (expand-file-name "org" (expand-file-name "el-get" dotfiles-dir)))
        (load-path (append (list org-dir) (or load-path nil))))
   (require 'org-id)
+  (require 'org-element)
   ;;TODO make bug report, this contains defcustom definitions that are needed during tangle operations... 
   (require 'org)
   (mapc #'org-babel-load-file (directory-files dotfiles-dir t "\\.org$")))
