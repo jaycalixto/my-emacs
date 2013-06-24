@@ -47,6 +47,7 @@
     
     echo "installing auxialiry debian packages (currently not using el-get to do this)..."
     sudo apt-get install bzr ess r-base
+    sudo apt-get install git-svn
   #+end_src
 
   Here is a little script that helps you to set the repo to be your
@@ -157,9 +158,20 @@
   about this mode from, https://code.google.com/p/ergoemacs/
 
   #+BEGIN_SRC emacs-lisp
-    (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "us") ; US
-    (load-file "~/.emacs.d/lib/ergoemacs-keybindings-5.1/ergoemacs-mode.el")
-    (ergoemacs-mode 1)
+    (add-to-list
+     'el-get-sources
+     '(:name ergoemacs-keybindings
+             :before ;;this is here because keybindings doesn't require log-edit itself
+             (progn
+               (require 'log-edit))
+             :after 
+             (progn
+               (setq ergoemacs-variant nil)
+               (ergoemacs-mode 1)
+               (global-set-key (kbd "C-<f5>") 'toggle-truncate-lines)
+               (global-set-key (kbd "M-<f5>") 'revert-buffer)
+               (global-set-key (kbd "C-S-o") 'dired)
+               )))
   #+END_SRC
 
 * Visual appearance 					       :colors:frame:
@@ -491,17 +503,8 @@
     ;;; buffers.el --- Buffer management customization
   #+END_SRC
 
-** Keybindings
-   Fundamental key configurations, using all the time.
-
-   #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-<f5>") 'toggle-truncate-lines)
-     (global-set-key (kbd "M-<f5>") 'revert-buffer)
-     (global-set-key (kbd "C-S-o") 'dired)
-  #+END_SRC
-
 ** iBuffer filters and grouping
-
+   
    iBuffer makes buffer browsing prettier and more interactive. You
    can filter buffers to groups by predefined filters. 
 
