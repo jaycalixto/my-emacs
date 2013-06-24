@@ -197,7 +197,7 @@ lawrencium, modified by Debian and Org-mode version 7.8.02. I have
 had some org-mode related problems with newer org-mode version such
 as 7.9.1 and 7.8.11.
 
-# Bootstrapping     :external:
+# Bootstrapping
 
 Here are utility scripts that help initialize emacs to vanilla
 environment. Currently I'm only interested in ubuntu environments
@@ -234,7 +234,7 @@ possible from terminal.
     alias m="`which emacsclient` --alternate-editor="
     alias mc="`which emacsclient` -c --alternate-editor="
 
-# Initialization configurations     :loadpaths:
+# Initialization configurations
 
 [All begans here.](init.el) This approach was inspired from documentation of
 org-mode babel library. I use demonized version of the emacs so that
@@ -284,7 +284,7 @@ sub repo (they are not a same context in my opinion).
           'el-get-sources
           (append '(:name ,name :type ,type :after ,after-progn) ',additional)))
 
-# Emacs encoding     :encoding:
+# Emacs encoding
 
 
 Setting emacs encoding to get correct characters *(reason: maybe some old
@@ -296,7 +296,7 @@ char bug&#x2026;)*.
      current-language-environment "UTF-8"
      default-input-method "rfc1345")    
 
-# Setting key layout     :ergoemacs:
+# Setting key layout
 
 
 Load ErgoEmacs keybinding and turn the minor mode to be always
@@ -307,7 +307,7 @@ about this mode from, <https://code.google.com/p/ergoemacs/>
     (load-file "~/.emacs.d/lib/ergoemacs-keybindings-5.1/ergoemacs-mode.el")
     (ergoemacs-mode 1)
 
-# Visual appearance     :colors:frame:
+# Visual appearance
 
 
     ;;; appearance.el --- Visual customization and fixes for bugs
@@ -343,7 +343,7 @@ font is redefined here. Fixes some of the daemon issues.
           (vertical-scroll-bars)
           (font . "-raster-Liberation Mono-medium-r-normal-*-*-100-*-*-*-*-*-1")))
 
-## Frame fixing function     :keys:function:
+## Frame fixing function
 
 
 Function to reset frame to prefixed size.
@@ -380,7 +380,7 @@ Function to reset frame to prefixed size.
 
 ## Set font for all
 
-# Navigation     :tramp:
+# Navigation
 
 
 Defining navigation preferences. I want easy navigation between
@@ -425,7 +425,7 @@ Keeping my personal information in one location.
      bookmark-default-file (concat personal-directory "bookmarks")
      bookmark-save-flag 1)
 
-## ELScreen     :notangle:
+## ELScreen
 
 
 Elscreen is like screen for emacs. Installed via system tool
@@ -455,7 +455,7 @@ previous window layouts.
                       (winner-mode t)
                       )))
 
-## Trivial modes     :external:
+## Trivial modes
 
 Function to define new trivial modes. This means that buffer is
 opened by external program.
@@ -494,7 +494,7 @@ proxy configuration.
     
     (provide 'navigation)
 
-# Editing     :textedit:
+# Editing
 
 
 Configuration relating to actual text editing.
@@ -588,7 +588,7 @@ Copies buffer content to pdf file.
     
     (provide 'editing)
 
-# Buffers     :buffer:
+# Buffers
 
 
 Modes and configuration for buffer management.
@@ -715,7 +715,7 @@ defined and with hook the default view is set.
               (lambda ()
                 (ibuffer-switch-to-saved-filter-groups "default")))
 
-## Save     :backup:
+## Save
 
 Using .backups folder as a base folder where to place emacs
 buffers autosave files. Here we also configure my desktop
@@ -740,7 +740,7 @@ my emacs.
      make-backup-files t
      backup-directory-alist (quote ((".*" . "~/.backups/emacs.buffers/"))))
 
-## Automatic Cleaning     :midnight:
+## Automatic Cleaning
 
 Keeps my buffer listing reasonable by removing unused buffers. Run
 weekly, because once a day is too often.
@@ -755,7 +755,7 @@ weekly, because once a day is too often.
                (run-at-time "23:00" (timer-duration "1 week") 'clean-buffer-list)
                )))
 
-## IDO mode     :ido:
+## IDO mode
 
 Library to enhance usability with buffer and directory
 listings. Works mostly in minibuffer area.
@@ -777,7 +777,7 @@ listings. Works mostly in minibuffer area.
                )
              ))
 
-## Buffer renaming     :rename:
+## Buffer renaming
 
 When opening a buffer which has same name, this configuration will
 keep buffers unique. It will reorganize names if one the buffers
@@ -798,7 +798,7 @@ with \*-symbol).
     
     (provide 'buffers)
 
-# Org-mode     :calendar:organization:
+# Org-mode
 
 
 Org-mode, God mode, devils-advocate, nicknames are many. This is
@@ -809,7 +809,7 @@ file is powered by org-babel, so you can see its power.
     ;;; org-personal.el --- personalization to my org
     (setq org-directory "~/org")
 
-## el-get recipe definition     :elget:recipe:
+## el-get recipe definition
 
 
 This will hook org mode to el-get package manager and trigger
@@ -824,7 +824,7 @@ loading of personal customization.
        (require 'org-personal)
        (require 'org-crypt)))
 
-## Agenda     :agenda:
+## Agenda
 
 Agenda is tool for scheduling your events in selected org-buffers,
 so called agenda-files.
@@ -846,7 +846,7 @@ so called agenda-files.
     
     (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
 
-### To do flow in tasks     :todo:
+### To do flow in tasks
 
 Here is described how todo keywords are flowd when task is
 progressed. Clocking is triggered to change the tasks
@@ -870,7 +870,7 @@ configuration.
                          (sequence "WAITING(w/!)" "SOMEDAY(S@/!)" "|" "CANCELLED(c@/!)")
                          (sequence "ISSUE(i!)" "OPEN(O@/!)" "|" "DUBLICATE(D@!)" "WONTFIX(W@!)" "CLOSED(C@!)" "REJECTED(R@!)")))
 
--   Show TODO children of the headline     :function:
+-   Show TODO children of the headline
 
     Define function that lists TODOs in current subtree.
     
@@ -913,7 +913,7 @@ potential exports in .ics format of the agenda view.
      org-icalendar-use-deadline '(todo-due event-if-todo event-if-not-todo)
      org-icalendar-use-scheduled '(todo-due event-if-todo event-if-not-todo))
 
-## Babel     :programming:
+## Babel
 
 Babel enables source code evaluation of many different languages
 inside the org mode buffer. Evolution is fast and current version
@@ -930,7 +930,7 @@ enables at least following features:
        (R . t) 
        (sh . t)))
 
-## Block Wrapping function     :function:
+## Block Wrapping function
 
 Inserts marked region between org-mode custom block, interactive.
 
@@ -948,7 +948,7 @@ Inserts marked region between org-mode custom block, interactive.
           (goto-char start)
           (insert start-mark))))
 
-## Buffer Encryptions     :encryption:
+## Buffer Encryptions
 
 Forcing encryption for headlines that have encrypt tag. 
 
@@ -959,7 +959,7 @@ here.
 
     (add-hook 'org-save-all-org-buffers '(lambda() org-encrypt-entries))
 
-## Column mode     :column:
+## Column mode
 
 Org modes column face. Layouts headline at its childs to fixed
 table where you can edit easily its properties. 
@@ -969,7 +969,7 @@ table where you can edit easily its properties.
     ; org-columns-modify-value-for-display-function '(lambda (column-title value)
     ;                                                  nil))
 
-### DONE Font change prevention     :BUG:
+### DONE Font change prevention
 
 Make sure that a fixed-width face is used when we have a column
 table. This occurs if emacs daemon is used.
@@ -984,11 +984,11 @@ table. This occurs if emacs daemon is used.
              :height (face-attribute 'default :height)
              :family (face-attribute 'default :family))))))
 
-## Exporting     :latex:
+## Exporting
 
 Org-mode enables exports to different common formats. 
 
-### Latex     :templates:
+### Latex
 
 Latex exports needs header templates and conversion rules for
 headlines.
@@ -1047,7 +1047,7 @@ headlines.
     \\usepackage[mathscr]{eucal}
     \\usepackage[usenames]{color}")
 
-## Global keybindings     :keys:
+## Global keybindings
 
 The following key strokes are highly used and we want them to be
 accessible from whole system.
@@ -1055,7 +1055,7 @@ accessible from whole system.
     (global-set-key (kbd "C-c a") 'org-agenda)
     (global-set-key (kbd "C-c l") 'org-store-link)
 
-## Headline Editing     :edit:
+## Headline Editing
 
 Here will be configurations relating to Task refiling and archiving.
 
@@ -1063,7 +1063,7 @@ Here will be configurations relating to Task refiling and archiving.
      org-archive-location "archive/%s_archive::"
      org-refile-targets '((org-agenda-files . (:maxlevel . 2))))
 
-### Remember and capture     :remember:keys:
+### Remember and capture
 
 Org-remember enables fast note taking. With a key stroke I can
 start taking complex note with different instant configuration
@@ -1083,7 +1083,7 @@ options.
     
     (global-set-key (kbd "C-c r") 'org-remember)
 
-## Hooks     :hook:
+## Hooks
 
 Defines org general mode hook that is applied when mode is
 started. Here you can configure your environment even further.
@@ -1094,7 +1094,7 @@ started. Here you can configure your environment even further.
        (local-set-key (kbd "C-c b") 'org-iswitchb)
        (local-set-key (kbd "C-c W") 'org-block-wrap-region)))
 
-## Images in Buffers     :image:
+## Images in Buffers
 
 Minor mode that shows images directly in the org-buffer.
 
@@ -1124,7 +1124,7 @@ Minor mode that shows images directly in the org-buffer.
     ;;  add a hook so we can display images on load
     (add-hook 'org-mode-hook '(lambda () (org-turn-on-iimage-in-org)))
 
-## Linking     :link:
+## Linking
 
 Linking is essential part of usefulness of org-mode. Buffers can
 form effective data structure for your daily organizational
@@ -1134,7 +1134,7 @@ information. Here is configuration how links can be used.
           '(("google" . "http://www.google.com/search?q=")
             ("wiki" . "http://en.wikipedia.org/wiki/")))
 
-## Mobile-org     :mobile:
+## Mobile-org
 
 Configure Mobile org using Ubuntu One.
 
@@ -1143,7 +1143,7 @@ Configure Mobile org using Ubuntu One.
      ;; Set to the name of the file where new notes will be stored
      org-mobile-inbox-for-pull "~/org/mobile/mobile-flagged.org")     
 
-## Tags     :tags:
+## Tags
 
 Most frequently tags. I have couple of exclusive tag groups so if I
 change the tag it will remove other group tag automatically.
@@ -1165,7 +1165,7 @@ change the tag it will remove other group tag automatically.
     ;; modularize this personalization
     (provide 'org-personal)
 
-# ERC-client     :communication:
+# ERC-client
 
 
 ERC is emacs mode for IRC communications.
@@ -1191,7 +1191,7 @@ ERC is emacs mode for IRC communications.
        (add-hook 'erc-insert-post-hook 'erc-truncate-buffer))
      :features erc)
 
-## Bouncer and Identification     :irc:bouncer:
+## Bouncer and Identification
 
 
 Define macro for creating Bouncer connection function.  
@@ -1210,7 +1210,7 @@ Define macro for creating Bouncer connection function.
                                                  'open-network-stream)))
                    (erc :server ,server :port ,port :nick ,nick :password ,pass))))))
 
-### TODO Login proxies     :proxy:login:
+### TODO Login proxies
 
 -   redo these tools
     
@@ -1281,7 +1281,7 @@ Alternative handling strategies
                                         erc-irssi-linknet
                                         erc-irssi-freenode))
 
-## IRC custom commands     :proxy:backlog:
+## IRC custom commands
 
 
 With this I will send ctcp message to my proxy which will feed me
@@ -1293,7 +1293,7 @@ the current backlog.
     ;; module for my erc customs  
     (provide 'erc-customs)
 
-# Programming     :dev:
+# Programming
 
 
 Here be things related to building software. 
@@ -1372,7 +1372,7 @@ folding modes and markups.
              (cons '("^In file \\(.+\\):\\([0-9]+\\)" 1 2)
                    compilation-error-regexp-alist))) 
 
-## XREF     :notangle:
+## XREF
 
 
 Xrefactory configuration part
@@ -1389,7 +1389,7 @@ Xrefactory configuration part
     ;; end of Xrefactory configuration part ;;
     (message "xrefactory loaded")
 
-## JDEE     :notangle:
+## JDEE
 
 
     ;;JDEE configure
@@ -1440,7 +1440,7 @@ Enables simple POM property parsing and connection to JDE mode.
      'el-get-sources
      '(:name pom))
 
-## Sage     :notangle:
+## Sage
 
 
     (add-to-list 'load-path (expand-file-name "$SAGE_DATA/emacs"))
@@ -1577,7 +1577,7 @@ Superior Lisp mode.
     
     (provide 'programming)
 
-# Browsers     :internet:dev:
+# Browsers
 
 
 Here be variables and things related to emacs-to-internet consept.
@@ -1660,7 +1660,7 @@ Function that applies marked region to google search.
     
     (provide 'browsers)
 
-# TODO ElNode     :services:async:tcp:
+# TODO ElNode
 
 
 Elnode is a library that enables emacs to expose itself as user
@@ -1746,7 +1746,7 @@ This is a example service that can be provided by this little editor,
     
     (provide 'el-node-services)
 
-# Consoles     :console:
+# Consoles
 
 
 First we need to define some features, such as colors and
@@ -1759,12 +1759,12 @@ completion, which we want to our shells.
      'el-get-sources
      '(:name shell-completion :features shell-completion))
 
-## SQL     :database:
+## SQL
 
 Defines customization of the SQL mode. This is very poverfull mode
 for integrating SQL database actions to emacs.
 
-### Keybinding     :keys:
+### Keybinding
 
     (global-set-key (kbd "<f9>") 'sql-mysql)
 
@@ -1772,7 +1772,7 @@ for integrating SQL database actions to emacs.
 
     (add-hook 'sql-interactive-mode 'toggle-truncate-lines)
 
-## Multiterm     :shell:
+## Multiterm
 
 My new terminal manager. There is couple of copy/paste issues and
 backspacing that renders this quite useless in my usage.
@@ -1786,11 +1786,11 @@ backspacing that renders this quite useless in my usage.
                             multi-term-shell-arguments "-l"
                             multi-term-buffer-name "bash-shell"))))
 
-## TODO eshell     :RESEARCH:
+## TODO eshell
 
 You should get familiarized with eshell
 
-## git     :VCS:
+## git
 
 Here is defined git-emacs interface customization. Currently I'm
 using magit.
@@ -1823,11 +1823,11 @@ against GIT head.
     
       (global-set-key (kbd "C-x r") 'git-gutter:revert-hunk)))
 
-## Bash-shell     :obsolete:
+## Bash-shell
 
 This has been made obsolete by Multiterm package.
 
-### Keybinding     :keys:
+### Keybinding
 
     (global-set-key [f8] 'alt-shell-dwim)
     (global-set-key (kbd "M-r") 'shell-resync-dirs)
@@ -1853,7 +1853,7 @@ This has been made obsolete by Multiterm package.
     
     (provide 'consoles)      
 
-# Emacs customization     :customize:
+# Emacs customization
 
 Here we define and load the file where customization is kept.
 
@@ -1862,7 +1862,7 @@ Here we define and load the file where customization is kept.
     (setq custom-file "~/.emacs-custom.el") 
     (load custom-file 'noerror)
 
-# Loading of different aspects     :finalization:
+# Loading of different aspects
 
 Here I then load these personalization modules to my emacs at
 startup. I intentionally left some modules unloaded, because they
@@ -1897,7 +1897,7 @@ declared in this configuration file.
            (mapcar 'el-get-source-name el-get-sources)))
     (el-get 'sync my-el-get-packages)
 
-# License     :license:
+# License
 
 Used external libraries are licensed as they are described in their
 source files. This file and its generated derivatives are licensed
