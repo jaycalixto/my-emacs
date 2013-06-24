@@ -49,17 +49,16 @@
 </li>
 <li><a href="#sec-10">Buffers</a>
 <ul>
-<li><a href="#sec-10-1">Keybindings</a></li>
-<li><a href="#sec-10-2">iBuffer filters and grouping</a>
+<li><a href="#sec-10-1">iBuffer filters and grouping</a>
 <ul>
-<li><a href="#sec-10-2-1">Filters</a></li>
-<li><a href="#sec-10-2-2">Filter Views</a></li>
+<li><a href="#sec-10-1-1">Filters</a></li>
+<li><a href="#sec-10-1-2">Filter Views</a></li>
 </ul>
 </li>
-<li><a href="#sec-10-3">Save</a></li>
-<li><a href="#sec-10-4">Automatic Cleaning</a></li>
-<li><a href="#sec-10-5">IDO mode</a></li>
-<li><a href="#sec-10-6">Buffer renaming</a></li>
+<li><a href="#sec-10-2">Save</a></li>
+<li><a href="#sec-10-3">Automatic Cleaning</a></li>
+<li><a href="#sec-10-4">IDO mode</a></li>
+<li><a href="#sec-10-5">Buffer renaming</a></li>
 </ul>
 </li>
 <li><a href="#sec-11">Org-mode</a>
@@ -210,7 +209,7 @@ environment. Currently I'm only interested in ubuntu environments
     sudo apt-get install emacs24 emacs24-el
     
     echo "installing auxialiry debian packages (currently not using el-get to do this)..."
-    sudo apt-get install bzr ess r-base
+    sudo apt-get install bzr ess r-base git-svn
 
 Here is a little script that helps you to set the repo to be your
 .emacs.d.
@@ -224,15 +223,16 @@ Here is a little script that helps you to set the repo to be your
 Environmental file to be sourced so that emacs can be accessed as painlessly as
 possible from terminal.
 
+    # -*- mode: shell-script; -*-
     echo "setting emacs environments..."
     
-    VISUAL="`which emacsclient` -c --alternate-editor="
-    EDITOR=`which emacs`
+    VISUAL="emacsclient -c"
+    EDITOR="emacsclient -c"
     export VISUAL;
     export EDITOR;
     
-    alias m="`which emacsclient` --alternate-editor="
-    alias mc="`which emacsclient` -c --alternate-editor="
+    alias mt="emacsclient -t"
+    alias m="emacsclient -c"
 
 # Initialization configurations
 
@@ -303,9 +303,20 @@ Load ErgoEmacs keybinding and turn the minor mode to be always
 on. This is a sub module in my emacs configrations, see more details
 about this mode from, <https://code.google.com/p/ergoemacs/>
 
-    (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "us") ; US
-    (load-file "~/.emacs.d/lib/ergoemacs-keybindings-5.1/ergoemacs-mode.el")
-    (ergoemacs-mode 1)
+    (add-to-list
+     'el-get-sources
+     '(:name ergoemacs-keybindings
+             :before ;;this is here because keybindings doesn't require log-edit itself
+             (progn
+               (require 'log-edit))
+             :after 
+             (progn
+               (setq ergoemacs-variant nil)
+               (ergoemacs-mode 1)
+               (global-set-key (kbd "C-<f5>") 'toggle-truncate-lines)
+               (global-set-key (kbd "M-<f5>") 'revert-buffer)
+               (global-set-key (kbd "C-S-o") 'dired)
+               )))
 
 # Visual appearance
 
@@ -594,14 +605,6 @@ Copies buffer content to pdf file.
 Modes and configuration for buffer management.
 
     ;;; buffers.el --- Buffer management customization
-
-## Keybindings
-
-Fundamental key configurations, using all the time.
-
-    (global-set-key (kbd "C-<f5>") 'toggle-truncate-lines)
-    (global-set-key (kbd "M-<f5>") 'revert-buffer)
-    (global-set-key (kbd "C-S-o") 'dired)
 
 ## iBuffer filters and grouping
 

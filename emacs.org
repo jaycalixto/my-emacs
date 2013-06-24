@@ -46,8 +46,7 @@
     sudo apt-get install emacs24 emacs24-el
     
     echo "installing auxialiry debian packages (currently not using el-get to do this)..."
-    sudo apt-get install bzr ess r-base
-    sudo apt-get install git-svn
+    sudo apt-get install bzr ess r-base git-svn
   #+end_src
 
   Here is a little script that helps you to set the repo to be your
@@ -65,15 +64,16 @@
    possible from terminal.
 
    #+begin_src shell-script :tangle emacs.env
+     # -*- mode: shell-script; -*-
      echo "setting emacs environments..."
-     
-     VISUAL="`which emacsclient` -c --alternate-editor="
-     EDITOR=`which emacs`
+      
+     VISUAL="emacsclient -c"
+     EDITOR="emacsclient -c"
      export VISUAL;
      export EDITOR;
      
-     alias m="`which emacsclient` --alternate-editor="
-     alias mc="`which emacsclient` -c --alternate-editor="
+     alias mt="emacsclient -t"
+     alias m="emacsclient -c"
    #+end_src
 
 * Initialization configurations 				  :loadpaths:
