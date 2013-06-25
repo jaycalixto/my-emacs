@@ -46,7 +46,7 @@
     sudo apt-get install emacs24 emacs24-el
     
     echo "installing auxialiry debian packages (currently not using el-get to do this)..."
-    sudo apt-get install bzr ess r-base git-svn
+    sudo apt-get install bzr r-base git-svn texinfo ess
   #+end_src
 
   Here is a little script that helps you to set the repo to be your

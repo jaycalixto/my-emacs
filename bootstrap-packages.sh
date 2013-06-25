@@ -7,4 +7,4 @@ sudo apt-get purge emacs-snapshot-common emacs-snapshot-bin-common emacs-snapsho
 sudo apt-get install emacs24 emacs24-el
 
 echo "installing auxialiry debian packages (currently not using el-get to do this)..."
-sudo apt-get install bzr ess r-base git-svn
+sudo apt-get install bzr r-base git-svn texinfo ess
