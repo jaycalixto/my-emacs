@@ -1570,16 +1570,14 @@
    #+begin_src emacs-lisp
      (add-to-list
       'el-get-sources
-      '(:name slime :features slime-autoloads
+      '(:name slime :features slime
               :after
               (progn
                 (setq inferior-lisp-program "/usr/bin/sbcl")
-                (add-to-list 'load-path "/usr/share/emacs/site-lisp/slime") ;; adding slime to load path
-                (slime-setup '(slime-fancy))
+                (slime-setup);; still failing to load '(slime-fancy)) and its deps...
                 )))
      
      (provide 'programming)
-     
    #+end_src
 * Browsers 						       :internet:dev:
   :PROPERTIES:
