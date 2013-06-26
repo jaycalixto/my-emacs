@@ -1031,7 +1031,7 @@
                                  ("Meeting" ?m "* %^{occasion}\n %^{at time}T @ %^{where} \n (creation: %u @ %a) \n\n %i \n %a" "refile.org" "Meetings")
                                  ("Note" ?n "* %?\n (creation: %u @ %a)\n %i%!%&" "refile.org" "Ideas")))
      
-     (org-remember-insinuate)
+     ;;(org-remember-insinuate)
      
      (global-set-key (kbd "C-c r") 'org-remember)
    #+END_SRC
