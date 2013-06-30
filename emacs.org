@@ -1570,11 +1570,11 @@
    #+begin_src emacs-lisp
      (add-to-list
       'el-get-sources
-      '(:name slime :features slime
+      '(:name slime :features slime :compile none
               :after
               (progn
                 (setq inferior-lisp-program "/usr/bin/sbcl")
-                (slime-setup);; still failing to load '(slime-fancy)) and its deps...
+                (slime-setup '(slime-fancy))
                 )))
      
      (provide 'programming)
