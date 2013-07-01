@@ -1273,13 +1273,14 @@
   #+BEGIN_SRC emacs-lisp
     ;;; programming.el --- different programming language mode configurations 
     
-    (add-to-el-sources
-     highlight-parentheses elpa
-     (progn
-       (require 'highlight-parentheses)
-       (add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
-       (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode))
-     )
+    (add-to-list 
+      'el-get-sources
+      '(:name highlight-parentheses
+              :after (progn
+                       (print "running after hook for highlight...")
+                       (require 'highlight-parentheses)
+                       (add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
+                       (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode))))
     
     (add-to-list
      'el-get-sources
@@ -1325,7 +1326,6 @@
       'el-get-sources
       '(:name folding :after
               (progn
-                (load "folding" 'nomessage 'noerror)
                 (folding-add-to-marks-list 'haskell-mode "--{{{"  "--}}}"  nil t)
                 (folding-mode-add-find-file-hook)
                 (add-hook 'haskell-mode-hook 'folding-mode)
