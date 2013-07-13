@@ -1570,11 +1570,11 @@
    #+begin_src emacs-lisp
      (add-to-list
       'el-get-sources
-      '(:name slime :features slime :compile none
+      '(:name slime :features slime
               :after
               (progn
                 (setq inferior-lisp-program "/usr/bin/sbcl")
-                (slime-setup '(slime-fancy))
+                (slime-setup '(slime-fancy slime-indentation))
                 )))
      
      (provide 'programming)
