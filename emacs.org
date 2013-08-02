@@ -1602,10 +1602,12 @@
 
   #+BEGIN_SRC emacs-lisp
     ;;; browsers.el --- utilities to integrate browser actions to emacs buffers 
+    
+    
     (add-to-el-sources
      w3m
      builtin
-     (progn 
+     (progn ;TODO global-set-keys are not working...(in org mode??)
        (global-set-key (kbd "C-x C-f") 'search-in-internet)
        (global-set-key (kbd "C-x C-m") 'browse-url-at-point) ;;FUCKING REMEMBER THIS!!@!!
        (setq w3m-use-cookies t)
