@@ -1567,12 +1567,12 @@
    Lisp dialect that runs on JVM. Needs external clojure installation.
 
    #+BEGIN_SRC emacs-lisp
-     (add-to-list 'el-get-sources
-                  '(:name clojure-mode :type elpa))
+;;     (add-to-list 'el-get-sources
+;;                  '(:name clojure-mode :type elpa))
 ;     (add-to-list 'el-get-sources
 ;                  '(:name clojure-test-mode))
-     (add-to-list 'el-get-sources
-                  '(:name nrepl))
+;;     (add-to-list 'el-get-sources
+;;                  '(:name nrepl))
    #+END_SRC
 
 ** Slime
