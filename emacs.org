@@ -1014,26 +1014,27 @@
       org-refile-targets '((org-agenda-files . (:maxlevel . 2))))
    #+END_SRC   
 
-*** Remember and capture				      :remember:keys:
+*** Capture 						      :remember:keys:
    
-   Org-remember enables fast note taking. With a key stroke I can
-   start taking complex note with different instant configuration
-   options.
-
-   
+   Org-capture enables fast note taking. With a key stroke I can start
+   taking complex note with different instant configuration options.
 
    #+BEGIN_SRC emacs-lisp
      (setq 
       org-default-notes-file (concat org-directory "/notes.org")
       org-reverse-note-order t
-      org-remember-templates '(("Task" ?t "* TODO %^{task} %^G\n (creation: %u @ %a)\n\n %i%?" "refile.org" "Tasks")
-                                 ("Capture" ?c "* %?\n\tcreation: %u @ %a\n\n %i" "notes.org" "Capture")
-                                 ("Meeting" ?m "* %^{occasion}\n %^{at time}T @ %^{where} \n (creation: %u @ %a) \n\n %i \n %a" "refile.org" "Meetings")
-                                 ("Note" ?n "* %?\n (creation: %u @ %a)\n %i%!%&" "refile.org" "Ideas")))
+      org-capture-templates 
+      '(
+        ("t" "Task" entry (file+headline "refile.org" "Tasks") 
+         "* TODO %^{task} %^G\n (creation: %u @ %a)\n\n %i%?" :prepend t)
+        ("c" "Capture" entry (file+headline "notes.org" "Capture") 
+         "* %?\n     creation: %u @ %a\n\n %i" :prepend t)
+        ("m" "Meeting" entry (file+headline "refile.org" "Meetings") 
+         "* %^{occasion}\n %^{at time}T @ %^{where} \n (creation: %u @ %a) \n\n %i \n %a" :prepend t)
+        ("n" "Note" entry (file+headline "refile.org" "Ideas")
+         "* %?\n (creation: %u @ %a)\n %i%&" :prepend t :immediate-finish t :jump-to-captured t)))
      
-     ;;(org-remember-insinuate)
-     
-     (global-set-key (kbd "C-c r") 'org-remember)
+     (global-set-key (kbd "C-c r") 'org-capture)
    #+END_SRC
 
 ** Hooks							       :hook:
