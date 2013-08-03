@@ -1564,16 +1564,18 @@
      ;;(add-hook 'js-mode-hook 'flymake-jslint-load)
    #+END_SRC
 
-** Clojure
-   Lisp dialect that runs on JVM. Needs external clojure installation.
+** TODO Clojure
+   Lisp dialect that runs on JVM. Needs external clojure
+   installation. Currently there is some dependency recognition errors
+   between these modules...
 
    #+BEGIN_SRC emacs-lisp
-;;     (add-to-list 'el-get-sources
-;;                  '(:name clojure-mode :type elpa))
-;     (add-to-list 'el-get-sources
-;                  '(:name clojure-test-mode))
-;;     (add-to-list 'el-get-sources
-;;                  '(:name nrepl))
+          (add-to-list 'el-get-sources
+                       '(:name clojure-mode))
+     ;;     (add-to-list 'el-get-sources
+     ;;                  '(:name nrepl))
+     ;;     (add-to-list 'el-get-sources
+     ;;                  '(:name clojure-test-mode :type elpa))
    #+END_SRC
 
 ** Slime
