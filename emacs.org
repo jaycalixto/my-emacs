@@ -1570,12 +1570,12 @@
    between these modules...
 
    #+BEGIN_SRC emacs-lisp
-          (add-to-list 'el-get-sources
-                       '(:name clojure-mode))
-     ;;     (add-to-list 'el-get-sources
-     ;;                  '(:name nrepl))
-     ;;     (add-to-list 'el-get-sources
-     ;;                  '(:name clojure-test-mode :type elpa))
+     (add-to-list 'el-get-sources
+                  '(:name clojure-mode :type elpa))
+     (add-to-list 'el-get-sources
+                  '(:name clojure-test-mode :type elpa))
+     (add-to-list 'el-get-sources
+                  '(:name nrepl :lazy t))
    #+END_SRC
 
 ** Slime
@@ -1594,6 +1594,7 @@
      
      (provide 'programming)
    #+end_src
+
 * Browsers 						       :internet:dev:
   :PROPERTIES:
   :tangle: personal/browsers.el
