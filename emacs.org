@@ -492,6 +492,20 @@
       (provide 'editing)
     #+END_SRC
 
+** Undo-Tree
+
+   Visualizing undo history.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name undo-tree  
+              :after 
+              (progn
+                (global-undo-tree-mode)
+                )))
+   #+END_SRC
+
 * Buffers 							     :buffer:
   :PROPERTIES:
   :tangle: personal/buffers.el
