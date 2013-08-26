@@ -11,7 +11,7 @@
  '(safe-local-variable-values (quote ((Base . 10) (Syntax . Common-lisp) (Package . monitor) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face trailing lines-tail) (require-final-newline . t))))
  '(sql-oracle-program "sqlplus64")
  '(whitespace-global-modes t)
- '(whitespace-line-column 500))
+ '(whitespace-line-column 1500))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
