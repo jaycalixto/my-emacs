@@ -1148,6 +1148,27 @@
      ;; modularize this personalization
      (provide 'org-personal)
    #+END_SRC
+* Mails							      :communication:
+  :PROPERTIES:
+  :tangle:   personal/mailing.el
+  :END:
+** sending mail
+
+   Remember that you need those configuration files to your personal/
+   folder.
+   
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name smtpmail-multi :type elpa
+              :after 
+              (progn
+                (require 'smtpmail-multi)
+                (require 'personal-smtp-mail-configurations nil 'no-error))))
+     
+     (provide 'mailing)
+   #+END_SRC
+
 * ERC-client 						      :communication:
   :PROPERTIES:
   :tangle: personal/erc-customs.el
@@ -1929,6 +1950,7 @@
     (require 'navigation)
     (require 'editing)
     (require 'buffers)
+    (require 'mailing)
     (require 'erc-customs)
     (require 'browsers)
     
