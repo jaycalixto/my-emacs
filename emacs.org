@@ -373,6 +373,25 @@
      (define-trivial-mode "ooffice" "\\.ods$")
      (define-trivial-mode "evince" "\\.pdf$")
    #+END_SRC
+
+** Dired customization
+
+   Opening files/folders with nautilus from dired buffer.
+
+   #+BEGIN_SRC emacs-lisp
+     (defun gnome-open-file (filename)
+       "opens the specified file in nautilus."
+       (interactive "File to open: ")
+       (let ((process-connection-type nil))
+         (start-process "" nil "/usr/bin/nautilus" filename)))
+     
+     (defun dired-gnome-open-file ()
+       "Opens the current file in a Dired buffer."
+       (interactive)
+       (gnome-open-file (dired-get-file-for-visit)))
+     
+     (add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
+   #+END_SRC
 ** Tramp
    My own configuration to tramp. tramp auto-save should be located to
    my personal folder. Also 'tramping' sudo rights are declared trough
