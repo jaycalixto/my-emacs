@@ -1183,7 +1183,8 @@
               :after 
               (progn
                 (require 'smtpmail-multi)
-                (require 'personal-smtp-mail-configurations nil 'no-error))))
+                (require 'personal-smtp-mail-configurations nil 'no-error)
+                (add-hook 'mail-mode-hook 'orgstruct-mode))))
      
      (provide 'mailing)
    #+END_SRC
