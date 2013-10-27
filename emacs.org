@@ -892,6 +892,9 @@
         (octave . t)
         (R . t) 
         (sh . t)))
+     
+     ;;(setq org-confirm-babel-evaluate nil) could be a function....
+     (setq org-src-window-setup 'current-window)
    #+END_SRC
 
 ** Block Wrapping function					   :function:
