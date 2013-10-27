@@ -893,8 +893,10 @@
         (R . t) 
         (sh . t)))
      
-     ;;(setq org-confirm-babel-evaluate nil) could be a function....
+     (setq org-src-ask-before-returning-to-edit-buffer nil)
      (setq org-src-window-setup 'current-window)
+     ;;(setq org-confirm-babel-evaluate nil) could be a function....
+     ;;(define-key org-src-mode-map "\C-s" 'org-edit-src-save)
    #+END_SRC
 
 ** Block Wrapping function					   :function:
