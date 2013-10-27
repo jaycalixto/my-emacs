@@ -1320,7 +1320,7 @@
      ;; module for my erc customs  
      (provide 'erc-customs)
    #+END_SRC
-* Programming 								:dev:
+* COMMENT Programming 								:dev:
   :PROPERTIES:
   :tangle: personal/programming.el
   :END:
@@ -1329,14 +1329,19 @@
   #+BEGIN_SRC emacs-lisp
     ;;; programming.el --- different programming language mode configurations 
     
+    (add-to-list
+      'el-get-sources
+      '(:name rainbow-delimiters
+              :after (progn
+                       (require 'rainbow-delimiters)
+                       (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))))
+    
     (add-to-list 
       'el-get-sources
       '(:name highlight-parentheses
               :after (progn
-                       (print "running after hook for highlight...")
                        (require 'highlight-parentheses)
-                       (add-hook 'lisp-mode-hook 'highlight-parentheses-mode)
-                       (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode))))
+                       (add-hook 'prog-mode-hook 'highlight-parentheses-mode))))
     
     (add-to-list
      'el-get-sources
