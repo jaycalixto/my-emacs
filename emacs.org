@@ -1347,6 +1347,13 @@
     
     (add-to-list
      'el-get-sources
+     '(:name smartparens :type elpa :lazy t
+             :after (progn
+                      (require 'smartparens-config)
+                      (smartparens-global-mode))))
+    
+    (add-to-list
+     'el-get-sources
      '(:name chm-view :features chm-view))
     
     (add-to-el-sources
