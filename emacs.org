@@ -393,7 +393,6 @@
      (add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
      
      (setq dired-listing-switches "-alh")
-     
    #+END_SRC
 ** Tramp
    My own configuration to tramp. tramp auto-save should be located to
@@ -898,6 +897,9 @@
      
      (setq org-src-ask-before-returning-to-edit-buffer nil)
      (setq org-src-window-setup 'current-window)
+     
+     (setq org-src-fontify-natively t) ;;set fontify by default on, lets see if I like it
+     
      ;;(setq org-confirm-babel-evaluate nil) could be a function....
      ;;(define-key org-src-mode-map "\C-s" 'org-edit-src-save)
    #+END_SRC
