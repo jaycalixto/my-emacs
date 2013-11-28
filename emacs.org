@@ -391,6 +391,9 @@
        (gnome-open-file (dired-get-file-for-visit)))
      
      (add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
+     
+     (setq dired-listing-switches "-alh")
+     
    #+END_SRC
 ** Tramp
    My own configuration to tramp. tramp auto-save should be located to
