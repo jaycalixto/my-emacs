@@ -412,6 +412,21 @@
      (provide 'navigation)
    #+END_SRC
 
+** Projectile
+
+   Configuration for projectile mode. Eases management of set of files
+   that belong to same 'project'
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name projectile :type elpa
+              :after (progn
+                       (projectile-global-mode)
+                       (setq projectile-enable-caching t)
+                       )))
+   #+END_SRC
+
 * Editing 							   :textedit:
   :PROPERTIES:
   :tangle: personal/editing.el
@@ -741,7 +756,7 @@
      (provide 'buffers)
    #+END_SRC
 
-* Org-mode 					      :calendar:organization:
+* Org-mode					      :calendar:organization:
   :PROPERTIES:
   :tangle: personal/org-personal.el
   :END:
@@ -1330,7 +1345,7 @@
      ;; module for my erc customs  
      (provide 'erc-customs)
    #+END_SRC
-* COMMENT Programming 								:dev:
+* Programming 								:dev:
   :PROPERTIES:
   :tangle: personal/programming.el
   :END:
