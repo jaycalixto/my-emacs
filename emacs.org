@@ -420,7 +420,7 @@
    #+BEGIN_SRC emacs-lisp
      (add-to-list
       'el-get-sources
-      '(:name projectile :type elpa
+      '(:name projectile :type elpa :lazy t
               :after (progn
                        (projectile-global-mode)
                        (setq projectile-enable-caching t)
@@ -576,77 +576,70 @@
     view by =ibuffer-create-group-filter= function.
 
     #+begin_src emacs-lisp
-      (setq ibuffer-filters 
-            '(
-              ;;mail buffers
-              (mail . ("Mail"
-                       (or
-                        (mode . message-mode)
-                        (mode . mail-mode)
-                        (mode . wl))))
-              ;; Opened manuals
-              (woman . ("WoMan"
-                        (or
-                         (mode . woman-mode)
-                         (mode . info-mode))))
-              ;; ESS related buffers
-              (ess . ("ESS"
-                      (or
-                       (mode . inferior-ess-mode)
-                       (mode . ess-help-mode)
-                       (name . "\\*S objects\\*"))))
-              ;; My unsorted Latex buffers
-              (latex . ("LaTeX" 
-                        (mode . latex-mode)))
-              ;; IRC Channels 
-              (erc . ("ERC"
-                      (mode . erc-mode)))
-              ;; Unsorted shells
-              (shells . ("Shells"
-                         (or
-                          (mode . shell-mode)
-                          (mode . term-mode)
-                          (mode . eshell-mode))))
-              ;; all unsorted dired buffers goes here 
-              (dired . ("Dired"
-                        (mode . dired-mode)))
-              ;; all org-related buffers
-              (org . ("Org" 
-                      (or 
-                       (name . "\\*Org *")
-                       (mode . org-mode))))
-              ;; magit buffers
-              (git . ("magit"
-                      (name . "\\*magit")))
-              ;; school related filters
-              (dp . ("DP"
-                     (or
-                      (filename . "parallel.distributed.org")
-                      (filename . "/wrk/spin/"))))
-              (dip . ("DIP"
-                      (or
-                       (filename . "digital.image.prosessing.org")
-                       (filename . "/wrk/dip/"))))
-              ;;rest of the school buffers
-              (school . ("School Courses"
-                          (mode . org-mode)
-                          (filename . "/org/courses/")))
-              (emacs-conf . ("Emacs configuration"
+            (setq ibuffer-filters 
+                  '(
+                    ;;mail buffers
+                    (mail . ("Mail"
                              (or
-                              (filename . "/emacs.seed/")
-                              (filename . ".emacs.d/")
-                              (filename . "~/.erc-bouncers.el"))))
-              ;; Here are the buffers that are not in projectXYZ gategory
-              (programming . ("Programming" 
+                              (mode . message-mode)
+                              (mode . mail-mode)
+                              (mode . wl))))
+                    ;; Opened manuals
+                    (woman . ("WoMan"
                               (or
-                               (mode . groovy-mode)
-                               (mode . php-mode)
-                               (mode . sgml-mode)
-                               (mode . sh-mode)
-                               (mode . c-mode)
-                               (mode . perl-mode)
-                               (mode . python-mode)
-                               (mode . emacs-lisp-mode))))))
+                               (mode . woman-mode)
+                               (mode . info-mode))))
+                    ;; ESS related buffers
+                    (ess . ("ESS"
+                            (or
+                             (mode . inferior-ess-mode)
+                             (mode . ess-help-mode)
+                             (name . "\\*S objects\\*"))))
+                    ;; My unsorted Latex buffers
+                    (latex . ("LaTeX" 
+                              (mode . latex-mode)))
+                    ;; IRC Channels 
+                    (erc . ("ERC"
+                            (mode . erc-mode)))
+                    ;; Unsorted shells
+                    (shells . ("Shells"
+                               (or
+                                (mode . shell-mode)
+                                (mode . term-mode)
+                                (mode . eshell-mode))))
+                    ;; all unsorted dired buffers goes here 
+                    (dired . ("Dired"
+                              (mode . dired-mode)))
+                    ;; all org-related buffers
+                    (org . ("Org" 
+                            (or 
+                             (name . "\\*Org *")
+                             (mode . org-mode))))
+                    ;; magit buffers
+                    (git . ("magit"
+                            (name . "\\*magit")))
+                    ;;rest of the school buffers
+                    (school . ("School Courses"
+                                (or
+                                 (filename . "/org/courses/")
+                                 (filename . "/org/courses/thesis/")
+                                 (name . "thesis-workspace"))))
+                    (emacs-conf . ("Emacs configuration"
+                                   (or
+                                    (filename . "/emacs.seed/")
+                                    (filename . ".emacs.d/")
+                                    (filename . "~/.erc-bouncers.el"))))
+                    ;; Here are the buffers that are not in projectXYZ gategory
+                    (programming . ("Programming" 
+                                    (or
+                                     (mode . groovy-mode)
+                                     (mode . php-mode)
+                                     (mode . sgml-mode)
+                                     (mode . sh-mode)
+                                     (mode . c-mode)
+                                     (mode . perl-mode)
+                                     (mode . python-mode)
+                                     (mode . emacs-lisp-mode))))))
     #+end_src
 
 *** TODO Filter Views
@@ -662,7 +655,7 @@
               ,(ibuffer-create-group-filter "development" '(git woman shells programming dired))
               ,(ibuffer-create-group-filter "documentation" '(org latex dired))
               ,(ibuffer-create-group-filter "statistics" '(org ess dired))
-              ,(ibuffer-create-group-filter "school" '(erc shells dp dip school org dired))))
+              ,(ibuffer-create-group-filter "school" '(emacs-conf school org dired git ess shells))))
       
       (add-hook 'ibuffer-mode-hook
                 (lambda ()
