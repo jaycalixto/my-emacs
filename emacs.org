@@ -1185,7 +1185,7 @@
      ;; modularize this personalization
      (provide 'org-personal)
    #+END_SRC
-* Mails							      :communication:
+* Mails 						      :communication:
   :PROPERTIES:
   :tangle:   personal/mailing.el
   :END:
@@ -1391,6 +1391,14 @@
     (setq font-lock-maximum-decoration t)
     (global-font-lock-mode t)
   #+END_SRC
+
+** LaTeX
+
+   I need AUCTEX mode for my latex editing.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'el-get-sources '(:name auctex))
+   #+END_SRC
 
 ** Compilation shell output
    Settings of a compile output buffer/window
