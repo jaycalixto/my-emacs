@@ -1352,13 +1352,15 @@
       '(:name rainbow-delimiters
               :after (progn
                        (require 'rainbow-delimiters)
-                       (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))))
+                       (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+                       (add-hook 'ess-mode-hook 'rainbow-delimiters-mode))))
     
     (add-to-list 
       'el-get-sources
       '(:name highlight-parentheses
               :after (progn
                        (require 'highlight-parentheses)
+                       (add-hook 'ess-mode-hook 'highlight-parentheses-mode)
                        (add-hook 'prog-mode-hook 'highlight-parentheses-mode))))
     
     (add-to-list
