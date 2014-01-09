@@ -992,7 +992,7 @@
 
     #+BEGIN_SRC emacs-lisp
       (setq org-export-latex-Image-default-option "width=hsize"
-       org-export-latex-classes '(
+       org-latex-classes '(
                                   ;; article
                                   ("article" "\\documentclass[12pt,a4paper]{article}
       \\usepackage[utf8]{inputenc}
@@ -1027,10 +1027,16 @@
                                    ("\\subsection{%s}" . "\\subsection*{%s}") 
                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")) 
                                   ;; thesis, TODO this could be extracted to thesis buffer??
-                                  ("thesis" "\\documentclass[12pt,a4paper]{book}
+                                  ("thesis" "\\documentclass[12pt,a4paper,oneside,pdftex]{report}
       \\usepackage[utf8]{inputenc}
-      \\usepackage[T1]{fontenc}
+      \\usepackage[OT1]{fontenc}
       \\usepackage{graphicx}
+      \\usepackage[square,sort&compress,numbers]{natbib}
+      \\usepackage[english]{babel}
+      \\usepackage{listings}
+      \\usepackage{subfigure}
+      \\usepackage[medium]{titlesec}
+      \\usepackage{longtable}
       \\usepackage{hyperref}"
                                    ("\\part{%s}" . "\\part*{%s}") 
                                    ("\\chapter{%s}" . "\\chapter*{%s}") 
