@@ -1028,17 +1028,12 @@
                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")) 
                                   ;; thesis, TODO this could be extracted to thesis buffer??
                                   ("thesis" "\\documentclass[12pt,a4paper,oneside,pdftex]{report}
-      \\usepackage[utf8]{inputenc}
-      \\usepackage[OT1]{fontenc}
-      \\usepackage{graphicx}
+      % \\usepackage[OT1]{fontenc}
       \\usepackage[square,sort&compress,numbers]{natbib}
       \\usepackage[english]{babel}
       \\usepackage{listings}
       \\usepackage{subfigure}
-      \\usepackage[medium]{titlesec}
-      \\usepackage{longtable}
-      \\usepackage{hyperref}"
-                                   ("\\part{%s}" . "\\part*{%s}") 
+      \\usepackage[medium]{titlesec}"
                                    ("\\chapter{%s}" . "\\chapter*{%s}") 
                                    ("\\section{%s}" . "\\section*{%s}")
                                    ("\\subsection{%s}" . "\\subsection*{%s}") 
