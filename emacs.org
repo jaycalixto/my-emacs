@@ -991,19 +991,20 @@
     headlines.
 
     #+BEGIN_SRC emacs-lisp
-      (setq 
-       org-export-latex-Image-default-option "width=hsize"
+      (setq org-export-latex-Image-default-option "width=hsize"
        org-export-latex-classes '(
+                                  ;; article
                                   ("article" "\\documentclass[12pt,a4paper]{article}
       \\usepackage[utf8]{inputenc}
       \\usepackage[T1]{fontenc}
       \\usepackage{graphicx}
       \\usepackage[pdftex]{hyperref}"
-                                   ("\\section{%s}" . "\\section*{%s}") 
+                                   ("\\section{%s}" . "\\section*{%s}")
                                    ("\\subsection{%s}" . "\\subsection*{%s}") 
                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}") 
                                    ("\\paragraph{%s}" . "\\paragraph*{%s}") 
                                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")) 
+                                  ;; report
                                   ("report" "\\documentclass[12pt,a4paper]{report}
       \\usepackage[utf8]{inputenc}
       \\usepackage[T1]{fontenc}
@@ -1013,7 +1014,8 @@
                                    ("\\chapter{%s}" . "\\chapter*{%s}") 
                                    ("\\section{%s}" . "\\section*{%s}") 
                                    ("\\subsection{%s}" . "\\subsection*{%s}") 
-                                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")) 
+                                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+                                  ;; book
                                   ("book" "\\documentclass[12pt,a4paper]{book}
       \\usepackage[utf8]{inputenc}
       \\usepackage[T1]{fontenc}
@@ -1024,6 +1026,18 @@
                                    ("\\section{%s}" . "\\section*{%s}")
                                    ("\\subsection{%s}" . "\\subsection*{%s}") 
                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")) 
+                                  ;; thesis, TODO this could be extracted to thesis buffer??
+                                  ("thesis" "\\documentclass[12pt,a4paper]{book}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage[T1]{fontenc}
+      \\usepackage{graphicx}
+      \\usepackage{hyperref}"
+                                   ("\\part{%s}" . "\\part*{%s}") 
+                                   ("\\chapter{%s}" . "\\chapter*{%s}") 
+                                   ("\\section{%s}" . "\\section*{%s}")
+                                   ("\\subsection{%s}" . "\\subsection*{%s}") 
+                                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+                                  ;; astronomy article
                                   ("aa" "\\documentclass[structabstract]{aa}
       \\usepackage{txfonts}
       \\usepackage{graphicx}
@@ -1045,6 +1059,7 @@
       \\usepackage[mathscr]{eucal}
       \\usepackage[usenames]{color}")
     #+END_SRC
+
 ** Global keybindings 						       :keys:
 
    The following key strokes are highly used and we want them to be
