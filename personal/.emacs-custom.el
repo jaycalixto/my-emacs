@@ -8,6 +8,7 @@
  '(chm-view-delay 1.0)
  '(custom-safe-themes (quote ("ebf6314f5c7c71034ffe2d67db489c6d868be3cf8cdba02e5a936808c5df75c8" "81805c86e126018f339211bb3f03e1c9eae30adfbe72832bd02f89ca0cbe5885" "843a82ff3b91bec5430f9acdd11de03fc0f7874b15c1b6fbb965116b4c7bf830" default)))
  '(global-whitespace-mode t)
+ '(inferior-R-font-lock-keywords (quote ((ess-S-fl-keyword:prompt . t) (ess-R-fl-keyword:modifiers . t) (ess-R-fl-keyword:fun-defs . t) (ess-R-fl-keyword:keywords . t) (ess-R-fl-keyword:assign-ops . t) (ess-R-fl-keyword:constants . t) (ess-R-fl-keyword:messages . t) (ess-fl-keyword:matrix-labels . t) (ess-fl-keyword:fun-calls . t) (ess-fl-keyword:numbers . t) (ess-fl-keyword:operators . t) (ess-fl-keyword:delimiters) (ess-fl-keyword:= . t) (ess-R-fl-keyword:F&T))))
  '(org-export-backends (quote (confluence ascii html icalendar latex md)))
  '(safe-local-variable-values (quote ((Base . 10) (Syntax . Common-lisp) (Package . monitor) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face trailing lines-tail) (require-final-newline . t))))
  '(send-mail-function (quote mailclient-send-it))

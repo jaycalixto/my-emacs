@@ -391,6 +391,8 @@
        (gnome-open-file (dired-get-file-for-visit)))
      
      (add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
+     
+     (setq dired-listing-switches "-alh")
    #+END_SRC
 ** Tramp
    My own configuration to tramp. tramp auto-save should be located to
@@ -408,6 +410,21 @@
         ))
      
      (provide 'navigation)
+   #+END_SRC
+
+** Projectile
+
+   Configuration for projectile mode. Eases management of set of files
+   that belong to same 'project'
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name projectile :type elpa :lazy t
+              :after (progn
+                       (projectile-global-mode)
+                       (setq projectile-enable-caching t)
+                       )))
    #+END_SRC
 
 * Editing 							   :textedit:
@@ -559,77 +576,70 @@
     view by =ibuffer-create-group-filter= function.
 
     #+begin_src emacs-lisp
-      (setq ibuffer-filters 
-            '(
-              ;;mail buffers
-              (mail . ("Mail"
-                       (or
-                        (mode . message-mode)
-                        (mode . mail-mode)
-                        (mode . wl))))
-              ;; Opened manuals
-              (woman . ("WoMan"
-                        (or
-                         (mode . woman-mode)
-                         (mode . info-mode))))
-              ;; ESS related buffers
-              (ess . ("ESS"
-                      (or
-                       (mode . inferior-ess-mode)
-                       (mode . ess-help-mode)
-                       (name . "\\*S objects\\*"))))
-              ;; My unsorted Latex buffers
-              (latex . ("LaTeX" 
-                        (mode . latex-mode)))
-              ;; IRC Channels 
-              (erc . ("ERC"
-                      (mode . erc-mode)))
-              ;; Unsorted shells
-              (shells . ("Shells"
-                         (or
-                          (mode . shell-mode)
-                          (mode . term-mode)
-                          (mode . eshell-mode))))
-              ;; all unsorted dired buffers goes here 
-              (dired . ("Dired"
-                        (mode . dired-mode)))
-              ;; all org-related buffers
-              (org . ("Org" 
-                      (or 
-                       (name . "\\*Org *")
-                       (mode . org-mode))))
-              ;; magit buffers
-              (git . ("magit"
-                      (name . "\\*magit")))
-              ;; school related filters
-              (dp . ("DP"
-                     (or
-                      (filename . "parallel.distributed.org")
-                      (filename . "/wrk/spin/"))))
-              (dip . ("DIP"
-                      (or
-                       (filename . "digital.image.prosessing.org")
-                       (filename . "/wrk/dip/"))))
-              ;;rest of the school buffers
-              (school . ("School Courses"
-                          (mode . org-mode)
-                          (filename . "/org/courses/")))
-              (emacs-conf . ("Emacs configuration"
+            (setq ibuffer-filters 
+                  '(
+                    ;;mail buffers
+                    (mail . ("Mail"
                              (or
-                              (filename . "/emacs.seed/")
-                              (filename . ".emacs.d/")
-                              (filename . "~/.erc-bouncers.el"))))
-              ;; Here are the buffers that are not in projectXYZ gategory
-              (programming . ("Programming" 
+                              (mode . message-mode)
+                              (mode . mail-mode)
+                              (mode . wl))))
+                    ;; Opened manuals
+                    (woman . ("WoMan"
                               (or
-                               (mode . groovy-mode)
-                               (mode . php-mode)
-                               (mode . sgml-mode)
-                               (mode . sh-mode)
-                               (mode . c-mode)
-                               (mode . perl-mode)
-                               (mode . python-mode)
-                               (mode . emacs-lisp-mode))))))
+                               (mode . woman-mode)
+                               (mode . info-mode))))
+                    ;; ESS related buffers
+                    (ess . ("ESS"
+                            (or
+                             (mode . inferior-ess-mode)
+                             (mode . ess-help-mode)
+                             (name . "\\*S objects\\*"))))
+                    ;; My unsorted Latex buffers
+                    (latex . ("LaTeX" 
+                              (mode . latex-mode)))
+                    ;; IRC Channels 
+                    (erc . ("ERC"
+                            (mode . erc-mode)))
+                    ;; Unsorted shells
+                    (shells . ("Shells"
+                               (or
+                                (mode . shell-mode)
+                                (mode . term-mode)
+                                (mode . eshell-mode))))
+                    ;; all unsorted dired buffers goes here 
+                    (dired . ("Dired"
+                              (mode . dired-mode)))
+                    ;; all org-related buffers
+                    (org . ("Org" 
+                            (or 
+                             (name . "\\*Org *")
+                             (mode . org-mode))))
+                    ;; magit buffers
+                    (git . ("magit"
+                            (name . "\\*magit")))
+                    ;;rest of the school buffers
+                    (school . ("School Courses"
+                                (or
+                                 (filename . "/org/courses/")
+                                 (filename . "/org/courses/thesis/")
+                                 (name . "thesis-workspace"))))
+                    (emacs-conf . ("Emacs configuration"
+                                   (or
+                                    (filename . "/emacs.seed/")
+                                    (filename . ".emacs.d/")
+                                    (filename . "~/.erc-bouncers.el"))))
+                    ;; Here are the buffers that are not in projectXYZ gategory
+                    (programming . ("Programming" 
+                                    (or
+                                     (mode . groovy-mode)
+                                     (mode . php-mode)
+                                     (mode . sgml-mode)
+                                     (mode . sh-mode)
+                                     (mode . c-mode)
+                                     (mode . perl-mode)
+                                     (mode . python-mode)
+                                     (mode . emacs-lisp-mode))))))
     #+end_src
 
 *** TODO Filter Views
@@ -645,7 +655,7 @@
               ,(ibuffer-create-group-filter "development" '(git woman shells programming dired))
               ,(ibuffer-create-group-filter "documentation" '(org latex dired))
               ,(ibuffer-create-group-filter "statistics" '(org ess dired))
-              ,(ibuffer-create-group-filter "school" '(erc shells dp dip school org dired))))
+              ,(ibuffer-create-group-filter "school" '(emacs-conf school org dired git ess shells))))
       
       (add-hook 'ibuffer-mode-hook
                 (lambda ()
@@ -739,7 +749,7 @@
      (provide 'buffers)
    #+END_SRC
 
-* Org-mode 					      :calendar:organization:
+* Org-mode					      :calendar:organization:
   :PROPERTIES:
   :tangle: personal/org-personal.el
   :END:
@@ -895,6 +905,9 @@
      
      (setq org-src-ask-before-returning-to-edit-buffer nil)
      (setq org-src-window-setup 'current-window)
+     
+     (setq org-src-fontify-natively t) ;;set fontify by default on, lets see if I like it
+     
      ;;(setq org-confirm-babel-evaluate nil) could be a function....
      ;;(define-key org-src-mode-map "\C-s" 'org-edit-src-save)
    #+END_SRC
@@ -978,19 +991,20 @@
     headlines.
 
     #+BEGIN_SRC emacs-lisp
-      (setq 
-       org-export-latex-Image-default-option "width=hsize"
-       org-export-latex-classes '(
+      (setq org-export-latex-Image-default-option "width=hsize"
+       org-latex-classes '(
+                                  ;; article
                                   ("article" "\\documentclass[12pt,a4paper]{article}
       \\usepackage[utf8]{inputenc}
       \\usepackage[T1]{fontenc}
       \\usepackage{graphicx}
       \\usepackage[pdftex]{hyperref}"
-                                   ("\\section{%s}" . "\\section*{%s}") 
+                                   ("\\section{%s}" . "\\section*{%s}")
                                    ("\\subsection{%s}" . "\\subsection*{%s}") 
                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}") 
                                    ("\\paragraph{%s}" . "\\paragraph*{%s}") 
                                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")) 
+                                  ;; report
                                   ("report" "\\documentclass[12pt,a4paper]{report}
       \\usepackage[utf8]{inputenc}
       \\usepackage[T1]{fontenc}
@@ -1000,7 +1014,8 @@
                                    ("\\chapter{%s}" . "\\chapter*{%s}") 
                                    ("\\section{%s}" . "\\section*{%s}") 
                                    ("\\subsection{%s}" . "\\subsection*{%s}") 
-                                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")) 
+                                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+                                  ;; book
                                   ("book" "\\documentclass[12pt,a4paper]{book}
       \\usepackage[utf8]{inputenc}
       \\usepackage[T1]{fontenc}
@@ -1011,6 +1026,24 @@
                                    ("\\section{%s}" . "\\section*{%s}")
                                    ("\\subsection{%s}" . "\\subsection*{%s}") 
                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")) 
+                                  ;; thesis, TODO this could be extracted to thesis buffer??
+                                  ("thesis" "\\documentclass[12pt,a4paper,oneside,pdftex]{report}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage[OT1]{fontenc}
+      \\usepackage{graphicx}
+      \\usepackage[square,sort&compress,numbers]{natbib}
+      \\usepackage[english]{babel}
+      \\usepackage{listings}
+      \\usepackage{subfigure}
+      \\usepackage[medium]{titlesec}
+      \\usepackage{longtable}
+      \\usepackage{hyperref}"
+                                   ("\\part{%s}" . "\\part*{%s}") 
+                                   ("\\chapter{%s}" . "\\chapter*{%s}") 
+                                   ("\\section{%s}" . "\\section*{%s}")
+                                   ("\\subsection{%s}" . "\\subsection*{%s}") 
+                                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+                                  ;; astronomy article
                                   ("aa" "\\documentclass[structabstract]{aa}
       \\usepackage{txfonts}
       \\usepackage{graphicx}
@@ -1032,6 +1065,7 @@
       \\usepackage[mathscr]{eucal}
       \\usepackage[usenames]{color}")
     #+END_SRC
+
 ** Global keybindings 						       :keys:
 
    The following key strokes are highly used and we want them to be
@@ -1172,7 +1206,7 @@
      ;; modularize this personalization
      (provide 'org-personal)
    #+END_SRC
-* Mails							      :communication:
+* Mails 						      :communication:
   :PROPERTIES:
   :tangle:   personal/mailing.el
   :END:
@@ -1325,7 +1359,7 @@
      ;; module for my erc customs  
      (provide 'erc-customs)
    #+END_SRC
-* COMMENT Programming 								:dev:
+* Programming 								:dev:
   :PROPERTIES:
   :tangle: personal/programming.el
   :END:
@@ -1339,13 +1373,15 @@
       '(:name rainbow-delimiters
               :after (progn
                        (require 'rainbow-delimiters)
-                       (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))))
+                       (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+                       (add-hook 'ess-mode-hook 'rainbow-delimiters-mode))))
     
     (add-to-list 
       'el-get-sources
       '(:name highlight-parentheses
               :after (progn
                        (require 'highlight-parentheses)
+                       (add-hook 'ess-mode-hook 'highlight-parentheses-mode)
                        (add-hook 'prog-mode-hook 'highlight-parentheses-mode))))
     
     (add-to-list
@@ -1378,6 +1414,14 @@
     (setq font-lock-maximum-decoration t)
     (global-font-lock-mode t)
   #+END_SRC
+
+** LaTeX
+
+   I need AUCTEX mode for my latex editing.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'el-get-sources '(:name auctex))
+   #+END_SRC
 
 ** Compilation shell output
    Settings of a compile output buffer/window
