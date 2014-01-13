@@ -8,6 +8,7 @@
  '(chm-view-delay 1.0)
  '(custom-safe-themes (quote ("ebf6314f5c7c71034ffe2d67db489c6d868be3cf8cdba02e5a936808c5df75c8" "81805c86e126018f339211bb3f03e1c9eae30adfbe72832bd02f89ca0cbe5885" "843a82ff3b91bec5430f9acdd11de03fc0f7874b15c1b6fbb965116b4c7bf830" default)))
  '(global-whitespace-mode t)
+ '(org-export-backends (quote (confluence ascii html icalendar latex md)))
  '(safe-local-variable-values (quote ((Base . 10) (Syntax . Common-lisp) (Package . monitor) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face trailing lines-tail) (require-final-newline . t))))
  '(send-mail-function (quote mailclient-send-it))
  '(sql-oracle-program "sqlplus64")
