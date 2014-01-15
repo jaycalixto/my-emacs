@@ -990,6 +990,30 @@
     Latex exports needs header templates and conversion rules for
     headlines.
 
+    Setting default packages so that they don't conflict with some of
+    my commonly used packages, see 
+
+    #+BEGIN_SRC emacs-lisp :results silent
+      (setq org-latex-default-packages-alist '(("AUTO" "inputenc" t)
+                                               ("OT1" "fontenc" t)
+                                               ("" "fixltx2e" nil)
+                                               ("" "graphicx" t)
+                                               ("" "longtable" nil)
+                                               ("" "float" nil)
+                                               ("" "wrapfig" nil)
+                                               ("normalem" "ulem" t)
+                                               ("" "textcomp" t)
+                                               ("" "marvosym" t)
+                                               ("nointegrals" "wasysym" t)
+                                               ("" "latexsym" t)
+                                               ("" "amssymb" t)
+                                               ("" "amstext" nil)
+                                               ("" "hyperref" nil)
+                                               "\\tolerance=1000"))
+    #+END_SRC
+
+    And then we define basic templates for my latex exports.
+
     #+BEGIN_SRC emacs-lisp
       (setq org-export-latex-Image-default-option "width=hsize"
        org-latex-classes '(
@@ -1028,8 +1052,6 @@
                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")) 
                                   ;; thesis, TODO this could be extracted to thesis buffer??
                                   ("thesis" "\\documentclass[12pt,a4paper,oneside,pdftex]{report}
-      % \\usepackage[OT1]{fontenc}
-      \\usepackage[square,sort&compress,numbers]{natbib}
       \\usepackage[english]{babel}
       \\usepackage{listings}
       \\usepackage{subfigure}
