@@ -910,6 +910,9 @@
      
      (setq org-src-fontify-natively t) ;;set fontify by default on, lets see if I like it
      
+     (add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
+     
+     
      ;;(setq org-confirm-babel-evaluate nil) could be a function....
      ;;(define-key org-src-mode-map "\C-s" 'org-edit-src-save)
    #+END_SRC
@@ -1713,6 +1716,14 @@
                   '(:name nrepl :lazy t))
    #+END_SRC
 
+** Graphviz
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name graphviz-dot-mode))
+   #+END_SRC
+
 ** Slime
 
    Superior Lisp mode.
@@ -1729,7 +1740,6 @@
      
      (provide 'programming)
    #+end_src
-
 * Browsers 						       :internet:dev:
   :PROPERTIES:
   :tangle: personal/browsers.el
