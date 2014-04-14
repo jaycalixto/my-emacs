@@ -116,6 +116,7 @@
 
    #+begin_src emacs-lisp
      (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+     (add-to-list 'load-path "~/.emacs.d/el-get")
      
      (unless (require 'el-get nil 'noerror)
        (with-current-buffer
@@ -128,8 +129,8 @@
      
      (defmacro add-to-el-sources(name type after-progn &rest additional)
        `(add-to-list
-           'el-get-sources
-           (append '(:name ,name :type ,type :after ,after-progn) ',additional)))
+         'el-get-sources
+         (append '(:name ,name :type ,type :after ,after-progn) ',additional)))
    #+end_src
 
 * Emacs encoding 						   :encoding:
@@ -1721,7 +1722,7 @@
    #+BEGIN_SRC emacs-lisp
      (add-to-list
       'el-get-sources
-      '(:name graphviz-dot-mode))
+      '(:name graphviz-dot-mode :type elpa))
    #+END_SRC
 
 ** Slime
