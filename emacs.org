@@ -900,8 +900,10 @@
       'org-babel-load-languages
       '(
         (octave . t)
-        (R . t) 
-        (sh . t)))
+        (R . t)
+        (dot .t)
+        (sh . t)
+     ))
      
      (setq org-src-ask-before-returning-to-edit-buffer nil)
      (setq org-src-window-setup 'current-window)
