@@ -1058,7 +1058,7 @@
                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")) 
                                   ;; thesis, TODO this could be extracted to thesis buffer??
                                   ("thesis" "\\documentclass[12pt,a4paper,oneside,pdftex]{report}
-      \\usepackage[english]{babel}
+      \\usepackage[english, finnish]{babel}
       \\usepackage{listings}
       \\usepackage{subfigure}
       \\usepackage[medium]{titlesec}"
