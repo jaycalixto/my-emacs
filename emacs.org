@@ -122,8 +122,8 @@
     (setq user-full-name "Sami Airaksinen"
           user-email "samiaira@gmail.com")
         
-    (add-to-list 'load-path "~/.emacs.d/lib")
-    (add-to-list 'load-path "~/.emacs.d/personal")
+    (add-to-list 'load-path "~/.emacs.d/lib/")
+    (add-to-list 'load-path "~/.emacs.d/personal/")
   #+END_SRC
 
 ** Packaging manager configurations
@@ -144,8 +144,8 @@
    sub repo (they are not a same context in my opinion).
 
    #+begin_src emacs-lisp
-     (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-     (add-to-list 'load-path "~/.emacs.d/el-get")
+     (add-to-list 'load-path "~/.emacs.d/el-get/el-get/")
+     (add-to-list 'load-path "~/.emacs.d/el-get/")
      
      (unless (require 'el-get nil 'noerror)
        (with-current-buffer
@@ -154,7 +154,7 @@
          (goto-char (point-max))
          (eval-print-last-sexp)))
      
-     (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+     (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes/")
      
      (defmacro add-to-el-sources(name type after-progn &rest additional)
        `(add-to-list
