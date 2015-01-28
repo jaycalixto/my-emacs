@@ -13,6 +13,36 @@
 #+LINK_UP:
 #+LINK_HOME: 
 
+* From scratch
+
+  #+BEGIN_SRC sh
+    sudo apt-get build-dep emacs24
+    wget http://www.nic.funet.fi/pub/gnu/ftp.gnu.org/pub/gnu/emacs/emacs-24.4.tar.gz
+    aunpack emacs-24.4.tar.gz 
+    cd emacs-24.4/
+    ./configure
+    make
+    sudo make install
+
+
+    cd org-mode
+    make
+    sudo make install
+
+    rm -rf .emacs.d
+    git clone git@github.com:d4gg4d/my-emacs.git .emacs.d
+    cd .emacs.d
+    git submodule init
+    git submodule update
+
+    #Warning (:warning): : `lexical-binding' at end of file unreliable
+    #Warning (el-get): The package `slime' has already been loaded by
+    #package.el, attempting to load el-get version instead. To avoid
+    #this warning either uninstall one of the el-get or package.el
+    #version of slime, or call `el-get' before `package-initialize' to
+    #prevent package.el from loading it.
+  #+END_SRC
+
 * Motivation
 
   Tired to have to copy and reinitialize my emacs environment
@@ -105,7 +135,6 @@
      (setq package-archives '(
                                ("melpa" . "http://melpa.milkbox.net/packages/")
                                ("marmalade" . "http://marmalade-repo.org/packages/")))
-     (package-initialize)
    #+end_src
 
 ** El-get configurations
@@ -1421,9 +1450,9 @@
                       (require 'smartparens-config)
                       (smartparens-global-mode))))
     
-    (add-to-list
-     'el-get-sources
-     '(:name chm-view :features chm-view))
+    ;(add-to-list
+    ; 'el-get-sources
+    ; '(:name chm-view :features chm-view))
     
     (add-to-el-sources
      pabbrev
@@ -1716,8 +1745,8 @@
                   '(:name clojure-mode :type elpa))
      (add-to-list 'el-get-sources
                   '(:name clojure-test-mode :type elpa))
-     (add-to-list 'el-get-sources
-                  '(:name nrepl :lazy t))
+;     (add-to-list 'el-get-sources
+;                  '(:name nrepl :lazy t))
    #+END_SRC
 
 ** Graphviz
@@ -2056,11 +2085,10 @@
   Here I then load these personalization modules to my emacs at
   startup. I intentionally left some modules unloaded, because they
   are so rarely used.
+  ;; here should be org-mode recipe definition from inside org headline... 
+  ;;    <<org-mode-recipe>>
 
   #+begin_src emacs-lisp :noweb yes
-    ;; here should be org-mode recipe definition from inside org headline... 
-    <<org-mode-recipe>>
-    
     ;; here are headline categorized configs as simple modules... 
     (require 'navigation)
     (require 'editing)
@@ -2068,7 +2096,7 @@
     (require 'mailing)
     (require 'erc-customs)
     (require 'browsers)
-    
+
     (require 'consoles)
     (require 'programming)
     ;;    (require 'el-node-services)
@@ -2084,6 +2112,9 @@
            (append
             (mapcar 'el-get-source-name el-get-sources)))
      (el-get 'sync my-el-get-packages)
+
+     ;; emacs own package manager will be loaded _after_ el-get...
+     (package-initialize)
    #+end_src
 
 * License							    :license:

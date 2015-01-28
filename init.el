@@ -18,6 +18,7 @@
   (require 'org-element)
   ;;TODO make bug report, this contains defcustom definitions that are needed during tangle operations... 
   (require 'org)
+  (print dotfiles-dir)
   (mapc #'org-babel-load-file (directory-files dotfiles-dir t "\\.org$")))
 
 ;;; init.el ends here
