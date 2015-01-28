@@ -1702,6 +1702,15 @@
      ;;(require 'flymake-jslint)
      ;;(add-hook 'js-mode-hook 'flymake-jslint-load)
    #+END_SRC
+** JSON
+   
+   Utilities for manipulating JSON buffers
+
+   #+begin_src emacs-lisp :tangle nil
+     (add-to-list
+      'el-get-sources
+      '(:name json-reformat :type elpa))
+   #+end_src
 
 ** TODO Clojure
    Lisp dialect that runs on JVM. Needs external clojure
@@ -1741,6 +1750,7 @@
      
      (provide 'programming)
    #+end_src
+
 * Browsers 						       :internet:dev:
   :PROPERTIES:
   :tangle: personal/browsers.el
