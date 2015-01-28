@@ -670,20 +670,20 @@
    my emacs.
    
    #+BEGIN_SRC emacs-lisp
-     (add-to-el-sources
-      desktop
-      builtin
-      (progn
-	 (desktop-save-mode)))
+     ;; (add-to-el-sources
+     ;;  desktop
+     ;;  builtin
+     ;;  (progn
+     ;;     (desktop-save-mode)))
      
      (add-to-el-sources
       savehist
       builtin
       (progn
-	 (savehist-mode)
-	 (setq savehist-file (personal-place "savehist-history"))
-	 ))
-	
+         (savehist-mode)
+         (setq savehist-file (personal-place "savehist-history"))
+         ))
+        
      (setq
       make-backup-files t
       backup-directory-alist (quote ((".*" . "~/.backups/emacs.buffers/"))))
@@ -1705,12 +1705,6 @@
 ** JSON
    
    Utilities for manipulating JSON buffers
-
-   #+begin_src emacs-lisp :tangle nil
-     (add-to-list
-      'el-get-sources
-      '(:name json-reformat :type elpa))
-   #+end_src
 
 ** TODO Clojure
    Lisp dialect that runs on JVM. Needs external clojure
