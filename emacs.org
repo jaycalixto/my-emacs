@@ -13,36 +13,6 @@
 #+LINK_UP:
 #+LINK_HOME: 
 
-* From scratch
-
-  #+BEGIN_SRC sh
-    sudo apt-get build-dep emacs24
-    wget http://www.nic.funet.fi/pub/gnu/ftp.gnu.org/pub/gnu/emacs/emacs-24.4.tar.gz
-    aunpack emacs-24.4.tar.gz 
-    cd emacs-24.4/
-    ./configure
-    make
-    sudo make install
-
-
-    cd org-mode
-    make
-    sudo make install
-
-    rm -rf .emacs.d
-    git clone git@github.com:d4gg4d/my-emacs.git .emacs.d
-    cd .emacs.d
-    git submodule init
-    git submodule update
-
-    #Warning (:warning): : `lexical-binding' at end of file unreliable
-    #Warning (el-get): The package `slime' has already been loaded by
-    #package.el, attempting to load el-get version instead. To avoid
-    #this warning either uninstall one of the el-get or package.el
-    #version of slime, or call `el-get' before `package-initialize' to
-    #prevent package.el from loading it.
-  #+END_SRC
-
 * Motivation
 
   Tired to have to copy and reinitialize my emacs environment
@@ -56,14 +26,22 @@
 
 * Requirements
 
-  Currently this is running in ubuntu 12.04, GNU Emacs 24.1.1
-  (x86_64-pc-linux-gnu, GTK+ Version 2.24.10) of 2012-07-17 on
-  lawrencium, modified by Debian and Org-mode version 7.8.02. I have
-  had some org-mode related problems with newer org-mode version such
-  as 7.9.1 and 7.8.11.
+  Because this is for my own usage I list here the current working
+  environment:
+  - Ubuntu 14.04LTS
+  - purged distro emacs and its libraries
+  - org-mode > 8.2.10 (earlier versions have a bug in the initialization
+    function)
 
 * Bootstrapping 						   :external:
   
+  #+BEGIN_EXAMPLE
+    NOTE: Initial startup can take relatively long time as el-get
+    fetches and compilse available recipes from emacswiki
+  #+END_EXAMPLE
+  
+  /I now build emacs from scratch, see 'From scratch' subsection./
+
   Here are utility scripts that help initialize emacs to vanilla
   environment. Currently I'm only interested in ubuntu environments
   (currently about 12.04).
@@ -88,7 +66,40 @@
     ln -svb ~/.emacs.d/personal/.emacs-custom.el ~/.emacs-custom.el
   #+end_src
 
-** emacs entry points
+  As I have my themes as git sub modules I need to initialize them
+
+  #+BEGIN_SRC shell-script :tangle init-configurations.sh :shebang #!/bin/bash
+    echo "initializing emacs configurations..."
+    git submodule init
+    git submodule update
+  #+END_SRC
+
+** From scratch							      :build:
+
+   Earlier I used ppa repository and deb packages to resolve used
+   emacs and org. But ppa-repository is no longer kept up-to-date so I
+   decided built it myself.
+   
+   #+BEGIN_SRC shell-script :tangle build-emacs.sh :shebang #!/bin/bash
+     sudo apt-get build-dep emacs24
+     wget http://www.nic.funet.fi/pub/gnu/ftp.gnu.org/pub/gnu/emacs/emacs-24.4.tar.gz
+     aunpack emacs-24.4.tar.gz 
+     cd emacs-24.4/
+     ./configure
+     make
+     sudo make install
+   #+END_SRC
+
+   If I wanna build org-mode myself then,
+
+   #+BEGIN_SRC shell-script :tangle build-org-mode.sh :sheband #!/bin/bash
+     git clone git://orgmode.org/org-mode.git
+     cd org-mode
+     make
+     sudo make install
+   #+END_SRC
+
+** emacs entry point points
 
    Environmental file to be sourced so that emacs can be accessed as painlessly as
    possible from terminal.
