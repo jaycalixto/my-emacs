@@ -1746,18 +1746,20 @@
    
    Utilities for manipulating JSON buffers
 
-** TODO Clojure
+** DONE Clojure
    Lisp dialect that runs on JVM. Needs external clojure
-   installation. Currently there is some dependency recognition errors
-   between these modules...
+   installation. For clojureI use CIDER package collection.
+
+   For cider to work properly one needs to add following configuration
+   into [[~/.lein/profiles.clj][leinegen profile.]]
+
+   #+BEGIN_SRC clojure :tangle no
+     {:user {:plugins [[cider/cider-nrepl "0.9.0-SNAPSHOT"]]}}
+   #+END_SRC
 
    #+BEGIN_SRC emacs-lisp
      (add-to-list 'el-get-sources
-                  '(:name clojure-mode :type elpa))
-     (add-to-list 'el-get-sources
-                  '(:name clojure-test-mode :type elpa))
-;     (add-to-list 'el-get-sources
-;                  '(:name nrepl :lazy t))
+                  '(:name cider))
    #+END_SRC
 
 ** Graphviz
