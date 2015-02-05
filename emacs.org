@@ -2001,6 +2001,9 @@
       (add-hook 'sql-interactive-mode 'toggle-truncate-lines)
     #+END_SRC
 ** Multiterm 							      :shell:
+   :PROPERTIES:
+   :tangle:   no
+   :END:
    My new terminal manager. There is couple of copy/paste issues and
    backspacing that renders this quite useless in my usage.
 
