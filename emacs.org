@@ -795,10 +795,10 @@
   :tangle: personal/org-personal.el
   :END:
   
-  Org-mode, God mode, devils-advocate, nicknames are many. This is
-  probably most usefull mode I have ever met. This has converted me to
-  be full emacs fanatic and still keeps me amazed. This configuration
-  file is powered by org-babel, so you can see its power.
+  Org-mode. This is probably most usefull mode I have ever met. This
+  has converted me to be full emacs fanatic and still keeps me
+  amazed. This configuration file is powered by org-babel, so you can
+  see its power.
 
   #+BEGIN_SRC emacs-lisp
     ;;; org-personal.el --- personalization to my org
