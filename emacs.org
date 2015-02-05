@@ -1750,7 +1750,12 @@
    #+END_SRC
 ** JSON
    
-   Utilities for manipulating JSON buffers
+   JSON pretty printing can be accomplished with following mode.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'el-get-sources
+                  '(:name json-reformat))
+   #+END_SRC
 
 ** DONE Clojure
    Lisp dialect that runs on JVM. Needs external clojure
