@@ -92,7 +92,7 @@
 
    If I wanna build org-mode myself then,
 
-   #+BEGIN_SRC shell-script :tangle build-org-mode.sh :sheband #!/bin/bash
+   #+BEGIN_SRC shell-script :tangle build-org-mode.sh :shebang #!/bin/bash
      git clone git://orgmode.org/org-mode.git
      cd org-mode
      make
