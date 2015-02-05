@@ -802,6 +802,7 @@
 
   #+BEGIN_SRC emacs-lisp
     ;;; org-personal.el --- personalization to my org
+    (require 'org-crypt)
     (setq org-directory "~/org")
   #+END_SRC
 
@@ -809,9 +810,14 @@
    :PROPERTIES:
    :tangle:   no
    :END:
-
+   
+   #+BEGIN_EXAMPLE
+     NOTE: org-mode is bootstrapped to emacs in current configuration. I
+     have abandonded idea of managing org-mode trough elpa or el-get.
+   #+END_EXAMPLE
+   
    This will hook org mode to el-get package manager and trigger
-   loading of personal customization.
+   loading of personal customization. 
 
    [[id:f85f78c3-6b7d-43a1-bcd1-859e0d48362e][This will added via noweb syntax to emacs.el.]]
 
@@ -2101,10 +2107,8 @@
   Here I then load these personalization modules to my emacs at
   startup. I intentionally left some modules unloaded, because they
   are so rarely used.
-  ;; here should be org-mode recipe definition from inside org headline... 
-  ;;    <<org-mode-recipe>>
 
-  #+begin_src emacs-lisp :noweb yes
+  #+begin_src emacs-lisp
     ;; here are headline categorized configs as simple modules... 
     (require 'navigation)
     (require 'editing)
@@ -2115,7 +2119,7 @@
 
     (require 'consoles)
     (require 'programming)
-    ;;    (require 'el-node-services)
+    (require 'org-personal)
   #+end_src
 
 ** syncing el-get packages
