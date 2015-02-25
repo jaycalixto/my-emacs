@@ -594,10 +594,12 @@
     ;;; buffers.el --- Buffer management customization
   #+END_SRC
 
-** iBuffer filters and grouping
-   
-   iBuffer makes buffer browsing prettier and more interactive. You
-   can filter buffers to groups by predefined filters. 
+** iBuffer filters and grouping 				   :groups:
+
+   Buffer grouping is something that I manage based on computer that
+   I'm working on, therefore actual configuration is assumed to be
+   present in [[file:personal][personal folder.]] For generating groups I require
+   following function to be defined:
 
    #+BEGIN_SRC emacs-lisp
      (defun ibuffer-create-group-filter (name filters)
@@ -610,97 +612,84 @@
          group-filter))
    #+END_SRC
 
-*** TODO Filters
-    - needs filter refactoring, remove school, add thesis and work filters
+*** Default filters 						    :filters:
 
-    Here is defined basic filters that can be used to construct filter
-    view by =ibuffer-create-group-filter= function.
+    iBuffer mode uses =ibuffer-filters= variable to define available
+    filters. Here I define very common ones, special ones can be
+    defined and added into variable in a personal configuration files.
 
-    #+begin_src emacs-lisp
-            (setq ibuffer-filters 
-                  '(
-                    ;;mail buffers
-                    (mail . ("Mail"
-                             (or
-                              (mode . message-mode)
-                              (mode . mail-mode)
-                              (mode . wl))))
-                    ;; Opened manuals
-                    (woman . ("WoMan"
-                              (or
-                               (mode . woman-mode)
-                               (mode . info-mode))))
-                    ;; ESS related buffers
-                    (ess . ("ESS"
-                            (or
-                             (mode . inferior-ess-mode)
-                             (mode . ess-help-mode)
-                             (name . "\\*S objects\\*"))))
-                    ;; My unsorted Latex buffers
-                    (latex . ("LaTeX" 
-                              (mode . latex-mode)))
-                    ;; IRC Channels 
-                    (erc . ("ERC"
-                            (mode . erc-mode)))
-                    ;; Unsorted shells
-                    (shells . ("Shells"
-                               (or
-                                (mode . shell-mode)
-                                (mode . term-mode)
-                                (mode . eshell-mode))))
-                    ;; all unsorted dired buffers goes here 
-                    (dired . ("Dired"
-                              (mode . dired-mode)))
-                    ;; all org-related buffers
-                    (org . ("Org" 
-                            (or 
-                             (name . "\\*Org *")
-                             (mode . org-mode))))
-                    ;; magit buffers
-                    (git . ("magit"
-                            (name . "\\*magit")))
-                    ;;rest of the school buffers
-                    (school . ("School Courses"
-                                (or
-                                 (filename . "/org/courses/")
-                                 (filename . "/org/courses/thesis/")
-                                 (name . "thesis-workspace"))))
-                    (emacs-conf . ("Emacs configuration"
-                                   (or
-                                    (filename . "/emacs.seed/")
-                                    (filename . ".emacs.d/")
-                                    (filename . "~/.erc-bouncers.el"))))
-                    ;; Here are the buffers that are not in projectXYZ gategory
-                    (programming . ("Programming" 
-                                    (or
-                                     (mode . groovy-mode)
-                                     (mode . php-mode)
-                                     (mode . sgml-mode)
-                                     (mode . sh-mode)
-                                     (mode . c-mode)
-                                     (mode . perl-mode)
-                                     (mode . python-mode)
-                                     (mode . emacs-lisp-mode))))))
-    #+end_src
+    #+BEGIN_SRC emacs-lisp
+      (setq ibuffer-filters 
+        '(
+          ;;mail buffers
+          (mail . ("Mail"
+                   (or
+                    (mode . message-mode)
+                    (mode . mail-mode)
+                    (mode . wl))))
+          ;; Opened manuals
+          (woman . ("WoMan"
+                    (or
+                     (mode . woman-mode)
+                     (mode . info-mode))))
+          ;; IRC Channels 
+          (erc . ("ERC"
+                  (mode . erc-mode)))
+          ;; Unsorted shells
+          (shells . ("Shells"
+                     (or
+                      (mode . shell-mode)
+                      (mode . term-mode)
+                      (mode . eshell-mode))))
+          ;; all unsorted dired buffers goes here 
+          (dired . ("Dired"
+                    (mode . dired-mode)))
+          ;; all org-related buffers
+          (org . ("Org" 
+                  (or 
+                   (name . "\\*Org *")
+                   (mode . org-mode))))
+          ;; magit buffers
+          (git . ("magit"
+                  (name . "\\*magit")))
+          (emacs-conf . ("Emacs configuration"
+                         (or
+                          (filename . "/emacs.seed/")
+                          (filename . ".emacs.d/")
+                          (filename . "~/.erc-customs.el"))))))
+    #+END_SRC
 
-*** TODO Filter Views
-    - create work filter group
-    
-    Here is the configuration of ibuffer views. First the views are
-    defined and with hook the default view is set.
+*** Default grouping						     :groups:
 
-    #+begin_src emacs-lisp
+    To use ibuffer filters one needs to define grouping based on
+    that. Here is the default used in this simple emacs configuration.
+
+    #+BEGIN_SRC emacs-lisp
       (setq ibuffer-saved-filter-groups
-            `(,(ibuffer-create-group-filter "default" '(emacs-conf mail erc shells git school org dired))
-              ,(ibuffer-create-group-filter "communication" '(shells mail erc dired))
-              ,(ibuffer-create-group-filter "development" '(git woman shells programming dired))
-              ,(ibuffer-create-group-filter "documentation" '(org latex dired))
-              ,(ibuffer-create-group-filter "statistics" '(org ess dired))
-              ,(ibuffer-create-group-filter "school" '(emacs-conf school org dired git ess shells))))
-      
+            `(,(ibuffer-create-group-filter "default" '(emacs-conf mail erc shells git org dired))))
+    #+END_SRC
+
+    Rest of the filter groups can be added into this variable in the
+    customization file.
+
+*** Load machine specific grouping			      :load:external:
+
+    Following snippet will load =buffer-grouping= configurations if
+    they are present. For selecting the start up grouping I can
+    set =ibuffer-startup-filter-group= variable.
+
+    #+begin_src emacs-lisp
+      (defvar ibuffer-startup-filter-group "default"
+        "startup group that ibuffer uses select initial grouping")
+
+      (load
+       (concat personal-directory "personal/buffer-grouping")
+       t
+       "ibuffer grouping file not found, see that personal/buffer-grouping.el exist")
+
       (add-hook 'ibuffer-mode-hook
-                (lambda ()
-                  (ibuffer-switch-to-saved-filter-groups "default")))
+                (lambda()
+                  (ibuffer-switch-to-saved-filter-groups ibuffer-startup-filter-group)))
     #+end_src
 
 ** Save 							     :backup:
