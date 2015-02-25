@@ -949,7 +949,6 @@
         (octave . t)
         (R . t)
         (dot .t)
-        (sh . t)
      ))
      
      (setq org-src-ask-before-returning-to-edit-buffer nil)
