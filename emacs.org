@@ -683,8 +683,8 @@
         "startup group that ibuffer uses select initial grouping")
 
       (load
-       t
        (concat personal-directory "buffer-grouping")
+       t
        "ibuffer grouping file not found, see that personal/buffer-grouping.el exist")
 
       (add-hook 'ibuffer-mode-hook
