@@ -1745,6 +1745,14 @@
                   '(:name json-reformat))
    #+END_SRC
 
+** HTML
+
+   Handlebars template file suffix should auto load =html-mode=. 
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'auto-mode-alist '("\\.hbs\\'" . html-mode))
+   #+END_SRC
+
 ** DONE Clojure
    Lisp dialect that runs on JVM. Needs external clojure
    installation. For clojureI use CIDER package collection.
