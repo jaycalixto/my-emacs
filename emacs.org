@@ -604,7 +604,7 @@
    #+BEGIN_SRC emacs-lisp
      (defun ibuffer-create-group-filter (name filters)
        "Utility function to create wanted filter-group."
-       (let ((group-filter `(,name)))
+       (let ((group-filter (list name)))
          (mapc
           (lambda(element)
             (add-to-list 'group-filter (cdr (assoc element ibuffer-filters)) t))
