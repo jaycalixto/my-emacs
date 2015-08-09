@@ -1247,22 +1247,31 @@
 
    #+BEGIN_SRC emacs-lisp
      (setq 
-      org-tag-alist 
+      org-tag-alist
       '(
-        (:startgroup) ("@errand" . ?e) ("@tkk" . ?t) ("@home" . ?h) ("@work" . ?w) (:endgroup)
-        (:startgroup) ("RESEARCH" . ?r) ("PLAN" . ?p) ("DESIGN" . ?d) ("IMPLEMENT" . ?i) (:endgroup)
-        (:startgroup) ("TASK" . ?t) ("STORY" . ?s) (:endgroup)
-        (:startgroup) ("BUG" . ?b) ("FEATURE" . ?f) ("IMPROVEMENT" . ?I) (:endgroup)
-     
-        ("ASSIGMENT" . ?a)
-        ("APPOINTMENT" . ?A)
-        ("PHONE" . ?P)
-        ("BUY" . ?B)
-        ("EMAIL" . ?E)))
-     
+        ;; provisioning type tags
+        (:startgroup) ("sales" . ?S) ("client" . ?C) ("core" . ?O) (:endgroup)
+        ;; work unit types
+        (:startgroup) ("epic" . ?E) ("feature" . ?F) ("bug" . ?B) ("refactor" . ?R) ("debt" . ?D) (:endgroup)
+        ;; work related 
+        ("debug" . ?d)
+        ("log" . ?l)
+        ("audit" . ?a)
+        ("meeting_note" . ?m)
+        ("AP" . ?p)
+
+        ;; other
+        ("FLAGGED" . ?f)
+        ("code" . ?c)
+        ("build" . ?b)
+        ("study" . ?s)
+        ("emacs" . ?e)
+        ("org" . ?o)))
+
      ;; modularize this personalization
      (provide 'org-personal)
    #+END_SRC
+
 * Mails 						      :communication:
   :PROPERTIES:
   :tangle:   personal/mailing.el
