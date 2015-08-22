@@ -844,7 +844,7 @@
      (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
    #+END_SRC
 
-*** To do flow in tasks						       :todo:
+*** To do flow in tasks 					       :todo:
 
     Here is described how todo keywords are flowd when task is
     progressed. Clocking is triggered to change the tasks
@@ -853,21 +853,36 @@
 
     #+BEGIN_SRC emacs-lisp
       (setq 
-       org-clock-in-switch-to-state '(lambda (state) 
+       org-enforce-todo-dependencies t)
+       ;; org-stuck-projects '("LEVEL=2-REFILE-WAITING|LEVEL=1+REFILE/!-DONE-CANCELLED-OPEN" nil ("NEXT") "")
+
+      (let ((simple-seq nil) (work-seq nil) (long-seq nil) (clock-in-f nil) (clock-out-f nil))
+
+            ;; case simple
+            ;;TODO STARTED WAITING | DONE DUPLICATE 
+            (setq simple-seq '(sequence "TODO(q)" "STARTED(w)" "WAITING(e)" "|" "DONE(r!/@)"))
+                  
+            ;; case work thing
+            ;;GROOMING READY STARTED ONHOLD PR | INMASTER DUBLICATE WONTFIX REJECTED
+            (setq work-seq '(sequence "GROOMING(a)" "READY(s)" "INPROGRESS(d)" "ONHOLD(f@)" "PR(g!)" "|" "INMASTER(h!)" "DUBLICATE(j@)" "WONTFIX(k@)" "REJECTED(l@)"))
+            
+            ;; case long polling state (no need for logging time)
+            ;;OPEN EXT-DEPS | CLOSED AQUIRED
+            (setq long-seq '(sequence "OPEN(z)" "EXT-DEPS(x@)" "|" "CLOSED(c!)" "AQUIRED(v!)"))
+
+            ;; only use clock states at the lowest level tasks (i.e. simple sequence)  
+            (setq clock-in-f (lambda (state) 
                                        (cond
                                         ((string= state "TODO") "STARTED")
-                                        ((string= state "ISSUE") "OPEN")
-                                        (t "STARTED")))
-       org-clock-out-switch-to-state '(lambda (state) 
+                                        ((string= state "WAITING") "STARTED"))))
+            
+            (setq clock-out-f (lambda (state) 
                                        (cond
-                                        ((string= state "STARTED") "WAITING")
-                                        ((string= state "OPEN") "ISSUE")
-                                        (t "WAITING")))
-       ;; org-stuck-projects '("LEVEL=2-REFILE-WAITING|LEVEL=1+REFILE/!-DONE-CANCELLED-OPEN" nil ("NEXT") "")
-       org-enforce-todo-dependencies t
-       org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "|" "DONE(d!/!)")
-                           (sequence "WAITING(w/!)" "SOMEDAY(S@/!)" "|" "CANCELLED(c@/!)")
-                           (sequence "ISSUE(i!)" "OPEN(O@/!)" "|" "DUBLICATE(D@!)" "WONTFIX(W@!)" "CLOSED(C@!)" "REJECTED(R@!)")))
+                                        ((string= state "STARTED") "WAITING"))))
+            
+            (setq org-todo-keywords (list simple-seq work-seq long-seq)
+                  org-clock-in-switch-to-state clock-in-f
+                  org-clock-out-switch-to-state clock-out-f))
     #+END_SRC    
 
 **** Show TODO children of the headline 			   :function:
