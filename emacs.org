@@ -1496,6 +1496,16 @@
     (global-font-lock-mode t)
   #+END_SRC
 
+** Statistical
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 
+      'el-get-sources 
+      '(:name ess 
+              :after (progn
+                     (add-to-list 'auto-mode-alist '("\\.R$" . R-mode)))))
+   #+END_SRC
+
 ** LaTeX
 
    I need AUCTEX mode for my latex editing.
