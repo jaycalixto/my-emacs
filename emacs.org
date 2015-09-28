@@ -1166,18 +1166,31 @@
    #+BEGIN_SRC emacs-lisp
      (setq 
       org-default-notes-file (concat org-directory "/notes.org")
-      org-reverse-note-order t
-      org-capture-templates 
+      org-reverse-note-order nil
+      org-capture-templates
       '(
-        ("t" "Task" entry (file+headline "refile.org" "Tasks") 
-         "* TODO %^{task} %^G\n (creation: %u @ %a)\n\n %i%?" :prepend t)
-        ("c" "Capture" entry (file+headline "notes.org" "Capture") 
-         "* %?\n     creation: %u @ %a\n\n %i" :prepend t)
-        ("m" "Meeting" entry (file+headline "refile.org" "Meetings") 
-         "* %^{occasion}\n %^{at time}T @ %^{where} \n (creation: %u @ %a) \n\n %i \n %a" :prepend t)
-        ("n" "Note" entry (file+headline "refile.org" "Ideas")
-         "* %?\n (creation: %u @ %a)\n %i%&" :prepend t :immediate-finish t :jump-to-captured t)))
-     
+        ("t" "Task (to endless queue)"
+         entry
+         (file+headline "refile.org" "Tasks") 
+         "* TODO %^{task}%^G\n   (creation: %u @ %a)\n\n  %i%?" :empty-lines-after 2)
+        ("b" "Bug Report (take quick note, copies active region into example region)"
+         entry
+         (file+headline "refile.org" "Bug Reports") 
+         "* %^{bug report title}\n   (creation: %u @ %a)\n\n   #+BEGIN_EXAMPLE\n%i\n   #+END_EXAMPLE\n%?" :prepend t)
+        ("c" "Capture (take quick note, copies active region)"
+         entry
+         (file+headline "notes.org" "Capture") 
+         "* %^{capture label}\n   (creation: %u @ %a)\n\n   %i %?" :prepend t)
+        ("m" "Meeting (mark the calendar)"
+         entry
+         (file+headline "refile.org" "Meetings") 
+         "* %^{occasion}\n%^{at time}T @ %^{where}\n   (creation: %u @ %a)\n\n%i\n%a%?" :prepend t)
+        ("n"
+         "Note (free flow, jump right in)"
+         entry
+         (file+headline "refile.org" "Ideas")
+         "* %?\n   (creation: %u @ %a)\n   %i" :prepend t :immediate-finish t :jump-to-captured t)))
+
      (global-set-key (kbd "C-c r") 'org-capture)
    #+END_SRC
 
