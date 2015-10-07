@@ -1166,7 +1166,7 @@
    #+BEGIN_SRC emacs-lisp
      (setq 
       org-default-notes-file (concat org-directory "/notes.org")
-      org-reverse-note-order nil
+      org-reverse-note-order t
       org-capture-templates
       '(
         ("t" "Task (to endless queue)"
