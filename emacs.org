@@ -727,16 +727,16 @@
      ;;  builtin
      ;;  (progn
      ;;     (desktop-save-mode)))
-     
+
      (add-to-el-sources
       savehist
       builtin
       (progn
          (savehist-mode)
-         (setq savehist-file (personal-place "savehist-history"))
-         ))
+         (setq savehist-file (personal-place "savehist-history"))))
         
      (setq
+      global-auto-revert-mode t
       make-backup-files t
       backup-directory-alist (quote ((".*" . "~/.backups/emacs.buffers/"))))
    #+END_SRC
