@@ -1172,11 +1172,11 @@
         ("t" "Task (to endless queue)"
          entry
          (file+headline "refile.org" "Tasks") 
-         "* TODO %^{task}%^G\n   (creation: %u @ %a)\n\n  %i%?" :empty-lines-after 2)
+         "* TODO %^{task}\t%^G\n   (creation: %u @ %a)\n\n  %i%?" :empty-lines-after 2)
         ("b" "Bug Report (take quick note, copies active region into example region)"
          entry
          (file+headline "refile.org" "Bug Reports") 
-         "* %^{bug report title}\n   (creation: %u @ %a)\n\n   #+BEGIN_EXAMPLE\n%i\n   #+END_EXAMPLE\n%?" :prepend t)
+         "* %^{bug report title}\t:BUG:\n   (creation: %u @ %a)\n\n   #+BEGIN_EXAMPLE\n     %i\n   #+END_EXAMPLE\n%?" :prepend t)
         ("c" "Capture (take quick note, copies active region)"
          entry
          (file+headline "notes.org" "Capture") 
