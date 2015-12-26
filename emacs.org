@@ -1839,6 +1839,25 @@
                   '(:name cider))
    #+END_SRC
 
+*** Clojurescript
+
+    To plug clojurescript tool figwheel into nrepl and run cljs repl
+    from the emacs buffer we can use following snippet to start it
+    when cider nrepl is opened particular project. See [[https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl][Lein figwheel
+    documentation]].
+    
+    #+BEGIN_SRC emacs-lisp
+      (defun cider-figwheel-repl ()
+        (interactive)
+        (save-some-buffers)
+        (with-current-buffer (cider-current-repl-buffer)
+          (goto-char (point-max))
+          (insert "(require 'figwheel-sidecar.repl-api)
+                 (figwheel-sidecar.repl-api/start-figwheel!)
+                 (figwheel-sidecar.repl-api/cljs-repl)")
+          (cider-repl-return)))
+    #+END_SRC
+
 ** Graphviz
 
    #+BEGIN_SRC emacs-lisp
