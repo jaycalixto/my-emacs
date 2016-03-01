@@ -1283,13 +1283,13 @@
    - State "STARTED"    from "TODO"       [2010-08-26 Thu 22:57]
    :END:
 
-   Configure Mobile org using Ubuntu One.
+   Configure MobileOrg.
    
    #+BEGIN_SRC emacs-lisp
      (setq 
-      org-mobile-directory "~/org/mobile"
+      org-mobile-directory "~/org/MobileOrg"
       ;; Set to the name of the file where new notes will be stored
-      org-mobile-inbox-for-pull "~/org/mobile/mobile-flagged.org")     
+      org-mobile-inbox-for-pull "~/org/MobileOrg/mobile-flagged.org")     
    #+END_SRC
 ** Tags 							       :tags:
    
