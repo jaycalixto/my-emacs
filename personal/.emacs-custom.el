@@ -41,6 +41,7 @@
      (ess-R-fl-keyword:F&T))))
  '(js-indent-level 2)
  '(js2-basic-offset 2)
+ '(magit-pull-arguments nil)
  '(org-export-backends (quote (confluence ascii html icalendar latex md)))
  '(safe-local-variable-values
    (quote
