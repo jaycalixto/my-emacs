@@ -976,16 +976,17 @@
         (octave . t)
         (R . t)
         (dot .t)
+        (sh . t)
      ))
-     
+
      (setq org-src-ask-before-returning-to-edit-buffer nil)
      (setq org-src-window-setup 'current-window)
-     
+
      (setq org-src-fontify-natively t) ;;set fontify by default on, lets see if I like it
-     
+
      (add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
-     
-     
+
+
      ;;(setq org-confirm-babel-evaluate nil) could be a function....
      ;;(define-key org-src-mode-map "\C-s" 'org-edit-src-save)
    #+END_SRC
