@@ -722,11 +722,11 @@
    my emacs.
    
    #+BEGIN_SRC emacs-lisp
-     ;; (add-to-el-sources
-     ;;  desktop
-     ;;  builtin
-     ;;  (progn
-     ;;     (desktop-save-mode)))
+     (add-to-el-sources
+      desktop
+      builtin
+      (progn
+         (desktop-save-mode 1)))
 
      (add-to-el-sources
       savehist
