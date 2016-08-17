@@ -2133,8 +2133,23 @@
                              multi-term-buffer-name "bash-shell"))))
    #+END_SRC
 
-** TODO eshell							   :RESEARCH:
-   You should get familiarized with eshell
+** eshell							   :RESEARCH:
+
+   Following should be able read aliases directly from ~/.bash_aliases
+   - ref: https://www.emacswiki.org/emacs/EshellAlias
+   - faulty code currently
+
+   emacs-lisp side alias definitions
+
+   #+BEGIN_SRC emacs-lisp
+     (defalias 'open 'find-file)
+     (defalias 'openo 'find-file-other-window)
+
+     (global-set-key (kbd "<f12>") 'eshell)
+   #+END_SRC
+
+   Rest of the alias definitions are [[file:eshell/alias][eshell aliases file.]]
+
 ** git 								:VCS:
    
    Here is defined git-emacs interface customization. Currently I'm
