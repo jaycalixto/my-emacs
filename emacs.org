@@ -356,6 +356,17 @@
               )))
   #+END_SRC
 
+** Helm
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name helm
+              :type elpa
+              :after (progn
+                       (global-set-key (kbd "M-a") 'helm-M-x))))
+   #+END_SRC
+
 ** smex
    Smex is ido for M-x.
 
