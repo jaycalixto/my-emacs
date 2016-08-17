@@ -378,6 +378,15 @@
       bookmark-default-file (concat personal-directory "bookmarks")
       bookmark-save-flag 1)
    #+END_SRC
+*** Bookmark+
+    
+    #+BEGIN_SRC emacs-lisp
+      (add-to-el-sources 
+       bookmark+ 
+       builtin 
+       (progn))
+    #+END_SRC
+
 ** ELScreen							   :notangle:
    :PROPERTIES:
    :TANGLE:   no
