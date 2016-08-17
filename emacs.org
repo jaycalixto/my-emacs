@@ -493,11 +493,10 @@
    #+BEGIN_SRC emacs-lisp
      (add-to-list
       'el-get-sources
-      '(:name projectile :type elpa :lazy t
+      '(:name projectile
               :after (progn
-                       (projectile-global-mode)
-                       (setq projectile-enable-caching t)
-                       )))
+                       (setq projectile-global-mode t
+                             projectile-enable-caching t))))
    #+END_SRC
 
 * Editing 							   :textedit:
