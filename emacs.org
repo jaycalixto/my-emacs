@@ -494,6 +494,7 @@
      (add-to-list
       'el-get-sources
       '(:name projectile
+              :type elpa
               :after (progn
                        (setq projectile-global-mode t
                              projectile-enable-caching t))))
