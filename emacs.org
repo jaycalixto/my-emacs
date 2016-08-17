@@ -240,7 +240,7 @@
 
 * Visual appearance 					       :colors:frame:
   :PROPERTIES:
-  :tangle: personal/appearance.el
+  :tangle:   personal/appearance.el
   :END:
  
   #+BEGIN_SRC emacs-lisp
@@ -287,7 +287,7 @@
    :PROPERTIES:
    :ID:       76e18ca4-aa11-4515-8f85-2c27a7b6441a
    :END:
-    Function to reset frame to prefixed size.
+   Function to reset frame to prefixed size.
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x W") 'fix-horizontal-size)
@@ -330,7 +330,7 @@
    #+END_EXAMPLE
 * Navigation							      :tramp:
   :PROPERTIES:
-  :tangle: personal/navigation.el
+  :tangle:   personal/navigation.el
   :END:
 
   Defining navigation preferences. I want easy navigation between
@@ -502,7 +502,7 @@
 
 * Editing 							   :textedit:
   :PROPERTIES:
-  :tangle: personal/editing.el
+  :tangle:   personal/editing.el
   :END:
 
   Configuration relating to actual text editing.
@@ -617,7 +617,7 @@
 
 * Buffers 							     :buffer:
   :PROPERTIES:
-  :tangle: personal/buffers.el
+  :tangle:   personal/buffers.el
   :END:
 
   Modes and configuration for buffer management.
@@ -764,7 +764,7 @@
 		 clean-buffer-list-kill-never-regexps '("\\.org$" "^#" "^!"))
 		(run-at-time "23:00" (timer-duration "1 week") 'clean-buffer-list)
 		)))
-    #+END_SRC
+   #+END_SRC
 
 ** IDO mode								:ido:
    Library to enhance usability with buffer and directory
@@ -813,7 +813,7 @@
 
 * Org-mode					      :calendar:organization:
   :PROPERTIES:
-  :tangle: personal/org-personal.el
+  :tangle:   personal/org-personal.el
   :END:
   
   Org-mode. This is probably most usefull mode I have ever met. This
@@ -1193,10 +1193,10 @@
 
 *** Capture 						      :remember:keys:
    
-   Org-capture enables fast note taking. With a key stroke I can start
-   taking complex note with different instant configuration options.
+    Org-capture enables fast note taking. With a key stroke I can start
+    taking complex note with different instant configuration options.
 
-   #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
      (setq 
       org-default-notes-file (concat org-directory "/notes.org")
       org-reverse-note-order t
@@ -1225,7 +1225,7 @@
          "* %?\n   (creation: %u @ %a)\n   %i" :prepend t :immediate-finish t :jump-to-captured t)))
 
      (global-set-key (kbd "C-c r") 'org-capture)
-   #+END_SRC
+    #+END_SRC
 
 ** Hooks							       :hook:
    
@@ -1357,7 +1357,7 @@
 
 * ERC-client 						      :communication:
   :PROPERTIES:
-  :tangle: personal/erc-customs.el
+  :tangle:   personal/erc-customs.el
   :END:
   
   ERC is emacs mode for IRC communications.
@@ -1406,7 +1406,7 @@
                                                     'erc-open-ssl-stream
                                                   'open-network-stream)))
                     (erc :server ,server :port ,port :nick ,nick :password ,pass))))))
-    #+END_SRC
+   #+END_SRC
 *** TODO Login proxies						:proxy:login:
     - redo these tools
       - [ ] hide intermediate functions
@@ -1488,7 +1488,7 @@
    #+END_SRC
 * Programming 								:dev:
   :PROPERTIES:
-  :tangle: personal/programming.el
+  :tangle:   personal/programming.el
   :END:
   Here be things related to building software. 
 
@@ -1895,7 +1895,7 @@
 
 * Browsers 						       :internet:dev:
   :PROPERTIES:
-  :tangle: personal/browsers.el
+  :tangle:   personal/browsers.el
   :END:
 
   Here be variables and things related to emacs-to-internet consept.
@@ -1929,7 +1929,7 @@
                      (mapcar 'car available-browsers)) available-browsers))
                   url new-window))))
        ))
-   #+END_SRC
+  #+END_SRC
 
 ** The custom search URLs
    :PROPERTIES:
@@ -1987,7 +1987,7 @@
    
 * TODO ElNode						 :services:async:tcp:
   :PROPERTIES:
-  :tangle: personal/el-node-services.el
+  :tangle:   personal/el-node-services.el
   :END:
 
   Elnode is a library that enables emacs to expose itself as user
@@ -2079,7 +2079,7 @@
     #+END_SRC
 * Consoles							    :console:
   :PROPERTIES:
-  :tangle: personal/consoles.el
+  :tangle:   personal/consoles.el
   :END:
 
   First we need to define some features, such as colors and
@@ -2191,7 +2191,7 @@
           (shell name)))
       
       (provide 'consoles)      
-     #+END_SRC
+    #+END_SRC
 * Emacs customization						  :customize:
   Here we define and load the file where customization is kept.
 
