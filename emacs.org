@@ -1893,6 +1893,14 @@
      (provide 'programming)
    #+end_src
 
+** markdown
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name markdown-mode))
+   #+END_SRC
+
 * Browsers 						       :internet:dev:
   :PROPERTIES:
   :tangle:   personal/browsers.el
