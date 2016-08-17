@@ -2133,7 +2133,7 @@
                              multi-term-buffer-name "bash-shell"))))
    #+END_SRC
 
-** eshell							   :RESEARCH:
+** eshell
 
    Following should be able read aliases directly from ~/.bash_aliases
    - ref: https://www.emacswiki.org/emacs/EshellAlias
@@ -2142,10 +2142,15 @@
    emacs-lisp side alias definitions
 
    #+BEGIN_SRC emacs-lisp
-     (defalias 'open 'find-file)
-     (defalias 'openo 'find-file-other-window)
+     (add-to-list
+      'el-get-sources
+      '(:name eshell
+              :type builtin
+              :after (progn
+                       (defalias 'open 'find-file)
+                       (defalias 'openo 'find-file-other-window)
 
-     (global-set-key (kbd "<f12>") 'eshell)
+                       (global-set-key (kbd "<f12>") 'eshell))))
    #+END_SRC
 
    Rest of the alias definitions are [[file:eshell/alias][eshell aliases file.]]
