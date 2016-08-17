@@ -144,7 +144,7 @@
    #+begin_src emacs-lisp
      (require 'package)
      (setq package-archives '(
-                               ("melpa" . "http://melpa.milkbox.net/packages/")
+                               ("melpa" . "http://melpa.org/packages/")
                                ("marmalade" . "http://marmalade-repo.org/packages/")))
    #+end_src
 
