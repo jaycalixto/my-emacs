@@ -3,6 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/personal/bookmarks")
  '(canlock-password "4ce727964ab5d43ff3f962d824d92e80a6e9d99e")
  '(case-fold-search t)
  '(chm-view-delay 1.0)
