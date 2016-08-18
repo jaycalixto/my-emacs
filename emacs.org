@@ -391,7 +391,7 @@
       bookmark-default-file (concat personal-directory "bookmarks")
       bookmark-save-flag 1)
    #+END_SRC
-*** Bookmark+							   :notangle:
+*** Bookmark+							  
 
     #+BEGIN_SRC emacs-lisp
       (add-to-list 
