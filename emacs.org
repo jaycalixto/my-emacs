@@ -613,6 +613,19 @@
       (provide 'editing)
     #+END_SRC
 
+*** tidy region or buffer
+
+     #+BEGIN_SRC emacs-lisp
+       (defun tidy ()
+         "Ident, untabify and unwhitespacify current buffer, or region if active."
+         (interactive)
+         (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+     	  (end (if (region-active-p) (region-end) (point-max))))
+           (indent-region beg end)
+           (whitespace-cleanup)
+           (untabify beg (if (< end (point-max)) end (point-max)))))
+     #+END_SRC
+
 ** Undo-Tree
 
    Visualizing undo history.
