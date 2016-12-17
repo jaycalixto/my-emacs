@@ -49,7 +49,7 @@
  '(org-export-backends (quote (confluence ascii html icalendar latex md)))
  '(org-stuck-projects
    (quote
-    ("project|build|code|study/-DONE"
+    ("project|epic|build|code|study/-DONE"
      ("TODO" "STARTED" "WAITING" "GROOMING" "READY" "INPROGRESS" "PR")
      ("NEXT" "FLAGGED")
      "")))
