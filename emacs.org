@@ -364,7 +364,7 @@
       '(:name helm
               :type elpa
               :after (progn
-                       (global-set-key (kbd "M-a") 'helm-M-x))))
+                       (global-set-key (kbd "M-a") 'helm-M-x)))) ;;fixme doesn't work
    #+END_SRC
 
 ** smex
@@ -524,6 +524,17 @@
     (global-set-key [f4] 'orgstruct-mode)
   #+END_SRC
 
+** Company mode
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name company-mode
+              :after
+              (progn
+                (add-hook 'after-init-hook 'global-company-mode))))
+   #+END_SRC
+   
 ** Killring modifications.
    New features for copy and cut functions. Non selection applys
    current method to whole line. Also fixes clipboard disconnection
