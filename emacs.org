@@ -2205,8 +2205,7 @@
        '(:name magit :type elpa
                :after
                (progn
-                 (global-set-key (kbd "<f10>") 'magit-status))
-               ))
+                 (global-set-key (kbd "<f10>") 'magit-status))))
     #+END_SRC
 
 *** git-gutter
