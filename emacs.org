@@ -1331,13 +1331,37 @@
       ;; Set to the name of the file where new notes will be stored
       org-mobile-inbox-for-pull "~/org/MobileOrg/mobile-flagged.org")     
    #+END_SRC
-** org-protocol							:integration:
+** org-protocol						:integration:
 
    This enables sending sites links from browsers to org workflow.
 
    #+BEGIN_SRC emacs-lisp
      (require 'org-protocol)
    #+END_SRC
+
+*** Org-protocol to work with Firefox 				    :firefox:
+
+    http://orgmode.org/worg/org-contrib/org-protocol.html
+
+    1. install firefox plugin (remember to configure correct emacsclient)
+
+    2. tangle below file to
+
+    #+BEGIN_SRC conf :tangle ~/.local/share/applications/org-protocol.desktop
+      [Desktop Entry]
+      Name=org-protocol
+      Exec=emacsclient %u
+      Type=Application
+      Terminal=false
+      Categories=System;
+      MimeType=x-scheme-handler/org-protocol;
+    #+END_SRC
+
+    3. run
+
+    #+BEGIN_SRC sh :output none
+     update-desktop-database ~/.local/share/applications/
+    #+END_SRC
 
 ** Tags 							       :tags:
 
