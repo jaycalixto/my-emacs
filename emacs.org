@@ -384,20 +384,14 @@
    #+END_SRC
 
 ** Bookmarks
-   Keeping my personal information in one location. 
+   Keeping my personal information in one location. Note: bookmark+ is
+   obsolete package.
 
    #+BEGIN_SRC emacs-lisp
-     (setq 
+     (setq
       bookmark-default-file (concat personal-directory "bookmarks")
       bookmark-save-flag 1)
    #+END_SRC
-*** Bookmark+							  
-
-    #+BEGIN_SRC emacs-lisp
-      (add-to-list 
-       'el-get-sources
-       '(:name bookmark+ :type elpa))
-    #+END_SRC
 
 ** ELScreen							   :notangle:
    :PROPERTIES:
@@ -435,6 +429,7 @@
    #+END_SRC
 
 ** Trivial modes 						   :external:
+
    Function to define new trivial modes. This means that buffer is
    opened by external program.
 
@@ -493,8 +488,6 @@
               tramp-persistency-file-name (personal-place "tramp"))
         (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
         ))
-     
-     (provide 'navigation)
    #+END_SRC
 
 ** Projectile
@@ -510,6 +503,7 @@
               :after (progn
                        (setq projectile-global-mode t
                              projectile-enable-caching t))))
+     (provide 'navigation)
    #+END_SRC
 
 * Editing 							   :textedit:
