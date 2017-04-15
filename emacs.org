@@ -207,6 +207,7 @@
                (setq ergoemacs-theme nil
                      ergoemacs-keyboard-layout "us")
                (ergoemacs-mode 1)
+               (global-set-key (kbd "C-S-t") 'ispell-word)
                (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
                (global-set-key (kbd "C-<f5>") 'toggle-truncate-lines)
                (global-set-key (kbd "M-<f5>") 'revert-buffer)
