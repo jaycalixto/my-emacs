@@ -1975,9 +1975,8 @@
               :after
               (progn
                 (setq inferior-lisp-program "/usr/bin/sbcl")
-                (slime-setup '(slime-fancy slime-indentation))
-                )))
-     
+                (slime-setup '(slime-fancy slime-indentation)))))
+
      (provide 'programming)
    #+end_src
 
@@ -1999,8 +1998,7 @@
 
   #+BEGIN_SRC emacs-lisp
     ;;; browsers.el --- utilities to integrate browser actions to emacs buffers 
-    
-    
+
     (add-to-el-sources
      w3m
      builtin
@@ -2081,7 +2079,7 @@
      (provide 'browsers)
    #+END_SRC
    
-* TODO ElNode						 :services:async:tcp:
+* ElNode						 :services:async:tcp:
   :PROPERTIES:
   :tangle:   personal/el-node-services.el
   :END:
