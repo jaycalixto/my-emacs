@@ -1955,6 +1955,15 @@
       '(:name graphviz-dot-mode :type elpa))
    #+END_SRC
 
+** Elisp
+
+   Enable eldoc in elisp editing
+
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+     (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+   #+END_SRC
+
 ** Slime
 
    Superior Lisp mode.
