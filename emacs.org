@@ -193,7 +193,7 @@
   :PROPERTIES:
   :ID:       0b350314-71d4-45a7-975e-a00c723a333f
   :END:
-  
+
   Load ErgoEmacs keybinding and turn the minor mode to be always
   on. This is a sub module in my emacs configrations, see more details
   about this mode from, https://code.google.com/p/ergoemacs/
@@ -364,23 +364,23 @@
       '(:name helm
               :type elpa
               :after (progn
-                       (global-set-key (kbd "M-a") 'helm-M-x)))) ;;fixme doesn't work
+                       (global-set-key (kbd "M-A") 'helm-M-x))))
    #+END_SRC
 
-** smex
-   Smex is ido for M-x.
+** smex								   :notangle:
+
+   Smex is ido for M-x. Update: try to use helm as a replacement.
 
    #+BEGIN_SRC emacs-lisp
      (add-to-el-sources 
-      smex 
-      elpa 
+      smex
+      elpa
       (progn
         (require 'smex)
         (smex-initialize)
         (setq smex-save-file (personal-place "smex.save"))
-        (global-set-key (kbd "M-C-a") 'smex) ;;todo to M-a, replace ergoemacs keybinding
-        (global-set-key (kbd "M-C-S-a") 'smex-major-mode-commands)
-        ))
+        (global-set-key (kbd "M-C-a") 'smex)
+        (global-set-key (kbd "M-C-S-a") 'smex-major-mode-commands)))
    #+END_SRC
 
 ** Bookmarks
@@ -411,6 +411,7 @@
                        (global-set-key (kbd "<s-next>")  'elscreen-next)
                        )))
    #+END_SRC
+
 ** Window layout navigator
 
    Configuring winner mode. With this you can search through your
