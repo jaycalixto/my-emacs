@@ -1552,7 +1552,7 @@
 
   #+BEGIN_SRC emacs-lisp
     ;;; programming.el --- different programming language mode configurations 
-    
+
     (add-to-list
       'el-get-sources
       '(:name rainbow-delimiters
@@ -1560,7 +1560,7 @@
                        (require 'rainbow-delimiters)
                        (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
                        (add-hook 'ess-mode-hook 'rainbow-delimiters-mode))))
-    
+
     (add-to-list 
       'el-get-sources
       '(:name highlight-parentheses
@@ -1568,34 +1568,33 @@
                        (require 'highlight-parentheses)
                        (add-hook 'ess-mode-hook 'highlight-parentheses-mode)
                        (add-hook 'prog-mode-hook 'highlight-parentheses-mode))))
-    
+
     (add-to-list
      'el-get-sources
      '(:name yasnippet 
              :after
              (progn
                (yas-global-mode 1))))
-    
+
     (add-to-list
      'el-get-sources
      '(:name smartparens :type elpa :lazy t
              :after (progn
                       (require 'smartparens-config)
                       (smartparens-global-mode))))
-    
-    ;(add-to-list
-    ; 'el-get-sources
-    ; '(:name chm-view :features chm-view))
-    
+
     (add-to-el-sources
      pabbrev
      elpa
      (progn
        (require 'pabbrev)))
-    
-    ;;optionally loading if found
+
+    ;; use flyspell only for comments and string in programming modes
+    (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+    ;; optionally loading if found
     (require 'ess-site nil 'no-error)
-    
+
     (setq font-lock-maximum-decoration t)
     (global-font-lock-mode t)
   #+END_SRC
@@ -1891,7 +1890,7 @@
      (add-to-list 'auto-mode-alist '("\\.hbs\\'" . html-mode))
    #+END_SRC
 
-** DONE Clojure
+** Clojure
    Lisp dialect that runs on JVM. Needs external clojure
    installation. For clojureI use CIDER package collection.
 
