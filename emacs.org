@@ -247,19 +247,26 @@
      initial-buffer-choice t
      use-file-dialog nil
      frame-title-format '(buffer-file-name "Emacs: %b (%f)" "Emacs: %b"))
-      
+
     (set-face-attribute 'default nil :height 100 :family "Liberation Mono")
     (show-paren-mode t)
     (column-number-mode t)
     (tool-bar-mode -1)
-    
+
     (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/ujelly")
     (load-theme 'ujelly t)
-     
+
     ;; fixing tool-bar-mode bug in daemon...
     (add-hook 'before-make-frame-hook '(lambda () (tool-bar-mode -1)))
-    
   #+END_SRC
+
+** Presentation
+
+   Presentation mode configurations.
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-<f11>") 'toggle-frame-fullscreen)
+   #+END_SRC
 
 ** Default frame
    :PROPERTIES:
