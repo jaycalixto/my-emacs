@@ -201,20 +201,15 @@
   #+BEGIN_SRC emacs-lisp
     (add-to-list
      'el-get-sources
-     '(:name ergoemacs-keybindings
-             ;; :depends log-edit
+     '(:name ergoemacs-mode
              :after 
              (progn
-               (setq ergoemacs-variant nil)
+               (setq ergoemacs-theme nil
+                     ergoemacs-keyboard-layout "us")
                (ergoemacs-mode 1)
                (global-set-key (kbd "C-<f5>") 'toggle-truncate-lines)
                (global-set-key (kbd "M-<f5>") 'revert-buffer)
                (global-set-key (kbd "C-S-o") 'dired))))
-
-    ;; this is needed due to bug(?) ergoemacs-mode.el line 483, by commenting that line we don't neew this extra haxor. 
-    ;; (add-to-list
-    ;;  'el-get-sources
-    ;;  '(:name log-edit :type builtin :features log-edit))
   #+END_SRC
 
 ** Macro keybinding						      :macro:
@@ -367,7 +362,7 @@
                        (global-set-key (kbd "M-A") 'helm-M-x))))
    #+END_SRC
 
-** smex								   :notangle:
+** smex 							   :notangle:
 
    Smex is ido for M-x. Update: try to use helm as a replacement.
 
