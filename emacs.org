@@ -861,6 +861,20 @@
     (setq org-directory "~/org")
   #+END_SRC
 
+** Calendar
+
+   Trying out new calendar mode.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name calfw
+              :after
+              (progn
+                (require 'calfw)
+                (require 'calfw-org))))
+   #+END_SRC
+
 ** el-get recipe definition				       :elget:recipe:
    :PROPERTIES:
    :tangle:   no
