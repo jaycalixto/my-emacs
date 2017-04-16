@@ -1382,6 +1382,18 @@
      update-desktop-database ~/.local/share/applications/
     #+END_SRC
 
+** org-trello 						 :integration:trello:
+
+   Integrating my workflow with team trellos.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name org-trello
+              :after
+              (progn)))
+   #+END_SRC
+
 ** Tags 							       :tags:
 
    Most frequently tags. I have couple of exclusive tag groups so if I
