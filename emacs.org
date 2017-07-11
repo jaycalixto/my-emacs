@@ -1400,27 +1400,9 @@
    change the tag it will remove other group tag automatically.
 
    #+BEGIN_SRC emacs-lisp
-     (setq 
-      org-tag-alist
-      '(
-        ;; provisioning type tags
-        (:startgroup) ("sales" . ?S) ("client" . ?C) ("core" . ?O) (:endgroup)
-        ;; work unit types
-        (:startgroup) ("epic" . ?E) ("feature" . ?F) ("bug" . ?B) ("refactor" . ?R) ("debt" . ?D) (:endgroup)
-        ;; work related 
-        ("debug" . ?d)
-        ("log" . ?l)
-        ("audit" . ?a)
-        ("meeting_note" . ?m)
-        ("AP" . ?p)
-
-        ;; other
-        ("FLAGGED" . ?f)
-        ("code" . ?c)
-        ("build" . ?b)
-        ("study" . ?s)
-        ("emacs" . ?e)
-        ("org" . ?o)))
+     (let ((tags-file (concat org-directory "/tags.el")))
+       (if (file-exists-p tags-file)
+           (load-file tags-file)))
 
      ;; modularize this personalization
      (provide 'org-personal)
