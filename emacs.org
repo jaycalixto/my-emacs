@@ -967,6 +967,19 @@
          (widen))
      #+END_SRC
 
+*** Pomodoro							   :pomodoro:
+
+    Org-Pomodoro will integrate nicely to org clocking.
+
+    #+BEGIN_SRC emacs-lisp
+      (add-to-list
+       'el-get-sources
+       '(:name org-pomodoro
+               :type elpa
+               :depends alert
+               :after (progn)))
+    #+END_SRC
+
 *** Time and date 
     :PROPERTIES:
     :ID:       7869dadb-9b6b-4cee-a533-67b66f68b95a

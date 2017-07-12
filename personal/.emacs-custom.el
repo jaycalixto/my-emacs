@@ -47,6 +47,7 @@
  '(js2-basic-offset 2)
  '(magit-pull-arguments nil)
  '(org-export-backends (quote (confluence ascii html icalendar latex md)))
+ '(org-pomodoro-format "To Break~%s")
  '(org-stuck-projects
    (quote
     ("project|epic|build|code|study/-DONE"
@@ -89,6 +90,8 @@
  '(menu ((t (:inverse-video t))))
  '(mode-line ((t (:background "dark goldenrod" :foreground "midnight blue" :box (:line-width 3 :color "red" :style released-button)))))
  '(mode-line-buffer-id ((t nil)))
+ '(org-pomodoro-mode-line ((t (:background "dark red" :foreground "white smoke"))))
+ '(org-pomodoro-mode-line-break ((t (:background "royal blue" :foreground "white smoke"))))
  '(whitespace-empty ((t (:foreground "dark red"))))
  '(whitespace-indentation ((t (:foreground "dark red"))))
  '(whitespace-line ((t (:background "gray5"))))
