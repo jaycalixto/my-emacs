@@ -933,38 +933,27 @@
     configuration.
 
     #+BEGIN_SRC emacs-lisp
-      (setq 
-       org-enforce-todo-dependencies t)
-       ;; org-stuck-projects '("LEVEL=2-REFILE-WAITING|LEVEL=1+REFILE/!-DONE-CANCELLED-OPEN" nil ("NEXT") "")
+      (setq org-enforce-todo-dependencies t)
+      ;; org-stuck-projects '("LEVEL=2-REFILE-WAITING|LEVEL=1+REFILE/!-DONE-CANCELLED-OPEN" nil ("NEXT") "")
 
-      (let ((simple-seq nil) (work-seq nil) (long-seq nil) (clock-in-f nil) (clock-out-f nil))
+      (let ((simple-seq nil) (clock-in-f nil) (clock-out-f nil))
 
-            ;; case simple
-            ;;TODO STARTED WAITING | DONE DUPLICATE 
-            (setq simple-seq '(sequence "TODO(q)" "STARTED(w)" "WAITING(e)" "|" "DONE(r!/@)"))
-                  
-            ;; case work thing
-            ;;GROOMING READY STARTED ONHOLD PR | INMASTER DUBLICATE WONTFIX REJECTED
-            (setq work-seq '(sequence "GROOMING(a)" "READY(s)" "INPROGRESS(d)" "ONHOLD(f@)" "PR(g!)" "|" "INMASTER(h!)" "DUBLICATE(j@)" "WONTFIX(k@)" "REJECTED(l@)"))
-            
-            ;; case long polling state (no need for logging time)
-            ;;OPEN EXT-DEPS | CLOSED AQUIRED
-            (setq long-seq '(sequence "OPEN(z)" "EXT-DEPS(x@)" "|" "CLOSED(c!)" "AQUIRED(v!)"))
+        ;; Log successful closing state and reason why something has been canceled 
+        (setq simple-seq '(sequence "TODO(q)" "INPROGRESS(w)" "ONHOLD(e)" "|" "DONE(r!/@)" "CANCELLED(t@/)"))
 
-            ;; only use clock states at the lowest level tasks (i.e. simple sequence)  
-            (setq clock-in-f (lambda (state) 
-                                       (cond
-                                        ((string= state "TODO") "STARTED")
-                                        ((string= state "WAITING") "STARTED"))))
-            
-            (setq clock-out-f (lambda (state) 
-                                       (cond
-                                        ((string= state "STARTED") "WAITING"))))
-            
-            (setq org-todo-keywords (list simple-seq work-seq long-seq)
-                  org-clock-in-switch-to-state clock-in-f
-                  org-clock-out-switch-to-state clock-out-f))
-    #+END_SRC    
+        (setq clock-in-f (lambda (state) 
+                           (cond
+                            ((string= state "TODO") "INPROGRESS")
+                            ((string= state "ONHOLD") "INPROGRESS"))))
+
+        (setq clock-out-f (lambda (state) 
+                            (cond
+                             ((string= state "INPROGRESS") "ONHOLD"))))
+
+        (setq org-todo-keywords (list simple-seq)
+              org-clock-in-switch-to-state clock-in-f
+              org-clock-out-switch-to-state clock-out-f))
+    #+END_SRC
 
 **** Show TODO children of the headline 			   :function:
 
