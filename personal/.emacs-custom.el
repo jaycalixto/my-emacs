@@ -54,6 +54,7 @@
      ("TODO" "STARTED" "WAITING" "GROOMING" "READY" "INPROGRESS" "PR")
      ("NEXT" "FLAGGED")
      "")))
+ '(package-selected-packages (quote (pabbrev js2-mode queue)))
  '(safe-local-variable-values
    (quote
     ((Base . 10)
