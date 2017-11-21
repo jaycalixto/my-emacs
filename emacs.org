@@ -972,12 +972,12 @@
     Org-Pomodoro will integrate nicely to org clocking.
 
     #+BEGIN_SRC emacs-lisp
-      (add-to-list
-       'el-get-sources
-       '(:name org-pomodoro
-               :type elpa
-               :depends alert
-               :after (progn)))
+    ;  (add-to-list
+    ;   'el-get-sources
+    ;   '(:name org-pomodoro
+    ;           :type elpa
+    ;           :depends alert
+    ;           :after (progn)))
     #+END_SRC
 
 *** Time and date 
@@ -1621,11 +1621,11 @@
 ** Statistical
 
    #+BEGIN_SRC emacs-lisp
-     (add-to-list 
-      'el-get-sources 
-      '(:name ess 
-              :after (progn
-                     (add-to-list 'auto-mode-alist '("\\.R$" . R-mode)))))
+     ;; (add-to-list 
+     ;;  'el-get-sources 
+     ;;  '(:name ess 
+     ;;          :after (progn
+     ;;                 (add-to-list 'auto-mode-alist '("\\.R$" . R-mode)))))
    #+END_SRC
 
 ** LaTeX
