@@ -54,7 +54,9 @@
      ("TODO" "STARTED" "WAITING" "GROOMING" "READY" "INPROGRESS" "PR")
      ("NEXT" "FLAGGED")
      "")))
- '(package-selected-packages (quote (pabbrev js2-mode queue)))
+ '(package-selected-packages
+   (quote
+    (ess helm smex projectile smtpmail-multi magit git-gutter smartparens js-comint graphviz-dot-mode pabbrev js2-mode queue)))
  '(safe-local-variable-values
    (quote
     ((Base . 10)
