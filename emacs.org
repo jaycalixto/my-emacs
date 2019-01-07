@@ -1957,8 +1957,8 @@
      w3m
      builtin
      (progn ;TODO global-set-keys are not working...(in org mode??)
-       (global-set-key (kbd "C-x C-f") 'search-in-internet)
-       (global-set-key (kbd "C-x C-m") 'browse-url-at-point) ;;FUCKING REMEMBER THIS!!@!!
+       (global-set-key (kbd "C-<") 'search-in-internet)
+       (global-set-key (kbd "C-x C-m") 'browse-url-at-point)
        (setq w3m-use-cookies t)
        (lexical-let ((available-browsers '(
                                            ("default" browse-url-default-browser)
