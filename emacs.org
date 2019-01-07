@@ -172,7 +172,7 @@
          (append '(:name ,name :type ,type :after ,after-progn) ',additional)))
    #+end_src
 
-* Emacs encoding 						   :encoding:
+* Encoding bug issue 						   :encoding:
   :PROPERTIES:
   :ID:       35debd80-6f3d-497b-9764-9d498a8efbd3
   :END:
@@ -182,13 +182,13 @@
 
   #+BEGIN_SRC emacs-lisp
     (load-library "iso-transl")
-    
+
     (setq
      current-language-environment "UTF-8"
-     default-input-method "rfc1345")    
+     default-input-method "rfc1345")
   #+END_SRC 
 
-* Setting key layout 						  :ergoemacs:
+* Keyboard layout 						  :ergoemacs:
   :PROPERTIES:
   :ID:       0b350314-71d4-45a7-975e-a00c723a333f
   :END:
@@ -201,7 +201,7 @@
     (add-to-list
      'el-get-sources
      '(:name ergoemacs-mode
-             :after 
+             :after
              (progn
                (setq ergoemacs-theme nil
                      ergoemacs-keyboard-layout "us")
@@ -2238,8 +2238,8 @@
 
    Rest of the alias definitions are [[file:eshell/alias][eshell aliases file.]]
 
-** git 								:VCS:
-   
+** magit 								:VCS:
+
    Here is defined git-emacs interface customization. Currently I'm
    using magit.
 
@@ -2248,10 +2248,9 @@
     #+BEGIN_SRC emacs-lisp
       (add-to-list
        'el-get-sources
-       '(:name magit :type elpa
-               :after
-               (progn
-                 (global-set-key (kbd "<f10>") 'magit-status))))
+       '(:name magit :type elpa :after
+    	   (progn
+    	     (global-set-key (kbd "<f10>") 'magit-status))))
     #+END_SRC
 
 *** git-gutter
@@ -2309,7 +2308,7 @@
   #+begin_src emacs-lisp
     (require 'appearance)
     ;; in separate variable so that emacs can find sexp where to add things.
-    (setq custom-file "~/.emacs-custom.el") 
+    (setq custom-file "~/.emacs-custom.el")
     (load custom-file 'noerror)
   #+end_src
 
