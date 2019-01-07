@@ -1970,6 +1970,14 @@
      (provide 'programming)
    #+end_src
 
+** Docker
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list
+      'el-get-sources
+      '(:name dockerfile-mode))
+   #+END_SRC
+
 ** markdown
 
    #+BEGIN_SRC emacs-lisp
