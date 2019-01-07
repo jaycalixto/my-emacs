@@ -7,6 +7,7 @@
 ;; (package-initialize)
 
 (require 'org)
+(setq org-element-use-cache nil)
 (org-babel-load-file
  (expand-file-name "emacs.org" user-emacs-directory))
 ;;; init.el ends here
