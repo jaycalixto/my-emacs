@@ -25,7 +25,7 @@
   updating of my packages.
 
 * Requirements
-
+  
   Because this is for my own usage I list here the current working
   environment:
   - Ubuntu 14.04LTS
@@ -350,25 +350,6 @@
      (setq
       bookmark-default-file (concat personal-directory "bookmarks")
       bookmark-save-flag 1)
-   #+END_SRC
-
-** ELScreen							   :notangle:
-   :PROPERTIES:
-   :TANGLE:   no
-   :END:
-
-   Elscreen is like screen for emacs. Installed via system tool
-   apt-get, so you need sudo rights. It can be passed as $pass env
-   variable, but might be little bit unreliable.
-
-   #+BEGIN_SRC emacs-lisp
-     (add-to-list
-      'el-get-sources
-      '(:name elscreen :type apt-get
-              :after (progn
-                       (global-set-key (kbd "<s-prior>") 'elscreen-previous)
-                       (global-set-key (kbd "<s-next>")  'elscreen-next)
-                       )))
    #+END_SRC
 
 ** Window layout navigator
@@ -1631,73 +1612,6 @@
                     compilation-error-regexp-alist))) 
    #+END_SRC
 
-** XREF 							   :notangle:
-   :PROPERTIES:
-   :tangle:   no
-   :END:
-
-   Xrefactory configuration part
-
-   #+BEGIN_SRC emacs-lisp
-     ;; some Xrefactory defaults can be set here
-     (defvar xref-current-project nil) ;; can be also "my_project_name"
-     (defvar xref-key-binding 'none) ;; can be also 'local or 'none
-     
-     (setq load-path (cons "/usr/lib/emacs/xref/emacs" load-path))
-     (setq exec-path (cons "/usr/lib/emacs/xref/" exec-path))
-     
-     (load "xrefactory")
-     
-     ;; end of Xrefactory configuration part ;;
-     (message "xrefactory loaded")
-   #+END_SRC
-
-** JDEE 							   :notangle:
-   :PROPERTIES:
-   :tangle:   no
-   :END:
-
-   #+BEGIN_SRC emacs-lisp
-     ;;JDEE configure
-     
-     ;; add to list JDEE stuff
-     (add-to-list 
-      'load-path (expand-file-name "/usr/local/jdee/jde-2.3.5.1/lisp"))
-     
-     (add-to-list 
-      'load-path (expand-file-name "/usr/local/jdee/cedet-1.0beta3b/common"))
-     
-     (add-to-list 
-      'load-path (expand-file-name "/usr/share/emacs/site-lisp/elib"))
-     
-     (load-file (expand-file-name "/usr/local/jdee/cedet-1.0beta3b/common/cedet.el"))
-     
-     ;; If you want Emacs to defer loading the JDE until you open a 
-     ;; Java file, edit the following line
-     (setq defer-loading-jde nil)
-     ;; to read:
-     (setq defer-loading-jde t)
-     (if defer-loading-jde
-         (progn
-           (autoload 'jde-mode "jde" "JDE mode." t)
-           (setq auto-mode-alist
-              (append
-               '(("\\.java\\'" . jde-mode))
-               auto-mode-alist)))
-       (require 'jde))
-     
-     ;;set some jde variables
-     (setq jde-jdk (quote ("sun 1.6.0.10"))
-           jde-jdk-registry (quote (("sun 1.6.0.10" . "/usr/lib/jvm/java-6-sun-1.6.0.10/") ("open 1.6.0" . "/usr/lib/jvm/default-java"))))
-     
-     ;; Sets the basic indentation for Java source files
-     ;; to two spaces.
-     (defun my-jde-mode-hook ()
-       (setq c-basic-offset 3))
-     
-     ;;make mode-hook
-     (add-hook 'jde-mode-hook 'my-jde-mode-hook)
-   #+END_SRC
 ** Maven
 
    Enables simple POM property parsing and connection to JDE mode.
@@ -1707,26 +1621,7 @@
       'el-get-sources
       '(:name pom))
    #+end_src
-** Sage 							   :notangle:
-   :PROPERTIES:
-   :tangle:   no
-   :END:
 
-   #+BEGIN_SRC emacs-lisp
-     (add-to-list 'load-path (expand-file-name "$SAGE_DATA/emacs"))
-     (require 'sage "sage")
-     (setq sage-command "$SAGE_ROOT/sage")
-     
-     ;; If you want sage-view to typeset all your output and have plot()
-     ;; commands inline, uncomment the following line and configure sage-view:
-     (require 'sage-view "sage-view")
-     (add-hook 'sage-startup-hook 'sage-view)
-     You can use commands like
-     (add-hook 'sage-startup-hook 'sage-view
-     'sage-view-disable-inline-output 'sage-view-disable-inline-plots)
-     ;; to have some combination of features.  In future, the customize interface
-     ;; will make this simpler... hint, hint!
-   #+END_SRC
 ** Ruby
 
    #+BEGIN_SRC emacs-lisp
@@ -1799,6 +1694,7 @@
                   )
             auto-mode-alist))
    #+end_src
+
 ** javascript
 
    Nodejs is installed/downloaded outside emacs frame,
@@ -1841,6 +1737,7 @@
      ;;(require 'flymake-jslint)
      ;;(add-hook 'js-mode-hook 'flymake-jslint-load)
    #+END_SRC
+
 ** JSON
    
    JSON pretty printing can be accomplished with following mode.
@@ -1859,6 +1756,7 @@
    #+END_SRC
 
 ** Clojure
+
    Lisp dialect that runs on JVM. Needs external clojure
    installation. For clojureI use CIDER package collection.
 
